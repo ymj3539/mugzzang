@@ -3,18 +3,24 @@ header {
   width: 100%;
   height: 200px;
 }
-
 nav {
   background-color: aquamarine;
   width: 100%;
   height: 80px;
 }
-.content {
+
+.filter {
+  background-color: skyblue;
+  height: 5em;
+  margin-bottom: 30px;
+}
+
+.itemlist_container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.sectionFlex {
+.itemlist_flexbox {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -22,14 +28,8 @@ nav {
   gap: 5em;
 }
 
-article {
+.itemlist {
   width: 230px;
   height: 290px;
   background-color: black;
-}
-
-.filter {
-  background-color: skyblue;
-  height: 5em;
-  margin-bottom: 30px;
 }
