@@ -35,6 +35,29 @@ class UserService {
     return createdNewUser;
   }
 
+  // admin 가입
+  async addAdmin(userInfo) {
+    const { email, fullName, password, role } = userInfo;
+
+    const user = await this.userModel.findByEmail(email);
+
+    if (user){
+      throw new Error(
+        `이 이메일은 현재 사용중입니다. 다른 이메일을 사용하세요`
+      );
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newAdminInfo = { fullName, email, password: hashedPassword, role };
+
+    //db 저장
+    const createdNewAdmin = await this.userModel.create(newAdminInfo);
+
+    return createdNewAdmin;
+
+  }
+
   // 로그인
   async getUserToken(loginInfo) {
     // 객체 destructuring
