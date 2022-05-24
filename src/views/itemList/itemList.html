@@ -13,13 +13,14 @@
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="itemList.css" />
     <script src="itemList.js" type="module"></script>
+    <script src="showCategoryItem.js" type="module"></script>
   </head>
   <body>
-    <header></header>
-    <nav></nav>
-    <section>
-      <div class="filter"></div>
-    </section>
+    <header>header</header>
+    <nav class="category_container">
+      <button id="category_1" data-num="1"><a href="#">손님</a></button>
+      <button id="category_2" data-num="2"><a href="#">사장님</a></button>
+    </nav>
     <section class="itemlist_container" id="itemlist_section">
       <div class="itemlist_flexbox"></div>
     </section>
