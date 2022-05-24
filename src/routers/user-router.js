@@ -6,6 +6,7 @@ import { userService } from '../services';
 
 const userRouter = Router();
 
+
 // 회원가입 api (아래는 /register이지만, 실제로는 /api/register로 요청해야 함.)
 userRouter.post('/register', async (req, res, next) => {
   try {
@@ -102,6 +103,29 @@ userRouter.get('/userlist', loginRequired, async function (req, res, next) {
     next(error);
   }
 });
+
+//개별 사용자 정보 조회
+userRouter.get('/userinfo/:username',  async (req, res, next)=>{
+  try {
+    if (is.emptyObject(req.params)) {
+      throw new Error(
+        '조회하려는 사용자 이름이 정확한지 확인해주세요.'
+      );
+    }
+    const {username} = req.params;
+   
+    const user = await userService.getUser(username);
+    res.json(user);
+    
+    
+  } catch (error){
+    next(error);
+  }
+
+
+});
+
+
 
 // 사용자 정보 수정
 // (예를 들어 /api/users/abc12345 로 요청하면 req.params.userId는 'abc12345' 문자열로 됨)
