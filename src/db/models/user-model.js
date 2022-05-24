@@ -31,6 +31,12 @@ export class UserModel {
     const updatedUser = await User.findOneAndUpdate(filter, update, option);
     return updatedUser;
   }
+
+
+  async findUser(userName) {
+    const user = await User.findOne({fullName : userName});
+    return user;
+  }
 }
 
 const userModel = new UserModel();

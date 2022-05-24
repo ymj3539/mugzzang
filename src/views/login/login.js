@@ -28,9 +28,12 @@ async function handleSubmit(e) {
   const isEmailValid = validateEmail(email);
   const isPasswordValid = password.length >= 4;
 
-  if (!isEmailValid || !isPasswordValid) {
+  // email 형식 확인 후 비밀번호 형식 확인으로 절차 구분함
+  if (!isEmailValid) {
+    return alert('email 형식이 맞는지 확인해 주세요.')
+  } else if (!isPasswordValid) {
     return alert(
-      '비밀번호가 4글자 이상인지, 이메일 형태가 맞는지 확인해 주세요.'
+      '비밀번호가 4글자 이상인지확인해 주세요.'
     );
   }
 

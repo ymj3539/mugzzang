@@ -103,6 +103,13 @@ class UserService {
     return users;
   }
 
+  // 개별 사용자 목록 받음 - 회원정보 수정 페이지용
+  async getUser(username) {
+    const user = await this.userModel.findUser(username);
+    return user;
+  }
+
+
   // 유저정보 수정, 현재 비밀번호가 있어야 수정 가능함.
   async setUser(userInfoRequired, toUpdate) {
     // 객체 destructuring
