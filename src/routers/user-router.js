@@ -37,6 +37,34 @@ userRouter.post('/register', async (req, res, next) => {
   }
 });
 
+//admin 등록
+userRouter.post('/register/admin', async(req,res,next)=>{
+  try {
+    if (is.emptyObject(req.body)) {
+      throw new Error(
+        `headers의 Content-Type을 application/json으로 설정해주세요`
+      )
+    }
+
+    const fullName = req.body.fullName;
+    const email = req.body.email;
+    const password = req.body.password;
+    const role = req.body.role;
+
+    const newAdmin = await userService.addAdmin({
+      fullName,
+      email,
+      password,
+      role
+    });
+
+    res.status(201).json(newAdmin);
+  } catch (error) {
+    next(error);
+  }
+
+})
+
 // 로그인 api (아래는 /login 이지만, 실제로는 /api/login로 요청해야 함.)
 userRouter.post('/login', async function (req, res, next) {
   try {
