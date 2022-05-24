@@ -1,114 +1,242 @@
 [
   {
     "oid": 1,
-    "brand": "nike",
-    "name": "남성용 신발",
-    "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "brand": "동원참치",
+    "name": "동원 참치",
+    "price": "6,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
   },
   {
     "oid": 2,
-    "brand": "nike",
-    "name": "남성용 신발",
-    "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "brand": "건강한 식품",
+    "name": "옛날 소세지",
+    "price": "5,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
   },
   {
     "oid": 3,
-    "brand": "nike",
-    "name": "남성용 신발",
-    "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "brand": "맛있는회사",
+    "name": "사리면",
+    "price": "2,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
   },
   {
     "oid": 4,
-    "brand": "nike",
-    "name": "남성용 신발",
-    "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "brand": "그린푸드",
+    "name": "양배추 대용량",
+    "price": "50,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
   },
   {
     "oid": 5,
-    "brand": "nike",
-    "name": "남성용 신발",
+    "brand": "우리사장님",
+    "name": "양파 대용량",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
   },
   {
     "oid": 6,
     "brand": "nike",
     "name": "남성용 신발",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
   },
   {
     "oid": 7,
     "brand": "nike",
-    "name": "남성용 신발",
+    "name": "여성용 신발",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
   },
   {
     "oid": 8,
     "brand": "nike",
     "name": "남성용 신발",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
   },
   {
     "oid": 9,
     "brand": "nike",
-    "name": "남성용 신발",
+    "name": "여성용 신발",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
   },
   {
     "oid": 10,
     "brand": "nike",
     "name": "남성용 신발",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
   },
   {
     "oid": 11,
     "brand": "nike",
     "name": "남성용 신발",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
   },
   {
     "oid": 12,
     "brand": "nike",
     "name": "남성용 신발",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
   },
   {
     "oid": 13,
     "brand": "nike",
     "name": "남성용 신발",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
   },
   {
     "oid": 14,
     "brand": "nike",
-    "name": "남성용 신발",
+    "name": "여성용 신발",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
   },
   {
     "oid": 15,
     "brand": "nike",
     "name": "남성용 신발",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
   },
   {
     "oid": 16,
     "brand": "nike",
+    "name": "여성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
+  },
+  {
+    "oid": 17,
+    "brand": "nike",
+    "name": "여성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
+  },
+  {
+    "oid": 18,
+    "brand": "nike",
+    "name": "여성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
+  },
+  {
+    "oid": 19,
+    "brand": "nike",
+    "name": "여성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
+  },
+  {
+    "oid": 20,
+    "brand": "nike",
     "name": "남성용 신발",
     "price": "30,000",
-    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg"
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
+  },
+  {
+    "oid": 21,
+    "brand": "nike",
+    "name": "여성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
+  },
+  {
+    "oid": 22,
+    "brand": "nike",
+    "name": "여성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
+  },
+  {
+    "oid": 23,
+    "brand": "nike",
+    "name": "남성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
+  },
+  {
+    "oid": 24,
+    "brand": "nike",
+    "name": "남성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
+  },
+  {
+    "oid": 25,
+    "brand": "nike",
+    "name": "남성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
+  },
+  {
+    "oid": 26,
+    "brand": "nike",
+    "name": "여성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
+  },
+  {
+    "oid": 27,
+    "brand": "nike",
+    "name": "여성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
+  },
+  {
+    "oid": 28,
+    "brand": "nike",
+    "name": "남성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
+  },
+  {
+    "oid": 29,
+    "brand": "nike",
+    "name": "남성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 2
+  },
+  {
+    "oid": 30,
+    "brand": "nike",
+    "name": "여성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
   }
 ]
