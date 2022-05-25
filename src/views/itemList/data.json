@@ -219,9 +219,11 @@
     "oid": 28,
     "brand": "nike",
     "name": "남성용 신발",
+    "nameAdditional": "기능성을 더한 멋쟁이들의 신발",
     "price": "30,000",
     "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
-    "category": 2
+    "category": 2,
+    "description": "이 상품은 이탈리아 장인의 어쩌구......... 이 상품은 이탈리아 장인의 어쩌구......... 이 상품은 이탈리아 장인의 어쩌구......... 이 상품은 이탈리아 장인의 어쩌구......... 이 상품은 이탈리아 장인의 어쩌구......... "
   },
   {
     "oid": 29,
