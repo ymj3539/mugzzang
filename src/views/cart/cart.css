@@ -1,0 +1,72 @@
+/* 앨리스배움체 */
+@import url("https://font.elice.io/EliceDigitalCoding.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #E9EFC0;
+  font-family: 'Elice Digital Coding', 'monospace'; 
+  color: #4a4a4a;
+  text-decoration: none;
+}
+
+/* header */
+nav ul {
+  height: 20px;
+  text-align: right;
+  padding: 10px;
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li:last-child {
+  margin-right: 0;
+}
+.pageTop h2 {
+  font-size: 30px;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+/* main */
+.cartTitle {
+  font-size: 15px;
+  padding: 30px;
+}
+.itemList {
+  display:inline-block;
+  padding: 20px;
+  margin: 50px;
+  border: 2px solid #B4E197;
+  width: 800px;
+  float: left;
+}
+.payInfo {
+  width: 200px;
+  padding: 20px;
+  margin: 50px;
+  border: 2px solid #B4E197;
+  float: right;
+}
+
+
+/* footer */
+footer {
+  clear: both;
+}
+
+footer .footer {
+  font-size: small;
+  line-height: 200%;
+  /* height: 100px;
+  width: 100vw; */
+  padding: 0 0 10px 20px;
+  background-color: #E9EFC0;
+}
+
+.footer .companyName {
+  font-size: medium;
+  font-weight: bold;
+  line-height: 300%
+}
