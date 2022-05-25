@@ -240,5 +240,13 @@
     "price": "30,000",
     "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
     "category": 1
+  },
+  {
+    "oid": 31,
+    "brand": "nike",
+    "name": "여성용 신발",
+    "price": "30,000",
+    "img": "https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/rs_quotation_api/wbozv4gi/1d54ca3943674bd3a9065c7e0db206bd.jpg",
+    "category": 1
   }
 ]
