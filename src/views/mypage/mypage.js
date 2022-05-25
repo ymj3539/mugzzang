@@ -12,12 +12,12 @@ addAllEvents();
 // html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 async function addAllElements() {
   loginTrue();
-  creatLogout();
+  mypageInfo();
 }
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
-  // logoutBtn.addEventListener("click", logout);
+  logoutBtn.addEventListener("click", logout);
   testBtn.addEventListener("click", testfun);
 }
 
@@ -30,7 +30,6 @@ async function getDataFromApi() {
   console.log({ random });
 }
 
-//내가 작업 한 부분 시작
 function logout() {
   //로그아웃 버튼 클릭시 세션스토리지 삭제
   if (sessionStorage.getItem("token")) {
@@ -69,25 +68,15 @@ function loginTrue() {
           <span>카트</span>
         </a>
       </li>
-      <li><a href="/mypage" id="mypageBtn">mypage</a></li>
       <li><a id="logoutBtn" >로그아웃</a></li>
       `
     );
   }
 }
-function creatLogout() {
-  const logoutbtn = document.createElement("a");
-  logoutbtn.innerHTML = "로그아웃";
-  logoutbtn.id = "logoutBtn";
-  logoutbtn.onclick = function () {
-    if (sessionStorage.getItem("token")) {
-      console.log(sessionStorage.getItem("id"));
-      sessionStorage.clear();
-      alert("로그아웃 하였습니다.");
-      window.location.href = "/";
-    }
-  };
-  navBar.appendChild(logoutbtn);
-}
 
-//내가 작업 한 부분 끝
+function mypageInfo() {
+  const userName = document.querySelector(".userName");
+  const userEmail = document.querySelector(".userEmail");
+  userName.innerHTML = "";
+  userEmail.innerHTML = "";
+}
