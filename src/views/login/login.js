@@ -1,5 +1,5 @@
-import * as Api from "/api.js";
-import { validateEmail } from "/useful-functions.js";
+import * as Api from '/api.js';
+import {validateEmail} from '/useful-functions.js';
 
 // 요소(element), input 혹은 상수
 const emailInput = document.querySelector("#emailInput");
@@ -39,7 +39,7 @@ async function handleSubmit(e) {
 
   // 로그인 api 요청
   try {
-    const data = { email, password };
+    const data = {email, password};
 
     const result = await Api.post("/api/login", data);
     const token = result.token;
@@ -47,9 +47,8 @@ async function handleSubmit(e) {
 
     // 로그인 성공, 토큰을 세션 스토리지에 저장 + id도 저장
     // 물론 다른 스토리지여도 됨
-    sessionStorage.setItem("token", token);
-    sessionStorage.setItem("id", email);
-
+    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('id', email);
     alert(`정상적으로 로그인되었습니다.`);
 
     // 로그인 성공
