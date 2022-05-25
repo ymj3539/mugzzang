@@ -1,5 +1,5 @@
 import * as Api from '/api.js';
-import { validateEmail } from '/useful-functions.js';
+import {validateEmail} from '/useful-functions.js';
 
 // 요소(element), input 혹은 상수
 const fullNameInput = document.querySelector('#fullNameInput');
@@ -48,14 +48,14 @@ async function handleSubmit(e) {
 
   // 회원가입 api 요청
   try {
-    const data = { fullName, email, password };
+    const data = {fullName, email, password};
 
     await Api.post('/api/register', data);
 
     alert(`정상적으로 회원가입되었습니다.`);
 
     // 로그인 페이지 이동
-    window.location.href = '/login';
+    window.location.href = '/';
   } catch (err) {
     console.error(err.stack);
     alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
