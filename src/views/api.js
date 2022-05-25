@@ -6,7 +6,11 @@ async function get(endpoint, params = "") {
   const res = await fetch(apiUrl, {
     // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
     headers: {
+<<<<<<< HEAD
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+=======
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+>>>>>>> c889f4f8fbcbebb0902e82d278f198fd7f9acd1f
     },
   });
 
@@ -35,8 +39,13 @@ async function post(endpoint, data) {
   const res = await fetch(apiUrl, {
     method: "POST",
     headers: {
+<<<<<<< HEAD
       "Content-Type": "application/json",
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+=======
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+>>>>>>> c889f4f8fbcbebb0902e82d278f198fd7f9acd1f
     },
     body: bodyData,
   });
@@ -67,8 +76,13 @@ async function patch(endpoint, params = "", data) {
   const res = await fetch(apiUrl, {
     method: "PATCH",
     headers: {
+<<<<<<< HEAD
       "Content-Type": "application/json",
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+=======
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+>>>>>>> c889f4f8fbcbebb0902e82d278f198fd7f9acd1f
     },
     body: bodyData,
   });
@@ -98,8 +112,13 @@ async function del(endpoint, params = "", data = {}) {
   const res = await fetch(apiUrl, {
     method: "DELETE",
     headers: {
+<<<<<<< HEAD
       "Content-Type": "application/json",
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+=======
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+>>>>>>> c889f4f8fbcbebb0902e82d278f198fd7f9acd1f
     },
     body: bodyData,
   });
