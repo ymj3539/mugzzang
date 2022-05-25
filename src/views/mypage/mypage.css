@@ -1,6 +1,12 @@
 .mypage-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   height: 100vh;
+}
+
+.userInfo {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
 }

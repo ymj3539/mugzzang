@@ -1,25 +1,25 @@
 {
   "info": [
     {
-      "id": 1,
+      "id": "base1@test.com",
       "content": "string1",
       "name": "이름1",
       "PW": "asdf1"
     },
     {
-      "id": 2,
+      "id": "base2@test.com",
       "content": "string2",
       "name": "이름2",
       "PW": "asdf2"
     },
     {
-      "id": 3,
+      "id": "base3@test.com",
       "content": "string3",
       "name": "이름3",
       "PW": "asdf3"
     },
     {
-      "id": 4,
+      "id": "base4@test.com",
       "content": "string4",
       "name": "이름4",
       "PW": "asdf4"
