@@ -17,43 +17,13 @@ addAllEvents();
 
 // html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 async function addAllElements() {
-  insertTextToLanding();
-  insertTextToGreeting();
   loginTrue();
 }
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
-  landingDiv.addEventListener("click", alertLandingText);
-  greetingDiv.addEventListener("click", alertGreetingText);
   logoutBtn.addEventListener("click", logout);
   testBtn.addEventListener("click", testfun);
-}
-
-function insertTextToLanding() {
-  landingDiv.insertAdjacentHTML(
-    "beforeend",
-    `
-      <h2>n팀 쇼핑몰의 랜딩 페이지입니다. 자바스크립트 파일에서 삽입되었습니다.</h2>
-    `
-  );
-}
-
-function insertTextToGreeting() {
-  greetingDiv.insertAdjacentHTML(
-    "beforeend",
-    `
-      <h1>반갑습니다! 자바스크립트 파일에서 삽입되었습니다.</h1>
-    `
-  );
-}
-
-function alertLandingText() {
-  alert("n팀 쇼핑몰입니다. 안녕하세요.");
-}
-
-function alertGreetingText() {
-  alert("n팀 쇼핑몰에 오신 것을 환영합니다");
 }
 
 async function getDataFromApi() {
@@ -65,7 +35,6 @@ async function getDataFromApi() {
   console.log({ random });
 }
 
-//내가 작업 한 부분 시작
 function logout() {
   //로그아웃 버튼 클릭시 세션스토리지 삭제
   if (sessionStorage.getItem("token")) {
@@ -104,11 +73,8 @@ function loginTrue() {
           <span>카트</span>
         </a>
       </li>
-      <li><a href="/mypage" id="mypageBtn">mypage</a></li>
       <li><a id="logoutBtn" >로그아웃</a></li>
       `
     );
   }
 }
-
-//내가 작업 한 부분 끝
