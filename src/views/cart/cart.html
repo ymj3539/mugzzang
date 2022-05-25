@@ -24,7 +24,7 @@
     ></script>
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="cart.css" />
-    <script src="cart.js" type="module" defer></script>
+    <script src="cart.js" type="module"></script>
   </head>
   <body>
     <!-- 헤더 -->
@@ -51,20 +51,22 @@
       </div>
     </header>
     <!--메인-->
-    <section class="cartTitle">
-      <h1>장바구니dddd</h1>
-    </section>
-    <div class="cartInfo">
-      <section class="itemList">
-      <div>아직 담은 제품이 없습니다.</div>
-    </section>
-    <section class="payInfo">
-      <div><h2>결제정보</h2></div>
-      <span>상품 수량</span>  <span id="itemAmount">@개</span>
-      <span>상품 금액</span>  <span id="itemPrice">@원</span>
-      <span>배송비</span>  <span id="shippingFee">3000원</span>
-    </section>
-    </div>
+    <main role="main">
+      <section class="cartTitle">
+        <h1>장바구니</h1>
+      </section>
+      <div class="cartInfoContainer">
+        <section class="cartList">
+        </section>
+        <section class="payInfo">
+          <div><h2>결제정보</h2></div>
+          <span>상품 수량</span>  <span id="itemAmount">@개</span>
+          <span>상품 금액</span>  <span id="itemPrice">@원</span>
+          <span>배송비</span>  <span id="shippingFee">3000원</span>
+        </section>
+      </div>
+    </main>
+    
     
     <!-- footer -->
     <footer>
