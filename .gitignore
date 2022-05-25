@@ -1,7 +1,10 @@
 # Dependencies
 node_modules
 yarn.lock
+<<<<<<< HEAD
 package-lock.json
+=======
 .env
 
 
+>>>>>>> c889f4f8fbcbebb0902e82d278f198fd7f9acd1f
