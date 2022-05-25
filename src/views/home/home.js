@@ -10,6 +10,7 @@ const landingDiv = document.querySelector("#landingDiv");
 const greetingDiv = document.querySelector("#greetingDiv");
 const navBar = document.querySelector("#navbar");
 const logoutBtn = document.querySelector("#logoutBtn");
+const testBtn = document.querySelector("#testBtn");
 
 addAllElements();
 addAllEvents();
@@ -26,6 +27,7 @@ function addAllEvents() {
   landingDiv.addEventListener("click", alertLandingText);
   greetingDiv.addEventListener("click", alertGreetingText);
   logoutBtn.addEventListener("click", logout);
+  testBtn.addEventListener("click", testfun);
 }
 
 function insertTextToLanding() {
@@ -66,10 +68,18 @@ async function getDataFromApi() {
 //내가 작업 한 부분 시작
 function logout() {
   //로그아웃 버튼 클릭시 세션스토리지 삭제
-  console.log(sessionStorage.getItem("id"));
-  sessionStorage.clear();
-  alert("로그아웃 하였습니다.");
-  window.location.href = "/";
+  if (sessionStorage.getItem("token")) {
+    console.log(sessionStorage.getItem("id"));
+    sessionStorage.clear();
+    alert("로그아웃 하였습니다.");
+    window.location.href = "/";
+  }
+}
+
+async function testfun() {
+  const result = await Api.get(`api/userinfo/성경주`);
+  console.log(result);
+  console.log("asdf");
 }
 
 function loginTrue() {
