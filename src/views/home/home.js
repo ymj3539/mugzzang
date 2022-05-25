@@ -1,13 +1,7 @@
-// 아래는 현재 home.html 페이지에서 쓰이는 코드는 아닙니다.
-// 다만, 앞으로 ~.js 파일을 작성할 때 아래의 코드 구조를 참조할 수 있도록,
-// 코드 예시를 남겨 두었습니다.
-
 import * as Api from "/api.js";
 import { randomId } from "/useful-functions.js";
 
 // 요소(element), input 혹은 상수
-const landingDiv = document.querySelector("#landingDiv");
-const greetingDiv = document.querySelector("#greetingDiv");
 const navBar = document.querySelector("#navbar");
 const logoutBtn = document.querySelector("#logoutBtn");
 const testBtn = document.querySelector("#testBtn"); //테스트 버튼
@@ -17,43 +11,14 @@ addAllEvents();
 
 // html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 async function addAllElements() {
-  insertTextToLanding();
-  insertTextToGreeting();
   loginTrue();
+  creatLogout();
 }
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
-  landingDiv.addEventListener("click", alertLandingText);
-  greetingDiv.addEventListener("click", alertGreetingText);
-  logoutBtn.addEventListener("click", logout);
+  // logoutBtn.addEventListener("click", logout);
   testBtn.addEventListener("click", testfun);
-}
-
-function insertTextToLanding() {
-  landingDiv.insertAdjacentHTML(
-    "beforeend",
-    `
-      <h2>n팀 쇼핑몰의 랜딩 페이지입니다. 자바스크립트 파일에서 삽입되었습니다.</h2>
-    `
-  );
-}
-
-function insertTextToGreeting() {
-  greetingDiv.insertAdjacentHTML(
-    "beforeend",
-    `
-      <h1>반갑습니다! 자바스크립트 파일에서 삽입되었습니다.</h1>
-    `
-  );
-}
-
-function alertLandingText() {
-  alert("n팀 쇼핑몰입니다. 안녕하세요.");
-}
-
-function alertGreetingText() {
-  alert("n팀 쇼핑몰에 오신 것을 환영합니다");
 }
 
 async function getDataFromApi() {
@@ -78,7 +43,7 @@ function logout() {
 
 async function testfun() {
   //테스트버튼
-  const result = await Api.get(`api/userinfo/성경주`);
+  const result = await Api.get(`api/userinfo/test2@test2.com`);
   console.log(result);
 }
 
@@ -109,6 +74,20 @@ function loginTrue() {
       `
     );
   }
+}
+function creatLogout() {
+  const logoutbtn = document.createElement("a");
+  logoutbtn.innerHTML = "로그아웃";
+  logoutbtn.id = "logoutBtn";
+  logoutbtn.onclick = function () {
+    if (sessionStorage.getItem("token")) {
+      console.log(sessionStorage.getItem("id"));
+      sessionStorage.clear();
+      alert("로그아웃 하였습니다.");
+      window.location.href = "/";
+    }
+  };
+  navBar.appendChild(logoutbtn);
 }
 
 //내가 작업 한 부분 끝
