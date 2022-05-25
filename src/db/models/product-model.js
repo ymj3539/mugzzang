@@ -21,8 +21,8 @@ export class ProductModel {
     }
 
     async findAllProducts() {
-        const product = await Product.find({});
-        return product;
+        const products = await Product.find({});
+        return products;
     }
 
     // async update
@@ -32,3 +32,4 @@ export class ProductModel {
 const productModel = new ProductModel();
 
 export { productModel};
+
