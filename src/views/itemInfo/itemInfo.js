@@ -48,9 +48,9 @@ setData()
       </div>
     </article>`
     );
-    console.log(document);
     return document;
   })
   .then((doc) => {
     quantityControlBox(doc);
-  });
+  })
+  .catch((err) => console.error(err));
