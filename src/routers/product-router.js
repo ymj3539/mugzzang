@@ -6,7 +6,7 @@ import { productService } from '../services/product-service';
 const productRouter = Router();
 
 // 전체 상품 조회
-productRouter.get('/products', async(req,res,next)=>{
+productRouter.get('/list', async(req,res,next)=>{
     try {
         if(is.emptyObject(req.body)) {
             throw new Error(
@@ -66,3 +66,5 @@ productRouter.post('/products/upload', async(req,res,next)=>{
         next(error);
     }
 })
+
+export {productRouter};

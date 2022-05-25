@@ -106,11 +106,11 @@ try {
 
 
 //개별 사용자 정보 조회
-userRouter.get('/userinfo/:useremail',  async (req, res, next)=>{
+userRouter.get('/userinfo/:useremail',loginRequired,  async (req, res, next)=>{
   try {
     if (is.emptyObject(req.params)) {
       throw new Error(
-        '조회하려는 사용자 이름이 정확한지 확인해주세요.'
+        '조회하려는 사용자 이메일이 정확한지 확인해주세요.'
       );
     }
     const {useremail} = req.params;
