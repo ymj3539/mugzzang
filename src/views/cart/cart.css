@@ -47,9 +47,17 @@ nav ul li:last-child {
   width: 800px;
   float: left;
 }
-#basicText {
-  text-align: center;
+.itemImage {
+  max-width: 70px;
+  max-height: 70px;
 }
+/* .itemIamge,
+.itemName
+.itemQuantity,
+.itemPrice,
+.totalItemPrice{
+
+} */
 .payInfo {
   width: 200px;
   padding: 20px;
