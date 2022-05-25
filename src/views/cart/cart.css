@@ -42,7 +42,7 @@ nav ul li:last-child {
 }
 .cartList {
   padding: 40px;
-  margin: 10px 50px 50px 50px;
+  margin: 10px 10px 50px 50px;
   border: 2px solid #B4E197;
   width: 800px;
   float: left;
@@ -59,9 +59,9 @@ nav ul li:last-child {
 
 } */
 .payInfo {
-  width: 200px;
+  width: 300px;
   padding: 20px;
-  margin: 50px;
+  margin: 50px 50px 50px 0;
   border: 2px solid #B4E197;
   float: right;
 }
