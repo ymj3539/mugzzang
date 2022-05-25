@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>먹거리 장터 먹짱</title>
+    <title>장바구니</title>
     <!-- 아이콘 -->
     <link
       rel="icon"
       type="image/png"
       sizes="30x30"
-      href="./images/icon.png"
+      href="../home/images/icon.png"
     />
     <!-- bulma css -->
     <link
@@ -23,11 +23,13 @@
       crossorigin="anonymous"
     ></script>
     <!-- 커스텀 css, js -->
-    <link rel="stylesheet" href="home.css" />
-    <script src="home.js" type="module" defer></script>
+    <link rel="stylesheet" href="cart.css" />
+    <script src="cart.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
+    <header>
+      
     <nav role="navigation" aria-label="main navigation">
       <ul>
         <li><a href="/login">로그인</a></li>
@@ -42,45 +44,29 @@
         </li>
       </ul>
     </nav>
-    <header>
-      <div class="pageTop">
+    <div class="pageTop">
         <a href="/" class="brand">
-          <img src="./images/로고.jpg"/>
-          <span id="title"><span class="subTitle">먹거리장터</span>먹짱</span>
+          <h2>먹짱</h2>
         </a>
       </div>
     </header>
     <!--메인-->
-    <section class="section">
-      <div class="sliderContainer">
-        <div class="sliderArrowContainer">
-          <button class="sliderArrowLeft">
-            <span class="icon is-large">
-              <i class="fas fa-chevron-left fa-2x" aria-hidden="true"></i>
-            </span>
-          </button>
-          <button class="sliderArrowRight">
-            <span class="icon is-large">
-              <i class="fas fa-chevron-right fa-2x" aria-hidden="true"></i>
-            </span>
-          </button>
-        </div>
-        <div id="slider">
-          <div class="slides">
-            <div class="slide active">
-              <a href="/" target="_self">
-                <img src="./images/도매.jpg" alt="도매 카테고리로 이동">
-              </a>
-            </div>
-            <div class="slide">
-              <a href="/" target="_self">
-                <img src="./images/소매.jpg" alt="소매 카테고리로 이동">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>  
+    <section class="cartTitle">
+      <h1>장바구니</h1>
     </section>
+    <div class="cartInfo">
+      <section class="itemList">
+      <div>아직 담은 제품이 없습니다.</div>
+    </section>
+    <section class="payInfo">
+      <div><h2>결제정보</h2></div>
+      <span>상품 수량</span>  <span id="itemAmount">@개</span>
+      <span>상품 금액</span>  <span id="itemPrice">@원</span>
+      <span>배송비</span>  <span id="shippingFee">3000원</span>
+    </section>
+    </div>
+    
+    <!-- footer -->
     <footer>
       <div class="footer">
         <p class="companyName">(주)사팀</p>
