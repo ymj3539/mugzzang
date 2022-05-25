@@ -1,5 +1,6 @@
 //merge할 때 파일 경로 준서님껄로 수정
 import {quantityControlBox} from './quantityControlBox.js'; 
+// import {functions} from '../useful-functions';
 
 const cartList = document.querySelector('.cartList');
 const payInfo = document.querySelector('.payInfo');
@@ -26,12 +27,17 @@ async function getitemList() {
 }
 
 let inCartList = await getCartList();
+let totalItemQuantity = 0;
+let totalPrice = 0;   
+let total = 0;
+
 if(inCartList.length < 1) {
     cartList.innerHTML = `장바구니가 비어 있습니다:(`;
 } else {
     let itemList = await getitemList();
     inCartList = inCartList.slice(2).map(x => Object.values(x)).flat();
-    console.log(itemList);
+
+    
     
     inCartList.forEach((cart) => {
         const foundItem = itemList.find(item => {
@@ -42,7 +48,10 @@ if(inCartList.length < 1) {
                 return {itemName, itemPrice, itemImg};
             }
         })
-        const totalItemPrice = parseInt(foundItem.price) * (cart.quantity) * 1000;
+        const totalItemPrice = parseInt(foundItem.price) * parseInt(cart.quantity) * 1000;
+        totalItemQuantity += parseInt(cart.quantity);
+        totalPrice += totalItemPrice;
+        total = totalPrice + 3000;
 
         cartList.innerHTML += `
         <div clas="item">
@@ -56,4 +65,12 @@ if(inCartList.length < 1) {
         </div>`
     }) 
 }
-    
+
+payInfo.innerHTML += `
+    <div><h2>결제정보</h2></div>
+    <div>상품 수량 ${totalItemQuantity}</div>
+    <div>상품 금액 ${totalPrice}원</div>
+    <div>배송비 3,000원</div>
+    <div>총 ${total}원</div>
+    <button type="button">주문하기</button>
+`  
