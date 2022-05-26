@@ -2,10 +2,11 @@ import * as Api from '/api.js';
 import {quantityControlBox} from './quantityControlBox.js';
 const $itemImg = document.querySelector('#itemInfo_img');
 const $itemInfoSection = document.querySelector('#itemInfo_section');
-
+const params = window.location.href.split('?=')[1];
+console.log(params);
 async function setData() {
   try {
-    const itemList = await Api.get('/api/product/list/:shortId');
+    const itemList = await Api.get('/api/product/list', `${params}`);
     return itemList;
   } catch (err) {
     console.error(err);
