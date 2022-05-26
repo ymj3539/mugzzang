@@ -2,32 +2,27 @@ import * as Api from "/api.js";
 import { randomId } from "/useful-functions.js";
 
 // 요소(element), input 혹은 상수
-const navBar = document.querySelector("#navbar");
 const logoutBtn = document.querySelector("#logoutBtn");
-const testBtn = document.querySelector("#testBtn"); //테스트 버튼
+const userName = document.querySelector("#userName");
+const userEmail = document.querySelector("#userEmail");
+const userAdd = document.querySelector("#userAdd");
+const userPhonenum = document.querySelector("#userPhonenum");
+const infoChangeBtn = document.querySelector("#infoChangeBtn");
+const deleteBtn = document.querySelector("#userDelBtn");
 
 addAllElements();
 addAllEvents();
 
 // html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 async function addAllElements() {
-  loginTrue();
   mypageInfo();
 }
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   logoutBtn.addEventListener("click", logout);
-  testBtn.addEventListener("click", testfun);
-}
-
-async function getDataFromApi() {
-  // 예시 URI입니다. 현재 주어진 프로젝트 코드에는 없는 URI입니다.
-  const data = await Api.get("/api/user/data");
-  const random = randomId();
-
-  console.log({ data });
-  console.log({ random });
+  infoChangeBtn.addEventListener("click", infoChange);
+  deleteBtn.addEventListener("click", userDel);
 }
 
 function logout() {
@@ -40,43 +35,47 @@ function logout() {
   }
 }
 
-async function testfun() {
-  //테스트버튼
-  const result = await Api.get(`api/userinfo/test2@test2.com`);
-  console.log(result);
+//마이페이지에 쓰일 로그인 유저의 정보 get (세션 스토리지값을 이용)
+async function mypageInfo() {
+  const resUser = await Api.get(
+    `/api/userinfo/${sessionStorage.getItem("id")}`
+  );
+  console.log(resUser);
+
+  userName.innerHTML = `이름: ${resUser.fullName}`;
+  userEmail.innerHTML = `이메일: ${resUser.email}`;
+  userAdd.innerHTML = `주소: ${resUser.add}`;
+  userPhonenum.innerHTML = `전화번호: ${resUser.phoneNum}`;
 }
 
-function loginTrue() {
-  //세션스토리지에 토큰 유무로 로그인 상태와 비로그인 상태 구분
-  if (!sessionStorage.getItem("token")) {
-    navBar.insertAdjacentHTML(
-      "afterbegin",
-      `
-        <li><a href="/login">로그인</a></li>
-        <li><a href="/register">회원가입</a></li>
-      `
-    );
-  } else if (sessionStorage.getItem("token")) {
-    navBar.insertAdjacentHTML(
-      "afterbegin",
-      `
-      <li>
-        <a href="#cart" aria-current="page">
-          <span class="icon">
-            <i class="fas fa-cart-shopping"></i>
-          </span>
-          <span>카트</span>
-        </a>
-      </li>
-      <li><a id="logoutBtn" >로그아웃</a></li>
-      `
-    );
-  }
+async function infoChange() {
+  const resUser = await Api.get(
+    `/api/userinfo/${sessionStorage.getItem("id")}`
+  );
+
+  const newNameInput = document.createElement("input");
+  newNameInput.value = `${resUser.fullName}`;
+  userName.innerHTML = `이름: `;
+  userName.appendChild(newNameInput);
+
+  const newEmailInput = document.createElement("input");
+  newEmailInput.value = `${resUser.email}`;
+  userEmail.innerHTML = `이메일: `;
+  userEmail.appendChild(newEmailInput);
+
+  const newAddInput = document.createElement("input");
+  newAddInput.value = `${resUser.add}`;
+  userAdd.innerHTML = `주소: `;
+  userAdd.appendChild(newAddInput);
+
+  const newPhonenumInput = document.createElement("input");
+  newPhonenumInput.value = `${resUser.phoneNum}`;
+  userPhonenum.innerHTML = `전화번호: `;
+  userPhonenum.appendChild(newPhonenumInput);
 }
 
-function mypageInfo() {
-  const userName = document.querySelector(".userName");
-  const userEmail = document.querySelector(".userEmail");
-  userName.innerHTML = "";
-  userEmail.innerHTML = "";
+async function userDel() {
+  const test = sessionStorage.getItem("id");
+  const data = { test };
+  await Api.delete(`/api/userinfo`, sessionStorage.getItem("id"), data);
 }
