@@ -38,7 +38,7 @@ nav ul li:last-child {
   font-weight: bolder;
 }
 .cartInfoContainer {
-    min-height: 300px;
+  min-height: 300px;
 }
 .cartList {
   padding: 40px;
@@ -47,19 +47,37 @@ nav ul li:last-child {
   width: 800px;
   float: left;
 }
-.itemImage {
+
+.item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  flex-basis: 0;
+  gap: 30px;
+  margin: 10px;
+}
+.item .itemInfo:nth-child(1) { flex-grow: 1; }
+.item .itemInfo:nth-child(2) { flex-grow: 2; }
+.item .itemInfo:nth-child(4) { flex-grow: 1; }
+.item .itemInfo:nth-child(5) { flex-grow: 1; }
+.item .itemInfo:nth-child(6) { flex-grow: 1; }
+
+.item a img {
   max-width: 70px;
   max-height: 70px;
 }
-/* .itemIamge,
-.itemName
-.itemQuantity,
-.itemPrice,
-.totalItemPrice{
+.itemInfo_btn_updown {
+  display: flex;
+  flex-direction: row;
+}
+.itemInfo_btn_updown .input {
+  text-align: center;
+}
 
-} */
 .payInfo {
   width: 300px;
+  min-height: auto;
   padding: 20px;
   margin: 50px 50px 50px 0;
   border: 2px solid #B4E197;
