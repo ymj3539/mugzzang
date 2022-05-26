@@ -27,30 +27,68 @@ nav ul li:last-child {
   font-size: 30px;
   padding-left: 20px;
   padding-top: 10px;
+<<<<<<< HEAD
+=======
+  font-weight: bolder;
+  color: #4E944F;
+>>>>>>> F/cart2
 }
 
 /* main */
 .cartTitle {
   font-size: 15px;
+<<<<<<< HEAD
   padding: 30px;
 }
 .itemList {
   display:inline-block;
   padding: 20px;
   margin: 50px;
+=======
+  padding: 50px 0 10px 50px;
+  font-weight: bolder;
+}
+.cartInfoContainer {
+    min-height: 300px;
+}
+.cartList {
+  padding: 40px;
+  margin: 10px 10px 50px 50px;
+>>>>>>> F/cart2
   border: 2px solid #B4E197;
   width: 800px;
   float: left;
 }
+<<<<<<< HEAD
 .payInfo {
   width: 200px;
   padding: 20px;
   margin: 50px;
+=======
+.itemImage {
+  max-width: 70px;
+  max-height: 70px;
+}
+/* .itemIamge,
+.itemName
+.itemQuantity,
+.itemPrice,
+.totalItemPrice{
+
+} */
+.payInfo {
+  width: 300px;
+  padding: 20px;
+  margin: 50px 50px 50px 0;
+>>>>>>> F/cart2
   border: 2px solid #B4E197;
   float: right;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> F/cart2
 /* footer */
 footer {
   clear: both;
@@ -59,8 +97,11 @@ footer {
 footer .footer {
   font-size: small;
   line-height: 200%;
+<<<<<<< HEAD
   /* height: 100px;
   width: 100vw; */
+=======
+>>>>>>> F/cart2
   padding: 0 0 10px 20px;
   background-color: #E9EFC0;
 }
