@@ -21,7 +21,7 @@ async function addAllElements() {
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   logoutBtn.addEventListener("click", logout);
-  infoChangeBtn.addEventListener("click", myinfoChange);
+  infoChangeBtn.addEventListener("click", infoChange);
   deleteBtn.addEventListener("click", userDel);
 }
 
@@ -48,7 +48,7 @@ async function mypageInfo() {
   userPhonenum.innerHTML = `전화번호: ${resUser.phoneNum}`;
 }
 
-async function myinfoChange() {
+async function infoChange() {
   const resUser = await Api.get(
     `/api/userinfo/${sessionStorage.getItem("id")}`
   );
@@ -72,12 +72,10 @@ async function myinfoChange() {
   newPhonenumInput.value = `${resUser.phoneNum}`;
   userPhonenum.innerHTML = `전화번호: `;
   userPhonenum.appendChild(newPhonenumInput);
-
-  infoChangeBtn.innerHTML = "수정 완료";
 }
 
 async function userDel() {
-  const resUser = await Api.delete(
-    `/api/userinfo/${sessionStorage.getItem("id")}`
-  );
+  const test = sessionStorage.getItem("id");
+  const data = { test };
+  await Api.delete(`/api/userinfo`, sessionStorage.getItem("id"), data);
 }
