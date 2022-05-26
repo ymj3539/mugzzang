@@ -1,0 +1,25 @@
+.mypage-container {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  height: 100vh;
+}
+
+.mypageInfo {
+  margin: 30px;
+}
+
+.mypage {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoChangeBtn {
+  cursor: pointer;
+}

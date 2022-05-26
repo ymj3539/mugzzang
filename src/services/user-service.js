@@ -35,6 +35,29 @@ class UserService {
     return createdNewUser;
   }
 
+  // admin 가입
+  async addAdmin(userInfo) {
+    const { email, fullName, password, role } = userInfo;
+
+    const user = await this.userModel.findByEmail(email);
+
+    if (user){
+      throw new Error(
+        `이 이메일은 현재 사용중입니다. 다른 이메일을 사용하세요`
+      );
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newAdminInfo = { fullName, email, password: hashedPassword, role };
+
+    //db 저장
+    const createdNewAdmin = await this.userModel.create(newAdminInfo);
+
+    return createdNewAdmin;
+
+  }
+
   // 로그인
   async getUserToken(loginInfo) {
     // 객체 destructuring
@@ -79,6 +102,14 @@ class UserService {
     const users = await this.userModel.findAll();
     return users;
   }
+
+  // 개별 사용자 목록 받음 - 회원정보 수정 페이지용
+  async getUser(useremail) {
+    // const user = await this.userModel.findUser(username);
+    const user = await this.userModel.findByEmail(useremail);
+    return user;
+  }
+
 
   // 유저정보 수정, 현재 비밀번호가 있어야 수정 가능함.
   async setUser(userInfoRequired, toUpdate) {
