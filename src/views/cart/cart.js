@@ -87,7 +87,7 @@ getList()
     //document 렌더링 후 수량 조절버튼 작동
     const $downButton = document.querySelectorAll('#QuantityDown');
     const $upButton = document.querySelectorAll('#QuantityUp');
-    let $totalItemQuantity = document.querySelector('.totalItemQuantity');
+    let $totalItemQuantity = document.querySelector('.totalItemQuantity'); //주문확인칸 .totalItemQuantity 태그(총 수량)
     // let $totalItemPrice = document.querySelector('.totalItemPrice'); //장바구니 목록 상품 당 총 금액
     let $totalPrice = document.querySelector('.totalPrice'); //주문확인칸 총 상품 금액
     let $total = document.querySelector('.total'); //주문확인칸 총 주문금액
@@ -113,7 +113,9 @@ getList()
       }
 
       $total.textContent = '총 ' + (parseInt($totalPrice.textContent.substring(6)) + 3000) + '원'; //주문확인칸 총 주문금액
-      
+      if (parseInt($totalPrice.textContent.substring(6)) === 0){
+        $total.textContent = '총 0원';
+      }
     };
 
     $downButton.forEach((e) => e.addEventListener('click', countItem));
