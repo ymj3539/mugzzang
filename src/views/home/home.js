@@ -24,6 +24,7 @@ setInterval(function() {
     }
 }, 3000);
 
+
 // leftButton.onclick = () => {
 //     var nowSlide = document.querySelector("#photo .slide.active");
 //     var previousSlide = nowSlide.previousElementSibling;
