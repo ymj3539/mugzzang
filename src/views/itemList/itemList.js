@@ -1,3 +1,4 @@
+import * as Api from '/api.js';
 let $itemListFlexbox = document.querySelector('.itemlist_flexbox');
 const $itemSection = document.querySelector('#itemlist_section');
 const $category1 = document.querySelector('#category_1');
@@ -5,8 +6,8 @@ const $category2 = document.querySelector('#category_2');
 let $article = document.querySelectorAll('#itemlist');
 let flag = null;
 // 데이터 불러오기
-const res = await fetch('./data.json');
-const itemList = await res.json();
+const itemList = await Api.get('/api/product/list');
+console.log(itemList);
 
 // 상품 화면에 띄우는 함수
 const showContent = (index, category) => {
@@ -17,23 +18,23 @@ const showContent = (index, category) => {
 
   // category값이 true일 경우, category 값으로 data 필터링
   if (category) {
-    const categorizingItem = itemList.filter((e) => e.category === category);
-    sliceItem = categorizingItem;
+    const categorizingItem = itemList.filter((e) => e.category[0] === category);
+    sliceItem = categorizingItem.slice($article.length, $article.length + index);
   }
 
   // 상품 목록 개수와 추출한 데이터 개수가 일치한다면 이스케이프
   if ($article.length === sliceItem.length) return;
   sliceItem.forEach((e) => {
-    const {oid, brand, name, price, img, category} = e;
+    const {shortId, manufacturer, prod_title, price, img, category} = e;
     $itemListFlexbox.insertAdjacentHTML(
       'beforeend',
-      `<article data-oid=${oid} data-cg=${category} id="itemlist" class="itemlist">
-      <a href="#">
+      `<article data-oid=${shortId} data-cg=${category} id="itemlist" class="itemlist">
+      <a href="http://localhost:5000/itemInfo/:${shortId}">
       <div>
         <img src=${img} alt="itemImg" />
         <div>
-          <h2>${brand}</h2>
-          <h2>${name}</h2>
+          <h2>${manufacturer}</h2>
+          <h2>${prod_title}</h2>
           <p>${price}</p>
         </div>
       </div>
@@ -45,8 +46,9 @@ const showContent = (index, category) => {
 
 // 카테고리 버튼 이벤트리스너 콜백함수
 const showCategoryItem = (e) => {
+  console.log(e.target.parentNode.dataset);
   // button 태그의 dataset(category 값과 동일함)을 flag 변수로 이용
-  flag = Number(e.target.parentNode.dataset.num);
+  flag = e.target.parentNode.dataset.num;
   // 기존 상품 목록 노드 전부 지우고 재생성
   $itemListFlexbox = document.querySelector('.itemlist_flexbox');
   $itemListFlexbox.remove();
