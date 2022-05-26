@@ -106,7 +106,7 @@ class UserService {
   // 개별 사용자 목록 받음 - 회원정보 수정 페이지용
   async getUser(useremail) {
     // const user = await this.userModel.findUser(username);
-    const user = await this.userModel.findByEmail(useremail)
+    const user = await this.userModel.findByEmail(useremail);
     return user;
   }
 
