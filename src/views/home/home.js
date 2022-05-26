@@ -30,20 +30,14 @@ async function getDataFromApi() {
   console.log({ random });
 }
 
-// function logout() {
-//   //로그아웃 버튼 클릭시 세션스토리지 삭제
-//   if (sessionStorage.getItem("token")) {
-//     console.log(sessionStorage.getItem("id"));
-//     sessionStorage.clear();
-//     alert("로그아웃 하였습니다.");
-//     window.location.href = "/";
-//   }
-// }
-
 async function testfun() {
   //테스트버튼
-  const result = await Api.get(`api/userinfo/test2@test2.com`);
+  const result = await Api.get(`api/userlist`);
+
   console.log(result);
+  console.log(
+    result.filter((data) => data.email === sessionStorage.getItem("id"))
+  );
 }
 
 function loginTrue() {
@@ -71,6 +65,7 @@ function loginTrue() {
     );
   }
 }
+
 function creatLogout() {
   const logoutbtn = document.createElement("a");
   logoutbtn.innerHTML = "로그아웃";
