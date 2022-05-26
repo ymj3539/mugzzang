@@ -75,7 +75,7 @@ getList()
         <div class="payInfoTitle">결제정보</div>
         <div class="totalItemQuantity">상품 수량 ${totalItemQuantity}</div>
         <div class="totalPrice">상품 금액 ${totalPrice}원</div>
-        <div>배송비 3,000원</div>
+        <div class="shipping">배송비 3,000원</div>
         <div class="total">총 ${total}원</div>
         <button type="button">주문하기</button>
       `;
@@ -88,7 +88,6 @@ getList()
     const $downButton = document.querySelectorAll('#QuantityDown');
     const $upButton = document.querySelectorAll('#QuantityUp');
     let $totalItemQuantity = document.querySelector('.totalItemQuantity'); //주문확인칸 .totalItemQuantity 태그(총 수량)
-    // let $totalItemPrice = document.querySelector('.totalItemPrice'); //장바구니 목록 상품 당 총 금액
     let $totalPrice = document.querySelector('.totalPrice'); //주문확인칸 총 상품 금액
     let $total = document.querySelector('.total'); //주문확인칸 총 주문금액
 
@@ -107,7 +106,7 @@ getList()
       } else if (e.target.textContent === '-' && inputValue.value >= 1) {
         inputValue.value = Number(inputValue.value) - 1;
         const minusedItemQuantity = parseInt($totalItemQuantity.textContent.substring(6)) - 1;
-        $totalItemQuantity.textContent = '상품 수량 ' + minusedItemQuantity + '원';
+        $totalItemQuantity.textContent = '상품 수량 ' + minusedItemQuantity;
         totalItemPrice.textContent = parseInt(totalItemPrice.textContent) - itemPrice;
         $totalPrice.textContent = '상품 금액 ' + (parseInt($totalPrice.textContent.substring(6)) - itemPrice) + '원'; 
       }
@@ -115,6 +114,9 @@ getList()
       $total.textContent = '총 ' + (parseInt($totalPrice.textContent.substring(6)) + 3000) + '원'; //주문확인칸 총 주문금액
       if (parseInt($totalPrice.textContent.substring(6)) === 0){
         $total.textContent = '총 0원';
+        console.log(document.querySelector('.shipping').textContent);
+
+        document.querySelector('.shipping').textContent = "배송비 0원"
       }
     };
 
