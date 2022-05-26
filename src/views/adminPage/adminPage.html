@@ -15,8 +15,62 @@
     <script src="adminPage.js" type="module"></script>
   </head>
   <body>
-    <header>header</header>
-    <nav class="category_container"></nav>
-    <section class="itemInfo_container" id="itemInfo_section"></section>
+    <div class="adminPage_container">
+      <aside class="menu menu_container">
+        <p class="menu-label">Admin Menu</p>
+        <p class="menu-label">상품 추가/수정/삭제</p>
+        <ul class="menu-list">
+          <li><a>상품 등록하기</a></li>
+          <li><a>상품 수정하기</a></li>
+          <li><a>상품 삭제하기</a></li>
+        </ul>
+        <p class="menu-label">주문 조회</p>
+        <ul class="menu-list">
+          <li><a>주문 조회/취소</a></li>
+          <li><a></a></li>
+        </ul>
+      </aside>
+      <div class="adminPage_content">
+        <form action="">
+          <div class="field">
+            <label class="label">상품명</label>
+            <div class="control">
+              <input class="input is-success" type="text" placeholder="Text input" value="" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">가격</label>
+            <div class="control">
+              <input class="input is-success" type="number" placeholder="Text input" value="" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">이미지url</label>
+            <div class="control">
+              <input class="input is-success" type="text" placeholder="Text input" value="bulma" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">카테고리</label>
+            <div class="control">
+              <input class="input is-success" type="text" placeholder="Text input" value="bulma" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">제조사</label>
+            <div class="control">
+              <input class="input is-success" type="text" placeholder="Text input" value="bulma" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">상품 설명</label>
+            <div class="control">
+              <textarea class="textarea is-primary" placeholder="Primary textarea"></textarea>
+            </div>
+          </div>
+          <button class="button is-link">상품 추가</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
