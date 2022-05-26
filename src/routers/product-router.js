@@ -8,19 +8,10 @@ const productRouter = Router();
 // 전체 상품 조회
 productRouter.get('/list', async(req,res,next)=>{
     try {
-        if(is.emptyObject(req.body)) {
-            throw new Error(
-              'headers의 Content-Type을 application/json으로 설정해주세요'
-            );
-          }
-        
-        const {prod_title, title_additional, price, img, category, description, manufacturer} = req.body;
+       
+        const products = await productService.getProducts();
 
-        const newProduct = await productService.getProducts({prod_title, title_additional, price, img, category, description, manufacturer});
-
-        res.status(200).json(newProduct);
-
-
+        res.status(200).json(products);
 
     } catch (error) {
         next(error);
@@ -29,7 +20,7 @@ productRouter.get('/list', async(req,res,next)=>{
 });
 
 // 개별상품조회
-productRouter.get('/products/:id', async(req,res,next)=>{
+productRouter.get('/list/:id', async(req,res,next)=>{
     try {
         if (is.emptyObject(req.params)) {
           throw new Error(
@@ -47,7 +38,7 @@ productRouter.get('/products/:id', async(req,res,next)=>{
 })
 
 // 상품 등록
-productRouter.post('/products/upload', async(req,res,next)=>{
+productRouter.post('/upload', async(req,res,next)=>{
     try{
         if (is.emptyObject(req.body)) {
             throw new Error(
@@ -56,7 +47,7 @@ productRouter.post('/products/upload', async(req,res,next)=>{
           }
         const {prod_title, title_additional, price, img, category, description, manufacturer} = req.body; 
 
-        const newProudct = await productService.addProduct({
+        const newProduct = await productService.addProduct({
             prod_title, title_additional, price, img, category, description, manufacturer
         });
 

@@ -106,7 +106,7 @@ try {
 
 
 //개별 사용자 정보 조회
-userRouter.get('/userinfo/:useremail',loginRequired,  async (req, res, next)=>{
+userRouter.get('/userlist/:useremail',  async (req, res, next)=>{
   try {
     if (is.emptyObject(req.params)) {
       throw new Error(
