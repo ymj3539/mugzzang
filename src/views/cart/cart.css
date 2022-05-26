@@ -1,12 +1,12 @@
 /* 앨리스배움체 */
-@import url('https://font.elice.io/EliceDigitalCoding.css');
+@import url("https://font.elice.io/EliceDigitalCoding.css");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #e9efc0;
-  font-family: 'Elice Digital Coding', 'monospace';
+  background-color: #E9EFC0;
+  font-family: 'Elice Digital Coding', 'monospace'; 
   color: #4a4a4a;
   text-decoration: none;
 }
@@ -28,7 +28,7 @@ nav ul li:last-child {
   padding-left: 20px;
   padding-top: 10px;
   font-weight: bolder;
-  color: #4e944f;
+  color: #4E944F;
 }
 
 /* main */
@@ -43,7 +43,7 @@ nav ul li:last-child {
 .cartList {
   padding: 40px;
   margin: 10px 10px 50px 50px;
-  border: 2px solid #b4e197;
+  border: 2px solid #B4E197;
   width: 800px;
   float: left;
 }
@@ -80,7 +80,7 @@ nav ul li:last-child {
   min-height: auto;
   padding: 20px;
   margin: 50px 50px 50px 0;
-  border: 2px solid #b4e197;
+  border: 2px solid #B4E197;
   float: right;
 }
 
@@ -93,11 +93,11 @@ footer .footer {
   font-size: small;
   line-height: 200%;
   padding: 0 0 10px 20px;
-  background-color: #e9efc0;
+  background-color: #E9EFC0;
 }
 
 .footer .companyName {
   font-size: medium;
   font-weight: bold;
-  line-height: 300%;
+  line-height: 300%
 }
