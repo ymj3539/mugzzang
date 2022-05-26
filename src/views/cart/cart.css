@@ -1,0 +1,85 @@
+/* 앨리스배움체 */
+@import url('https://font.elice.io/EliceDigitalCoding.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #e9efc0;
+  font-family: 'Elice Digital Coding', 'monospace';
+  color: #4a4a4a;
+  text-decoration: none;
+}
+
+/* header */
+nav ul {
+  height: 20px;
+  text-align: right;
+  padding: 10px;
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li:last-child {
+  margin-right: 0;
+}
+.pageTop h2 {
+  font-size: 30px;
+  padding-left: 20px;
+  padding-top: 10px;
+  font-weight: bolder;
+  color: #4e944f;
+}
+
+/* main */
+.cartTitle {
+  font-size: 15px;
+  padding: 50px 0 10px 50px;
+  font-weight: bolder;
+}
+.cartInfoContainer {
+  min-height: 300px;
+}
+.cartList {
+  padding: 40px;
+  margin: 10px 10px 50px 50px;
+  border: 2px solid #b4e197;
+  width: 800px;
+  float: left;
+}
+.itemImage {
+  max-width: 70px;
+  max-height: 70px;
+}
+/* .itemIamge,
+.itemName
+.itemQuantity,
+.itemPrice,
+.totalItemPrice{
+
+} */
+.payInfo {
+  width: 300px;
+  padding: 20px;
+  margin: 50px 50px 50px 0;
+  border: 2px solid #b4e197;
+  float: right;
+}
+
+/* footer */
+footer {
+  clear: both;
+}
+
+footer .footer {
+  font-size: small;
+  line-height: 200%;
+  padding: 0 0 10px 20px;
+  background-color: #e9efc0;
+}
+
+.footer .companyName {
+  font-size: medium;
+  font-weight: bold;
+  line-height: 300%;
+}
