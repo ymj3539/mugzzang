@@ -29,7 +29,7 @@ const showContent = (index, category) => {
     $itemListFlexbox.insertAdjacentHTML(
       'beforeend',
       `<article data-oid=${shortId} data-cg=${category} id="itemlist" class="itemlist">
-      <a href="http://localhost:5000/itemInfo/:${shortId}">
+      <a href="http://localhost:5000/itemInfo/?=${shortId}">
       <div>
         <img src=${img} alt="itemImg" />
         <div>
