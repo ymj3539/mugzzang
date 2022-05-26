@@ -1,7 +1,3 @@
-//merge할 때 파일 경로 준서님껄로 수정
-import {quantityControlBox} from './quantityControlBox.js'; 
-// import {functions} from '../useful-functions';
-
 const $cartList = document.querySelector('.cartList');
 const $payInfo = document.querySelector('.payInfo');
 
@@ -36,8 +32,7 @@ if(incartList.length < 1) {
 } else {
     let itemList = await getitemList();
     incartList = incartList.slice(2).map(x => Object.values(x)).flat();
-    
-    incartList.forEach((cart) => {
+    incartList.forEach((cart, i) => {
         const foundItem = itemList.find(item => {
             if(item.oid == cart.id) {
                 let itemName = item.name;
@@ -51,45 +46,64 @@ if(incartList.length < 1) {
         totalPrice += totalItemPrice;
         total = totalPrice + 3000;
 
-        $cartList.insertAdjacentHTML += `
+        $cartList.insertAdjacentHTML('beforeend', `
         <div class="item">
-            <a href="#" class="itemContainer">
+            <a href="#">
                 <img class="itemInfo" src="${foundItem.img}"/>
+            </a>    
+            <a href="#">
                 <span class="itemInfo">${foundItem.name}</span>
-                <span class="itemInfo">${cart.quantity}</span>
-                <div class="itemInfo_btn_updown itemInfo">
-                    <button id="quantityDown" class="button is-danger is-light">-</button>
-                    <input id="quantityInput" class="input" type="text" value="1" />
-                    <button id="quantityUp" class="button is-info is-light">+</button>
-                </div>
-                <span class="itemInfo">${foundItem.price}</span>
-                <span class="itemInfo">${totalItemPrice}</span>
-            </a>
-        </div>`
-        
-    });
-    //quantityControlBox(document);
-    const $upButton = document.querySelector('#quantityUp');
-    console.log($upButton);
-    const $downButton = document.querySelector('#quantityDown');
-    const $quantityInput = document.querySelector('#quantityInput');
-    $upButton.addEventListener('click', controlQuantity);
-    $downButton.addEventListener('click', controlQuantity);
-  
-    function controlQuantity(e) {
-      if (e.target.id == 'quantityUp') {
-        $quantityInput.value = Number($quantityInput.value) + 1;
-      } else if (e.target.id == 'quantityDown' && $quantityInput.value != 1) {
-        $quantityInput.value = Number($quantityInput.value) - 1;
-      }
-    }
+            </a>  
+            <span class="itemInfo">${cart.quantity}</span>
+            <div class="itemInfo_btn_updown itemInfo">
+                <button id="${i}stQuantityDown" class="button is-danger is-light">-</button>
+                <input id="${i}stQuantityInput" class="input" type="text" value="${cart.quantity}" />
+                <button id="${i}stQuantityUp" class="button is-info is-light">+</button>
+            </div>
+            <span class="itemInfo">${foundItem.price}</span>
+            <span class="itemInfo">${totalItemPrice}</span>
+            
+        </div>`);
+    });   
 }
 
-$payInfo.innerHTML += `
+$payInfo.insertAdjacentHTML('beforeend', `
     <div><h2>결제정보</h2></div>
     <div>상품 수량 ${totalItemQuantity}</div>
     <div>상품 금액 ${totalPrice}원</div>
     <div>배송비 3,000원</div>
     <div>총 ${total}원</div>
     <button type="button">주문하기</button>
-`  
+`);
+
+if (document.readyState !== 'loading') {
+    console.log('document is already ready');
+    testfunc();
+} else {
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('document was not ready yet');
+        testfunc();
+    });
+}
+function testfunc() {
+    const quantityInput = document.querySelector('#0stQuantityInput').value;
+    console.log(quantityInput);
+};
+
+// function quantityControlButton(i) {
+//     const $upButton = document.querySelector(`#${i}stQuantityUp`);
+//     console.log($upButton);
+//     const $downButton = document.querySelector(`#${i}stQuantityDown`);
+//     const $quantityInput = document.querySelector(`#${i}stQuantityInput`);
+//     $upButton.addEventListener('click', controlQuantity);
+//     $downButton.addEventListener('click', controlQuantity);
+  
+//     function controlQuantity(e) {
+//       if (e.target.id == 'quantityUp') {
+//         $quantityInput.value = Number($quantityInput.value) + 1;
+//       } else if (e.target.id == 'quantityDown' && $quantityInput.value != 1) {
+//         $quantityInput.value = Number($quantityInput.value) - 1;
+//       }
+//     }
+//     return $quantityInput;
+// }
