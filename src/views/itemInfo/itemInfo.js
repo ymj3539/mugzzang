@@ -1,12 +1,12 @@
+import * as Api from '/api.js';
 import {quantityControlBox} from './quantityControlBox.js';
 const $itemImg = document.querySelector('#itemInfo_img');
 const $itemInfoSection = document.querySelector('#itemInfo_section');
 
 async function setData() {
   try {
-    const res = await fetch('../itemList/data.json');
-    const itemList = await res.json();
-    return itemList[0];
+    const itemList = await Api.get('/api/product/list/:shortId');
+    return itemList;
   } catch (err) {
     console.error(err);
   }
@@ -14,7 +14,7 @@ async function setData() {
 
 setData()
   .then((res) => {
-    const {oid, brand, name, price, img} = res;
+    const {shortId, manufacturer, prod_title, price, img, description} = res;
     $itemInfoSection.insertAdjacentHTML(
       'beforeend',
       `<picture class="itemInfo_img_container">
@@ -25,17 +25,16 @@ setData()
         src=${img}
       />
     </picture>
-    <article data-id=${oid} id= "itemInfo_information" class="itemInfo_information">
+    <article data-id=${shortId} id= "itemInfo_information" class="itemInfo_information">
       <h2>
-        <p>${name}</p>
-        <p>정말 멋진 신발</p>
+        <p>${prod_title}</p>
+        <p>${manufacturer}</p>
       </h2>
       <h2>
         <p>${price}원</p>
       </h2>
       <p class="itemInfo_description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel sed sint exercitationem maxime fuga velit, corporis voluptatum rem aut consequuntur
-        saepe, iste voluptatibus harum iure quo quia. Vel, quo praesentium.
+        ${description}
       </p>
       <div class="itemInfo_btn">
         <div class="itemInfo_btn_updown">
@@ -56,17 +55,16 @@ setData()
     return doc;
   })
   .then((document) => {
-    const $quantityInput = document.querySelector('#quantityInput').value; // 수량 조절 버튼의 input값 추출
     const $itemInfoInformation = document.querySelector('#itemInfo_information').dataset.id; // 상품의 고유 아이디 추출
     const $itemInfoCart = document.querySelector('#itemInfo_cart'); // 장바구니 버튼
     const $itemInfoBuyNow = document.querySelector('#itemInfo_buyNow'); // 바로구매 버튼
     $itemInfoCart.addEventListener('click', (e) => {
       const $quantityInput = document.querySelector('#quantityInput').value;
-      moveItemToCart($quantityInput, $itemInfoInformation, e);
+      moveItemToCart($quantityInput, $itemInfoInformation, e); // 수량 조절 버튼의 input값 추출
     });
     $itemInfoBuyNow.addEventListener('click', (e) => {
       const $quantityInput = document.querySelector('#quantityInput').value;
-      moveItemToCart($quantityInput, $itemInfoInformation, e);
+      moveItemToCart($quantityInput, $itemInfoInformation, e); // 수량 조절 버튼의 input값 추출
     });
   })
   .catch((err) => console.error(err));
