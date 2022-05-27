@@ -75,6 +75,7 @@ setData()
 function moveItemToCart(quantity, id, e) {
   let item = {quantity, id};
   // 같은 상품의 장바구니 데이터가 있는 경우 기존 sessionStorage데이터 삭제 후 다시 넣기
+  alert('장바구니에 추가되었습니다!');
   if (!sessionStorage.getItem(`cart.${id}`)) sessionStorage.setItem(`cart.${id}`, JSON.stringify(item));
   else {
     sessionStorage.removeItem(`cart.${id}`);
