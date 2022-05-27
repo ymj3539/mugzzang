@@ -7,7 +7,7 @@ export class ProductModel {
    
 
     async findById(shortId){
-        const product = await Product.findOne({shortId : shortId});
+        const product = await Product.findOne({_id : shortId});
         return product;
     }
 
@@ -21,10 +21,19 @@ export class ProductModel {
         return products;
     }
 
-    async updateById (productId, toUpdate){
-        
-        const products = await Product.updateMany({inStock : num})
-        return products;
+    async update ({productId, update}){
+        const filter = {_id : productId};
+        const option = {returnOriginal : false};
+
+        const updatedProduct = await Product.updateMany(filter, update, option);
+        return updatedProduct;
+    }
+
+    async delete(productId){
+        await Product.findOneAndDelete({_id : productId});
+        return;
+
+
     }
 
 }

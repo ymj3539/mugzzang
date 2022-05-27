@@ -45,13 +45,24 @@ class ProductService {
         let product = await this.productModel.findById(productId);
 
         if (!product) {
-            throw new Error ("해당 상품이 없습니다. 상품코드를 다시 확인해주세요")
+            throw new Error ("해당 상품이 없습니다. 상품id를 다시 확인해주세요")
         }
 
-        product = await this.productModel.updateById({productId, toUpdate})
+        product = await this.productModel.update({productId, update : toUpdate})
 
         return product;
 
+    }
+
+    // 상품 정보 삭제
+    async deleteProduct(productId){
+        let product = await productModel.findById(productId);
+
+        if (!product) {
+            throw new Error ("해당 상품이 없습니다. 상품id를 다시 확인해주세요")
+        }
+
+        await this.productModel.delete(productId);
     }
 
 
