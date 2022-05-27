@@ -32,12 +32,12 @@ async function getDataFromApi() {
 
 async function testfun() {
   //테스트버튼
-  const result = await Api.get(`api/userlist`);
+  const result = await Api.get(`api/userlist/test@test.com`);
 
   console.log(result);
-  console.log(
-    result.filter((data) => data.email === sessionStorage.getItem("id"))
-  );
+  // console.log(
+  //   result.filter((data) => data.email === sessionStorage.getItem("id"))
+  // );
 }
 
 function loginTrue() {
@@ -111,11 +111,11 @@ setInterval(function () {
   }
 }, 3000);
 //메인 배너
-var slider = document.querySelector('#slider');
-var slides = slider.querySelector('.slides');
-var slide = slides.querySelectorAll('.slide');
-var leftButton = document.querySelector('.sliderArrowLeft');
-var rightButton = document.querySelector('.sliderArrowRight');
+var slider = document.querySelector("#slider");
+var slides = slider.querySelector(".slides");
+var slide = slides.querySelectorAll(".slide");
+var leftButton = document.querySelector(".sliderArrowLeft");
+var rightButton = document.querySelector(".sliderArrowRight");
 
 var currentSlide = 0;
 
@@ -124,13 +124,13 @@ setInterval(function () {
   var to = from - 1024;
   slides.animate(
     {
-      marginLeft: [from + 'px', to + 'px'],
+      marginLeft: [from + "px", to + "px"],
     },
     {
       duration: 500,
-      easing: 'ease',
+      easing: "ease",
       iterations: 1,
-      fill: 'both',
+      fill: "both",
     }
   );
   currentSlide++;
