@@ -4,11 +4,7 @@ import { ProductSchema } from '../schemas/product-schema';
 const Product = model('product', ProductSchema);
 
 export class ProductModel {
-    async findByProductTitle(productTitle){
-        const product = await Product.findOne({productTitle})
-        return productTitle;
-    }
-
+   
 
     async findById(shortId){
         const product = await Product.findOne({shortId : shortId});
@@ -25,8 +21,9 @@ export class ProductModel {
         return products;
     }
 
-    async addInStock (num){
-        const products = await Product.findOneAndUpdate({inStock : num})
+    async updateById (productId, toUpdate){
+        
+        const products = await Product.updateMany({inStock : num})
         return products;
     }
 

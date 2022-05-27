@@ -20,7 +20,7 @@ class ProductService {
         return product;
     }
 
-    // 상품 추가
+    // 상품 등록
     async addProduct (productInfo) {
         // const {prod_title, title_additional, price, img, category, description, manufacturer} = productInfo;
 
@@ -39,11 +39,16 @@ class ProductService {
         return product;
     }
 
-    //재고 변경
-    async updateStock (num){
 
+    //상품 정보 수정
+    async updateProduct(productId, toUpdate){
+        let product = await this.productModel.findById(productId);
 
-        const product = await this.productModel.addInStock(num);
+        if (!product) {
+            throw new Error ("해당 상품이 없습니다. 상품코드를 다시 확인해주세요")
+        }
+
+        product = await this.productModel.updateById({productId, toUpdate})
 
         return product;
 
