@@ -89,10 +89,22 @@ try {
     res.status(201).json(updatedProduct);
 
 
-} catch {
-
+} catch (error) {
+  next(error)
 }
 
+
+})
+
+// 상품 삭제
+productRouter.delete('/delete/:productId', loginRequired, async(req,res,next)=>{
+  try{
+    const {productId} = req.params;
+    await productService.deleteProduct 
+    
+    } catch (error){
+      next(error);
+    }
 
 })
 
