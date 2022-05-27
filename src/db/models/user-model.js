@@ -24,18 +24,22 @@ export class UserModel {
     return users;
   }
 
-  async update({ userId, update }) {
-    const filter = { _id: userId };
+  async update({ useremail, update }) {
+    const filter = { email: useremail };
     const option = { returnOriginal: false };
 
     const updatedUser = await User.findOneAndUpdate(filter, update, option);
     return updatedUser;
   }
 
-
   async findUser(userName) {
-    const user = await User.findOne({fullName : userName});
+    const user = await User.findOne({ fullName: userName });
     return user;
+  }
+
+  async delete(useremail) {
+    await User.findOneAndDelete({ email: useremail });
+    return;
   }
 }
 
