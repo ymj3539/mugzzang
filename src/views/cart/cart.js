@@ -95,7 +95,7 @@ getList()
 
     const countItem = (e) => {
       let inputValue = e.target.parentNode.childNodes[3]; //현재 수량
-      
+
       let itemPrice = convertToNumber(e.target.parentNode.parentNode.childNodes[7].textContent); //제품 하나 당 가격
       console.log(e.target.parentNode.parentNode.childNodes[4]);
       let totalItemPrice = e.target.parentNode.parentNode.childNodes[9]; //장바구니 목록 .totalItemPrice 태그(제품 별 총 금액)
@@ -156,5 +156,3 @@ getList()
       });
     });
   });
-
-  
