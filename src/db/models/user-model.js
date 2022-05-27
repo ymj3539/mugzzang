@@ -32,10 +32,14 @@ export class UserModel {
     return updatedUser;
   }
 
-
   async findUser(userName) {
-    const user = await User.findOne({fullName : userName});
+    const user = await User.findOne({ fullName: userName });
     return user;
+  }
+
+  async delete(userId) {
+    await User.findOneAndDelete({ _id: userId });
+    return;
   }
 }
 
