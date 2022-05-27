@@ -1,5 +1,6 @@
 import * as Api from '/api.js';
 import {quantityControlBox} from './quantityControlBox.js';
+
 const $itemImg = document.querySelector('#itemInfo_img');
 const $itemInfoSection = document.querySelector('#itemInfo_section');
 const params = window.location.href.split('?=')[1];
@@ -74,14 +75,15 @@ setData()
 function moveItemToCart(quantity, id, e) {
   let item = {quantity, id};
   // 같은 상품의 장바구니 데이터가 있는 경우 기존 sessionStorage데이터 삭제 후 다시 넣기
-  alert('장바구니에 추가되었습니다!');
-  if (!sessionStorage.getItem(`cart.${id}`)) sessionStorage.setItem(`cart.${id}`, JSON.stringify(item));
-  else {
+
+  if (!sessionStorage.getItem(`cart.${id}`)) {
+    sessionStorage.setItem(`cart.${id}`, JSON.stringify(item));
+  } else {
     sessionStorage.removeItem(`cart.${id}`);
     sessionStorage.setItem(`cart.${id}`, JSON.stringify(item));
   }
   // 바로구매 버튼을 누른 경우, 장바구니 페이지로 바로 이동
   if (e.target.textContent === '바로구매') {
-    window.location.href = 'http://localhost:8000/cart';
+    window.location.href = `http://localhost:8000/cart`;
   }
 }
