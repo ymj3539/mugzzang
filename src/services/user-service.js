@@ -43,7 +43,7 @@ class UserService {
 
     const user = await this.userModel.findByEmail(email);
 
-    if (user){
+    if (user) {
       throw new Error(
         `이 이메일은 현재 사용중입니다. 다른 이메일을 사용하세요`
       );
@@ -57,7 +57,6 @@ class UserService {
     const createdNewAdmin = await this.userModel.create(newAdminInfo);
 
     return createdNewAdmin;
-
   }
 
   // 로그인
@@ -112,7 +111,6 @@ class UserService {
     return user;
   }
 
-
   // 유저정보 수정, 현재 비밀번호가 있어야 수정 가능함.
   async setUser(userInfoRequired, toUpdate) {
     // 객체 destructuring
@@ -158,6 +156,38 @@ class UserService {
     });
 
     return user;
+  }
+
+  async deleteUser(userInfoRequired) {
+    // 객체 destructuring
+    const { userId, currentPassword } = userInfoRequired;
+
+    // 우선 해당 id의 유저가 db에 있는지 확인
+    let user = await this.userModel.findById(userId);
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!user) {
+      throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
+    }
+
+    // 비밀번호 일치 여부 확인
+    const correctPasswordHash = user.password; // db에 저장되어 있는 암호화된 비밀번호
+
+    // 매개변수의 순서 중요 (1번째는 프론트가 보내온 비밀번호, 2번째는 db에 있던 암호화된 비밀번호)
+    const isPasswordCorrect = await bcrypt.compare(
+      currentPassword,
+      correctPasswordHash
+    );
+
+    if (!isPasswordCorrect) {
+      throw new Error(
+        '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.'
+      );
+    }
+
+    // 이제 드디어 삭제 시작
+    await this.userModel.delete(userId);
+    return;
   }
 }
 
