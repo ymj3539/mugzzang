@@ -14,7 +14,8 @@ async function getList() {
   try {
     const cartList = [];
     const itemList = await Api.get('/api/product/list'); //전체 상품 목록
-    const cartObject = Object.keys(sessionStorage);
+    const cartObject = Object.keys(sessionStorage).filter((e) => e.slice(0, 4) === 'cart');
+    console.log(cartObject);
     cartObject.forEach((e, i) => {
       cartList.push(JSON.parse(sessionStorage.getItem(cartObject[i])));
     });
