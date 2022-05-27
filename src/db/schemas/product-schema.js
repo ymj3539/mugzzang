@@ -46,6 +46,9 @@ const ProductSchema = new Schema(
             required : true,
             default : 10
         }
-});
+}, {
+    collection: 'product',
+    timestamps: true,
+  });
 
 export {ProductSchema};
