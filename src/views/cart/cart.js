@@ -54,7 +54,7 @@ getList()
 
         //장바구니 목록
         $cartList.insertAdjacentHTML('beforeend', `
-          <div class="item">
+          <div class="item" id="${i}">
             <label>
               <input type="checkbox" name="buy" value="${i}">
             </label>
@@ -151,11 +151,11 @@ getList()
     });   
   
     // 장바구니 행 삭제 버튼
-    document.querySelectorAll('.trash').forEach((trashBtn) => {
+    document.querySelectorAll('.trash').forEach((trashBtn, i) => {
       trashBtn.addEventListener('click', (e) => {
-        e.target.parentElement.parentElement.remove();
+        let item = e.target;
+        console.log(item, item.childNodes);
+        //합계 수량 및 가격 재계산
       });
-      //서버에 데이터 전송
-      //합계 수량 및 가격 재계산
     });
   });
