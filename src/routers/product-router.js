@@ -100,7 +100,8 @@ try {
 productRouter.delete('/delete/:productId', loginRequired, async(req,res,next)=>{
   try{
     const {productId} = req.params;
-    await productService.deleteProduct 
+    await productService.deleteProduct(productId);
+    res.status(200).json({message : "상품이 삭제되었습니다"}); 
     
     } catch (error){
       next(error);

@@ -63,6 +63,7 @@ class ProductService {
         }
 
         await this.productModel.delete(productId);
+        return;
     }
 
 
