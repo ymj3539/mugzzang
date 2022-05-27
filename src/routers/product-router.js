@@ -6,7 +6,7 @@ import { productService } from '../services/product-service';
 const productRouter = Router();
 
 // 전체 상품 조회
-productRouter.get('/list', login_required, async(req,res,next)=>{
+productRouter.get('/list', loginRequired, async(req,res,next)=>{
     try {
        
         const products = await productService.getProducts();
@@ -38,7 +38,7 @@ productRouter.get('/list/:id', async(req,res,next)=>{
 })
 
 // 상품 등록
-productRouter.post('/upload', login_required, async(req,res,next)=>{
+productRouter.post('/upload', loginRequired, async(req,res,next)=>{
     try{
         if (is.emptyObject(req.body)) {
             throw new Error(
@@ -59,7 +59,7 @@ productRouter.post('/upload', login_required, async(req,res,next)=>{
 })
 
 // 상품 정보 수정
-productRouter.patch('/update/:productId', login_required, async(req,res,next)=>{
+productRouter.patch('/update/:productId', loginRequired, async(req,res,next)=>{
 try {
      
     if (is.emptyObject(req.body)) {
