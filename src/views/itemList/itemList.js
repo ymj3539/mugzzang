@@ -9,6 +9,16 @@ let flag = null;
 const itemList = await Api.get('/api/product/list');
 console.log(itemList);
 
+// 각 상품에 해당하는 상품 상세 페이지로 리다이렉션하는 이벤트 추가하기
+const locationItemInfo = () => {
+  $article = document.querySelectorAll('#itemlist');
+  $article.forEach((e) => {
+    e.addEventListener('click', () => {
+      window.location.href = `http://localhost:8000/itemInfo/?=${e.dataset.oid}`;
+    });
+  });
+};
+
 // 상품 화면에 띄우는 함수
 const showContent = (index, category) => {
   $article = document.querySelectorAll('#itemlist');
@@ -29,8 +39,7 @@ const showContent = (index, category) => {
     $itemListFlexbox.insertAdjacentHTML(
       'beforeend',
       `<article data-oid=${shortId} data-cg=${category} id="itemlist" class="itemlist">
-      <a href="http://localhost:5000/itemInfo/:${shortId}">
-      <div>
+     <div>
         <img src=${img} alt="itemImg" />
         <div>
           <h2>${manufacturer}</h2>
@@ -42,11 +51,11 @@ const showContent = (index, category) => {
     </article>`
     );
   });
+  locationItemInfo();
 };
 
 // 카테고리 버튼 이벤트리스너 콜백함수
 const showCategoryItem = (e) => {
-  console.log(e.target.parentNode.dataset);
   // button 태그의 dataset(category 값과 동일함)을 flag 변수로 이용
   flag = e.target.parentNode.dataset.num;
   // 기존 상품 목록 노드 전부 지우고 재생성
@@ -62,7 +71,6 @@ const showCategoryItem = (e) => {
   setTimeout(() => {
     showContent(8, flag); // button 태그의 dataset
     observeLastItem(io, document.querySelectorAll('#itemlist'));
-    console.log('실행');
   }, 100);
 };
 
