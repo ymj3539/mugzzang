@@ -5,23 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>장바구니</title>
     <!-- 아이콘 -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="30x30"
-      href="../home/images/icon.png"
-    />
+    <link rel="icon" type="image/png" sizes="30x30" href="../home/images/icon.png" />
     <!-- bulma css -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
     <!-- 폰트 어썸: 아이콘 -->
-    <script
-      defer
-      src="https://kit.fontawesome.com/7630448495.js"
-      crossorigin="anonymous"
-    ></script>
+    <script defer src="https://kit.fontawesome.com/7630448495.js" crossorigin="anonymous"></script>
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="cart.css" />
     <script src="cart.js" type="module" defer></script>
@@ -29,22 +17,21 @@
   <body>
     <!-- 헤더 -->
     <header>
-      
-    <nav role="navigation" aria-label="main navigation">
-      <ul>
-        <li><a href="/login">로그인</a></li>
-        <li><a href="/register">회원가입</a></li>
-        <li><a href="/">shop</a></li>
-        <li>
-          <a href="/cart" aria-current="page">
-            <span class="icon">
-              <i class="fas fa-cart-shopping"></i>
-            </span><span>장바구니</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="pageTop">
+      <nav role="navigation" aria-label="main navigation">
+        <ul>
+          <li><a href="/login">로그인</a></li>
+          <li><a href="/register">회원가입</a></li>
+          <li><a href="/itemList">shop</a></li>
+          <li>
+            <a href="/cart" aria-current="page">
+              <span class="icon">
+                <i class="fas fa-cart-shopping"></i> </span
+              ><span>장바구니</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="pageTop">
         <a href="/" class="brand">
           <h2>먹짱</h2>
         </a>
@@ -56,11 +43,16 @@
         <h1>장바구니</h1>
       </section>
       <div class="cartInfoContainer">
-        <section class="cartList"></section>
+        <section class="cartList">
+          <div>
+            <button type="button" class="deleteSom">선택 삭제</button>
+            <button type="button" class="deleteAll">전체 삭제</button>
+          </div>
+        </section>
         <section class="payInfo"></section>
       </div>
     </main>
-     
+
     <!-- footer -->
     <footer>
       <div class="footer">

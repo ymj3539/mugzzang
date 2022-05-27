@@ -24,7 +24,7 @@ nav ul li:last-child {
   margin-right: 0;
 }
 .pageTop h2 {
-  font-size: 30px;
+  font-size: 35px;
   padding-left: 20px;
   padding-top: 10px;
   font-weight: bolder;
@@ -33,7 +33,7 @@ nav ul li:last-child {
 
 /* main */
 .cartTitle {
-  font-size: 15px;
+  font-size: 20px;
   padding: 50px 0 10px 50px;
   font-weight: bolder;
 }
@@ -58,10 +58,9 @@ nav ul li:last-child {
   margin: 10px;
 }
 .item .itemInfo:nth-child(1) { flex-grow: 1; }
-.item .itemInfo:nth-child(2) { flex-grow: 2; }
+.item .itemInfo:nth-child(2) { flex-grow: 3; }
 .item .itemInfo:nth-child(4) { flex-grow: 1; }
 .item .itemInfo:nth-child(5) { flex-grow: 1; }
-.item .itemInfo:nth-child(6) { flex-grow: 1; }
 
 .item a img {
   max-width: 70px;
@@ -81,7 +80,13 @@ nav ul li:last-child {
   padding: 20px;
   margin: 50px 50px 50px 0;
   border: 2px solid #B4E197;
+  line-height: 40px;
   float: right;
+}
+
+.payInfo .payInfoTitle {
+  font-size: 25px;
+  font-weight: 300;
 }
 
 /* footer */
