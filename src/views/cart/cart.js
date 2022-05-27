@@ -4,6 +4,10 @@ import * as Api from '/api.js';
 
 const $cartList = document.querySelector('.cartList');
 const $payInfo = document.querySelector('.payInfo');
+let totalItemPrice;
+let totalItemQuantity = 0;
+let totalPrice = 0;
+let total;
 
 //장바구니, 전체 상품 리스트 불러오기
 async function getList() {
@@ -18,17 +22,12 @@ async function getList() {
   } catch (err) {
     console.error(err);
     $cartList.innerText = `불러오기에서 무언가 잘못되었습니다! \n${err}`;
-    //$cartList.innerText = `제품 정보 불러오기에서 무언가 잘못되었습니다: \n${err}`;
   }
 }
 
 getList()
   .then((res) => {
     let [incartList, initemList] = res;
-    let totalItemQuantity = 0;
-    // let totalItemPrice = 0;
-    let totalPrice = 0;
-    let total;
 
     if (incartList.length < 1) return $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다:(`);
 
@@ -44,8 +43,7 @@ getList()
         }
       });
       //상품 수량 및 가격 계산
-      console.log(foundItem.po);
-      const totalItemPrice = foundItem.price * convertToNumber(cart.quantity); //제품 별 총 금액
+      totalItemPrice = foundItem.price * convertToNumber(cart.quantity); //제품 별 총 금액
       totalItemQuantity += parseInt(cart.quantity);
       totalPrice += totalItemPrice; //총 상품 금액
       total = totalPrice + 3000; //총 주문금액
@@ -97,7 +95,9 @@ getList()
 
     const countItem = (e) => {
       let inputValue = e.target.parentNode.childNodes[3]; //현재 수량
+      
       let itemPrice = convertToNumber(e.target.parentNode.parentNode.childNodes[7].textContent); //제품 하나 당 가격
+      console.log(e.target.parentNode.parentNode.childNodes[4]);
       let totalItemPrice = e.target.parentNode.parentNode.childNodes[9]; //장바구니 목록 .totalItemPrice 태그(제품 별 총 금액)
 
       if (e.target.textContent === '+' && inputValue.value <= 999) {
@@ -156,3 +156,5 @@ getList()
       });
     });
   });
+
+  
