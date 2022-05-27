@@ -1,4 +1,5 @@
-import { addCommas, convertToNumber } from '../useful-functions.js'
+import { addCommas, convertToNumber } from '../useful-functions.js';
+import * as Api from '/api.js';
 
 const $cartList = document.querySelector('.cartList');
 const $payInfo = document.querySelector('.payInfo');
@@ -54,7 +55,7 @@ getList()
 
         //장바구니 목록
         $cartList.insertAdjacentHTML('beforeend', `
-          <div class="item" id="${i}">
+          <div class="item" id="item_${i}">
             <label>
               <input type="checkbox" name="buy" value="${i}">
             </label>
@@ -152,9 +153,10 @@ getList()
   
     // 장바구니 행 삭제 버튼
     document.querySelectorAll('.trash').forEach((trashBtn, i) => {
+      trashBtn.className = i;
       trashBtn.addEventListener('click', (e) => {
-        let item = e.target;
-        console.log(item, item.childNodes);
+        document.getElementById(`item_${i}`).remove();
+        // document.querySelector(#item.${i}).remove();
         //합계 수량 및 가격 재계산
       });
     });
