@@ -66,7 +66,7 @@ try {
 
 });
 
-// 로그인 api (아래는 /login 이지만, 실제로는 /api/login로 요청해야 함.)
+// 로그인 api (아래는 /login 이지만, 실제로는 /api/user/login로 요청해야 함.)
 userRouter.post('/login', async function (req, res, next) {
 try {
   // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
@@ -82,7 +82,7 @@ try {
 
   // 로그인 진행 (로그인 성공 시 jwt 토큰을 프론트에 보내 줌)
   const userToken = await userService.getUserToken({ email, password });
-
+console.log(email, password, userToken);
   // jwt 토큰을 프론트에 보냄 (jwt 토큰은, 문자열임)
   res.status(200).json(userToken);
 } catch (error) {
@@ -131,7 +131,7 @@ userRouter.get('/userlist/:useremail',  async (req, res, next)=>{
 // 사용자 정보 수정
 // (예를 들어 /api/users/abc12345 로 요청하면 req.params.userId는 'abc12345' 문자열로 됨)
 userRouter.patch(
-'/users/:userId',
+'/:useremail',    //app단에서 api/user까지 타고 오므로 /users/란 중간경로 삭제
 loginRequired,
 async function (req, res, next) {
   try {
@@ -189,7 +189,11 @@ async function (req, res, next) {
 
 // 로그아웃
 userRouter.get('/logoutCheck', (req,res)=>{
+
   console.log(req.user);
+ 
+  req.session = null;
+  
 })
 
 
