@@ -7,8 +7,6 @@ const userName = document.querySelector('#userName');
 const userEmail = document.querySelector('#userEmail');
 const userAdd = document.querySelector('#userAdd');
 const userPhonenum = document.querySelector('#userPhonenum');
-const infoChangeBtn = document.querySelector('#infoChangeBtn');
-const deleteBtn = document.querySelector('#userDelBtn');
 
 addAllElements();
 addAllEvents();
@@ -21,8 +19,6 @@ async function addAllElements() {
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   logoutBtn.addEventListener('click', logout);
-  infoChangeBtn.addEventListener('click', infoChange);
-  deleteBtn.addEventListener('click', userDel);
 }
 
 function logout() {
@@ -42,36 +38,11 @@ async function mypageInfo() {
 
   userName.innerHTML = `이름: ${resUser.fullName}`;
   userEmail.innerHTML = `이메일: ${resUser.email}`;
-  userAdd.innerHTML = `주소: ${resUser.add}`;
-  userPhonenum.innerHTML = `전화번호: ${resUser.phoneNum}`;
-}
-
-async function infoChange() {
-  const resUser = await Api.get(`/api/userlist/${sessionStorage.getItem('id')}`);
-
-  const newNameInput = document.createElement('input');
-  newNameInput.value = `${resUser.fullName}`;
-  userName.innerHTML = `이름: `;
-  userName.appendChild(newNameInput);
-
-  const newEmailInput = document.createElement('input');
-  newEmailInput.value = `${resUser.email}`;
-  userEmail.innerHTML = `이메일: `;
-  userEmail.appendChild(newEmailInput);
-
-  const newAddInput = document.createElement('input');
-  newAddInput.value = `${resUser.add}`;
-  userAdd.innerHTML = `주소: `;
-  userAdd.appendChild(newAddInput);
-
-  const newPhonenumInput = document.createElement('input');
-  newPhonenumInput.value = `${resUser.phoneNum}`;
-  userPhonenum.innerHTML = `전화번호: `;
-  userPhonenum.appendChild(newPhonenumInput);
-}
-
-async function userDel() {
-  const test = sessionStorage.getItem('id');
-  const data = {test};
-  await Api.delete(`/api/userinfo`, sessionStorage.getItem('id'), data);
+  if (resUser.add === undefined) {
+    userAdd.innerHTML = `주소: 주소를 등록해주세요`;
+    userPhonenum.innerHTML = `전화번호: 전화번호를 등록해주세요`;
+  } else {
+    userAdd.innerHTML = `주소: ${resUser.add}`;
+    userPhonenum.innerHTML = `전화번호: ${resUser.phoneNum}`;
+  }
 }
