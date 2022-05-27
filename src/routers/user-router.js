@@ -120,7 +120,7 @@ userRouter.get('/userlist/:useremail', async (req, res, next) => {
 // 사용자 정보 수정
 // (예를 들어 /api/users/abc12345 로 요청하면 req.params.userId는 'abc12345' 문자열로 됨)
 userRouter.patch(
-  '/users/:userId',
+  '/userlist/:useremail',
   loginRequired,
   async function (req, res, next) {
     try {
@@ -133,7 +133,7 @@ userRouter.patch(
       }
 
       // params로부터 id를 가져옴
-      const userId = req.params.userId;
+      const useremail = req.params.useremail;
 
       // body data 로부터 업데이트할 사용자 정보를 추출함.
       const fullName = req.body.fullName;
@@ -150,7 +150,7 @@ userRouter.patch(
         throw new Error('정보를 변경하려면, 현재의 비밀번호가 필요합니다.');
       }
 
-      const userInfoRequired = { userId, currentPassword };
+      const userInfoRequired = { useremail, currentPassword };
 
       // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해
       // 보내주었다면, 업데이트용 객체에 삽입함.
@@ -177,9 +177,8 @@ userRouter.patch(
 );
 
 // 사용자 정보 삭제
-// (예를 들어 /api/users/abc12345 로 요청하면 req.params.userId는 'abc12345' 문자열로 됨)
 userRouter.delete(
-  '/users/:userId',
+  '/userlist/:useremail',
   loginRequired,
   async function (req, res, next) {
     try {
@@ -192,7 +191,7 @@ userRouter.delete(
       }
 
       // params로부터 id를 가져옴
-      const userId = req.params.userId;
+      const useremail = req.params.useremail;
 
       // body data로부터, 확인용으로 사용할 현재 비밀번호를 추출함.
       const currentPassword = req.body.password;
@@ -202,7 +201,7 @@ userRouter.delete(
         throw new Error('정보를 변경하려면, 현재의 비밀번호가 필요합니다.');
       }
 
-      const userInfoRequired = { userId, currentPassword };
+      const userInfoRequired = { useremail, currentPassword };
 
       await userService.deleteUser(userInfoRequired);
 
