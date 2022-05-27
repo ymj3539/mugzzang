@@ -112,10 +112,10 @@ class UserService {
   // 유저정보 수정, 현재 비밀번호가 있어야 수정 가능함.
   async setUser(userInfoRequired, toUpdate) {
     // 객체 destructuring
-    const { userId, currentPassword } = userInfoRequired;
+    const { useremail, currentPassword } = userInfoRequired;
 
     // 우선 해당 id의 유저가 db에 있는지 확인
-    let user = await this.userModel.findById(userId);
+    let user = await this.userModel.findByEmail(useremail);
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
@@ -149,19 +149,20 @@ class UserService {
 
     // 업데이트 진행
     user = await this.userModel.update({
-      userId,
+      useremail,
       update: toUpdate,
     });
 
     return user;
   }
 
+  // 사용자 정보 삭제
   async deleteUser(userInfoRequired) {
     // 객체 destructuring
-    const { userId, currentPassword } = userInfoRequired;
+    const { useremail, currentPassword } = userInfoRequired;
 
     // 우선 해당 id의 유저가 db에 있는지 확인
-    let user = await this.userModel.findById(userId);
+    let user = await this.userModel.findByEmail(useremail);
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
@@ -184,7 +185,7 @@ class UserService {
     }
 
     // 이제 드디어 삭제 시작
-    await this.userModel.delete(userId);
+    await this.userModel.delete(useremail);
     return;
   }
 }
