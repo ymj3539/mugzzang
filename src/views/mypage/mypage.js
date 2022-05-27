@@ -9,6 +9,7 @@ const userAdd = document.querySelector("#userAdd");
 const userPhonenum = document.querySelector("#userPhonenum");
 const infoChangeBtn = document.querySelector("#infoChangeBtn");
 const deleteBtn = document.querySelector("#userDelBtn");
+const changeBtn = document.querySelector("#ChangeBtn");
 
 addAllElements();
 addAllEvents();
@@ -23,6 +24,7 @@ function addAllEvents() {
   logoutBtn.addEventListener("click", logout);
   infoChangeBtn.addEventListener("click", infoChange);
   deleteBtn.addEventListener("click", userDel);
+  changeBtn.addEventListener("click", change);
 }
 
 function logout() {
@@ -38,7 +40,7 @@ function logout() {
 //마이페이지에 쓰일 로그인 유저의 정보 get (세션 스토리지값을 이용)
 async function mypageInfo() {
   const resUser = await Api.get(
-    `/api/userinfo/${sessionStorage.getItem("id")}`
+    `/api/userlist/${sessionStorage.getItem("id")}`
   );
   console.log(resUser);
 
@@ -50,15 +52,17 @@ async function mypageInfo() {
 
 async function infoChange() {
   const resUser = await Api.get(
-    `/api/userinfo/${sessionStorage.getItem("id")}`
+    `/api/userlist/${sessionStorage.getItem("id")}`
   );
 
   const newNameInput = document.createElement("input");
+  newNameInput.id = "newname";
   newNameInput.value = `${resUser.fullName}`;
   userName.innerHTML = `이름: `;
   userName.appendChild(newNameInput);
 
   const newEmailInput = document.createElement("input");
+  newEmailInput.id = "newemail";
   newEmailInput.value = `${resUser.email}`;
   userEmail.innerHTML = `이메일: `;
   userEmail.appendChild(newEmailInput);
@@ -74,8 +78,20 @@ async function infoChange() {
   userPhonenum.appendChild(newPhonenumInput);
 }
 
+async function change() {
+  const newname = document.querySelector("#newname");
+  const newemail = document.querySelector("#newemail");
+  const changename = newname.value;
+  console.log(newname.value);
+  console.log(newemail.value);
+
+  const data = { changename };
+
+  await Api.patch(`/api/userlist`, sessionStorage.getItem("id"), data);
+}
+
 async function userDel() {
-  const test = sessionStorage.getItem("id");
-  const data = { test };
-  await Api.delete(`/api/userinfo`, sessionStorage.getItem("id"), data);
+  const usertoken = sessionStorage.getItem("token");
+  const data = { usertoken };
+  await Api.delete(`/api/userlist`, sessionStorage.getItem("id"), data);
 }
