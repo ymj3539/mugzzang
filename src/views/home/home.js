@@ -32,7 +32,7 @@ async function getDataFromApi() {
 
 async function testfun() {
   //테스트버튼
-  const result = await Api.get(`api/userlist/test@test.com`);
+  const result = await Api.get(`api/userlist`);
 
   console.log(result);
   // console.log(
