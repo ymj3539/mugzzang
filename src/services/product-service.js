@@ -39,6 +39,15 @@ class ProductService {
         return product;
     }
 
+    //재고 변경
+    async updateStock (num){
+
+
+        const product = await this.productModel.addInStock(num);
+
+        return product;
+
+    }
 
 
 

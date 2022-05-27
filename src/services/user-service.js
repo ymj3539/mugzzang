@@ -37,7 +37,9 @@ class UserService {
 
   // admin 가입
   async addAdmin(userInfo) {
-    const { email, fullName, password, role } = userInfo;
+    const { email, password } = userInfo;
+
+    // const role = 
 
     const user = await this.userModel.findByEmail(email);
 
