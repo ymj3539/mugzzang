@@ -3,7 +3,7 @@ import {quantityControlBox} from './quantityControlBox.js';
 const $itemImg = document.querySelector('#itemInfo_img');
 const $itemInfoSection = document.querySelector('#itemInfo_section');
 const params = window.location.href.split('?=')[1];
-console.log(params);
+
 async function setData() {
   try {
     const itemList = await Api.get('/api/product/list', `${params}`);
@@ -81,6 +81,6 @@ function moveItemToCart(quantity, id, e) {
   }
   // 바로구매 버튼을 누른 경우, 장바구니 페이지로 바로 이동
   if (e.target.textContent === '바로구매') {
-    console.log('장바구니 페이지로 이동합니다.');
+    window.location.href = 'http://localhost:5000/cart';
   }
 }
