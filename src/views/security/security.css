@@ -1,7 +1,7 @@
 .mypage-container {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   /* justify-content: center; */
   height: 100vh;
 }
@@ -25,13 +25,8 @@
   cursor: pointer;
 }
 
-.mypageNav {
-  margin: 0 30px;
-}
-
-.mypageNav a {
-  align-items: center;
-  border: 1px solid #d5d9d9;
-  border-radius: 6px;
-  padding: 10px;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
