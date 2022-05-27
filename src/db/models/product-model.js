@@ -25,7 +25,10 @@ export class ProductModel {
         return products;
     }
 
-    // async update
+    async addInStock (num){
+        const products = await Product.findOneAndUpdate({inStock : num})
+        return products;
+    }
 
 }
 

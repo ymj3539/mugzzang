@@ -58,4 +58,23 @@ productRouter.post('/upload', async(req,res,next)=>{
     }
 })
 
+productRouter.patch('/update/:productId', async(req,res,next)=>{
+try {
+     
+    if (is.emptyObject(req.body)) {
+      throw new Error(
+        'headers의 Content-Type을 application/json으로 설정해주세요'
+      );
+    }
+
+    const productId = req.params.productId;
+    
+} catch {
+
+}
+
+
+})
+
+
 export {productRouter};
