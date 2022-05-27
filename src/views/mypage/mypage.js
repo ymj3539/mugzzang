@@ -40,11 +40,16 @@ async function mypageInfo() {
 
   userName.innerHTML = `이름: ${resUser.fullName}`;
   userEmail.innerHTML = `이메일: ${resUser.email}`;
-  if (resUser.add === undefined) {
+
+  if (resUser.address === undefined) {
     userAdd.innerHTML = `주소: 주소를 등록해주세요`;
+  } else {
+    userAdd.innerHTML = `주소: ${resUser.address}`;
+  }
+
+  if (resUser.phoneNumber === undefined) {
     userPhonenum.innerHTML = `전화번호: 전화번호를 등록해주세요`;
   } else {
-    userAdd.innerHTML = `주소: ${resUser.add}`;
-    userPhonenum.innerHTML = `전화번호: ${resUser.phoneNum}`;
+    userPhonenum.innerHTML = `전화번호: ${resUser.phoneNumber}`;
   }
 }
