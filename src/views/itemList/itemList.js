@@ -14,7 +14,7 @@ const locationItemInfo = () => {
   $article = document.querySelectorAll('#itemlist');
   $article.forEach((e) => {
     e.addEventListener('click', () => {
-      window.location.href = `http://localhost:5000/itemInfo/?=${e.dataset.oid}`;
+      window.location.href = `http://localhost:8000/itemInfo/?=${e.dataset.oid}`;
     });
   });
 };
