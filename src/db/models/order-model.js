@@ -27,7 +27,7 @@ export class OrderModel {
         return orders;
     }
 
-    async create (orderinfo) {
+    async createOrder (orderinfo) {
         const newOrder = await Order.create(orderinfo);
         return newOrder
     }

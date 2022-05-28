@@ -111,6 +111,7 @@ userRouter.get('/userlist/:useremail', async (req, res, next) => {
     const { useremail } = req.params;
 
     const user = await userService.getUser(useremail);
+    console.log('user from router: ', user);
     res.status(200).json(user);
   } catch (error) {
     next(error);
