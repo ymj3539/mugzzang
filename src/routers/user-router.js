@@ -6,7 +6,7 @@ import { userService } from '../services';
 
 const userRouter = Router();
 
-// 회원가입 api (아래는 /register이지만, 실제로는 /api/register로 요청해야 함.)
+// 회원가입 api (아래는 /register이지만, 실제로는 /api/user/register로 요청해야 함.)
 userRouter.post('/register', async (req, res, next) => {
   try {
     // Content-Type: application/json 설정을 안 한 경우, 에러를 만들도록 함.

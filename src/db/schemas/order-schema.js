@@ -11,38 +11,37 @@ const OrderSchema = new Schema({
         type : String,
         required : true
     },
-    price : [{
-        price_each : {
-            type : Number,
-            required : true
-        },
-        count : {
+    
+    priceEach : {
             type : Number,
             required : true
         },
 
-        total : {
+    priceCount : {
+            type : Number,
+            required : true
+        },
+
+    priceTotal : {
             type : Number,
             required : true
         }
-    }],
+    ,
 
-    delivery : [{
-        name : {
-            type : String,
-            required : true
+  
+    delivery : {
+        type : new Schema({
+            name : String,
+            contact : String,
+            address: String
         },
-        contact : {
-            type : [String],
-            required : true
-        },
-        address : {
-            type: String,
-            required : true
-        },
-
-        
-    }],
+        {
+            _id: false,
+          }
+        ),
+        required : true   
+    },   
+   
 
     orderNumber : {
         type : String,
