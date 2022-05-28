@@ -1,11 +1,17 @@
 const showAddItemModule = () => {
-  const $adminPage_content = document.querySelector('#adminPage_content');
-
+  const $adminPage_content = document.getElementById('adminPage_content');
   showAddItemPage();
+
+  const $addItemForm = document.getElementById('addItemForm');
+
+  $addItemForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log(new FormData());
+  });
   function showAddItemPage() {
     $adminPage_content.insertAdjacentHTML(
       'beforeend',
-      `<form action="">
+      `<form id='addItemForm' action="post">
   <div class="field">
     <label class="label">상품명</label>
     <div class="control">
@@ -42,7 +48,7 @@ const showAddItemModule = () => {
       <textarea class="textarea is-primary" placeholder="Primary textarea"></textarea>
     </div>
   </div>
-  <button class="button is-link">상품 추가</button>
+  <button type="submit" id="formSubmitBtn" class="button is-link">상품 추가</button>
 </form>`
     );
   }

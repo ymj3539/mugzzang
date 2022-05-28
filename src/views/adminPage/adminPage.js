@@ -1,7 +1,7 @@
 import showOrderedListModule from './adminOrderPage.js';
 import showAddItemModule from './adminAddItem.js';
-const $showOrderedListBtn = document.getElementById('#showOrderedListBtn');
-const $showAddItemBtn = document.getElementById('#showAddItemBtn');
+const $showOrderedListBtn = document.getElementById('showOrderedListBtn');
+const $showAddItemBtn = document.getElementById('showAddItemBtn');
 
 $showAddItemBtn.addEventListener('click', () => {
   if (sessionStorage.getItem('adminPagestate')) {
@@ -23,6 +23,20 @@ $showOrderedListBtn.addEventListener('click', () => {
   sessionStorage.setItem('adminPagestate', 'orderedList');
   showOrderedListModule();
 });
+
+//
+///
+//
+//
+//
+//
+//
+///
+//
+//
+//
+//
+//
 
 // 새로고침 되었을 때, sessionStorage에 flag변수에 맞게 목록 다시 띄우기
 window.onload = () => {

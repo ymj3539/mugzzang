@@ -11,12 +11,22 @@ const itemList = await Api.get('/api/product/list');
 
 // 각 상품에 해당하는 상품 상세 페이지로 리다이렉션하는 이벤트 추가하기
 const locationItemInfo = () => {
-  $article = document.querySelectorAll('#itemlist');
-
-  $article.forEach((e) => {
-    e.addEventListener('click', () => {
-      window.location.href = `http://localhost:8000/itemInfo/?=${e.dataset.oid}`;
-    });
+  // $article = document.querySelectorAll('#itemlist');
+  // $article.forEach((e) => {
+  //   e.addEventListener('click', () => {
+  //     window.location.href = `http://localhost:8000/itemInfo/?=${e.dataset.oid}`;
+  //   });
+  // });
+  $itemListFlexbox.addEventListener('click', (e) => {
+    let target = e.target;
+    if (target.className === 'itemlist_flexbox') return;
+    while (!target.classList.contains('itemlist')) {
+      target = target.parentNode;
+      if (target === 'body') {
+        return;
+      }
+    }
+    window.location.href = `http://localhost:8000/itemInfo/?=${target.dataset.oid}`;
   });
 };
 
