@@ -1,11 +1,4 @@
-const showAddItemModule = () => {
-  const $adminPage_content = document.querySelector('#adminPage_content');
-
-  showAddItemPage();
-  function showAddItemPage() {
-    $adminPage_content.insertAdjacentHTML(
-      'beforeend',
-      `<form action="">
+<form action="">
   <div class="field">
     <label class="label">상품명</label>
     <div class="control">
@@ -43,9 +36,4 @@ const showAddItemModule = () => {
     </div>
   </div>
   <button class="button is-link">상품 추가</button>
-</form>`
-    );
-  }
-};
-
-export default showAddItemModule;
+</form>

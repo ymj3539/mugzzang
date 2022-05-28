@@ -1,7 +1,7 @@
-const quantityControlBox = (doc) => {
-  const $upButton = doc.querySelector('#quantityUp');
-  const $downButton = doc.querySelector('#quantityDown');
-  const $quantityInput = doc.querySelector('#quantityInput');
+const quantityControlBox = () => {
+  const $upButton = document.getElementById('quantityUp');
+  const $downButton = document.getElementById('quantityDown');
+  const $quantityInput = document.getElementById('quantityInput');
   $upButton.addEventListener('click', controlQuantity);
   $downButton.addEventListener('click', controlQuantity);
 
