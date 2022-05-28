@@ -52,10 +52,10 @@ async function securityInfo() {
   } else {
     addInput.value = `${resUser.add}`;
   }
-  if (resUser.phoneNum === undefined) {
+  if (resUser.phoneNumber === undefined) {
     phonenumInput.value = "";
   } else {
-    phonenumInput.value = `${resUser.phoneNum}`;
+    phonenumInput.value = `${resUser.phoneNumber}`;
   }
 }
 
@@ -79,12 +79,12 @@ async function changSubmit(e) {
   const isPasswordValid = password.length >= 4;
   const isPasswordSame = password === passwordConfirm;
 
-  if (!isFullNameValid || !isPasswordValid) {
-    return alert("이름은 2글자 이상, 비밀번호는 4글자 이상이어야 합니다.");
-  }
-  if (!isPasswordSame) {
-    return alert("비밀번호가 일치하지 않습니다.");
-  }
+  // if (!isFullNameValid || !isPasswordValid) {
+  //   return alert("이름은 2글자 이상, 비밀번호는 4글자 이상이어야 합니다.");
+  // }
+  // if (!isPasswordSame) {
+  //   return alert("비밀번호가 일치하지 않습니다.");
+  // }
 
   try {
     const data = {

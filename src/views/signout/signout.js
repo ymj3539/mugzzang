@@ -4,7 +4,7 @@ import { randomId } from "/useful-functions.js";
 // 요소(element), input 혹은 상수
 const logoutBtn = document.querySelector("#logoutBtn");
 const deleteBtn = document.querySelector("#deleteBtn");
-const passwordInput = document.querySelector("passwordInput");
+const passwordInput = document.querySelector("#passwordInput");
 
 addAllElements();
 addAllEvents();
@@ -30,6 +30,8 @@ function logout() {
 
 async function signout() {
   //   e.preventDefault();
-  //   const data = 바디값으로 비밀번호를 보내줘야하는것같음
-  await Api.delete("/api/userlist", sessionStorage.getItem("id"));
+  const password = passwordInput.value;
+  const data = { password };
+
+  await Api.delete("/api/userlist", sessionStorage.getItem("id"), data);
 }
