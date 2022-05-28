@@ -1,8 +1,8 @@
 import * as Api from '/api.js';
 import {quantityControlBox} from './quantityControlBox.js';
 
-const $itemImg = document.querySelector('#itemInfo_img');
-const $itemInfoSection = document.querySelector('#itemInfo_section');
+const $itemImg = document.getElementById('itemInfo_img');
+const $itemInfoSection = document.getElementById('itemInfo_section');
 const params = window.location.href.split('?=')[1];
 
 async function setData() {
@@ -14,8 +14,9 @@ async function setData() {
   }
 }
 
-setData()
-  .then((res) => {
+async function createItemInfoElements() {
+  try {
+    const res = await setData();
     const {shortId, manufacturer, prod_title, price, img, description} = res;
     $itemInfoSection.insertAdjacentHTML(
       'beforeend',
@@ -50,26 +51,27 @@ setData()
     </article>`
     );
     return document;
-  })
-  .then((doc) => {
-    // 수량 조절 버튼 모듈입니다.
-    quantityControlBox(doc);
-    return doc;
-  })
-  .then((document) => {
-    const $itemInfoInformation = document.querySelector('#itemInfo_information').dataset.id; // 상품의 고유 아이디 추출
-    const $itemInfoCart = document.querySelector('#itemInfo_cart'); // 장바구니 버튼
-    const $itemInfoBuyNow = document.querySelector('#itemInfo_buyNow'); // 바로구매 버튼
-    $itemInfoCart.addEventListener('click', (e) => {
-      const $quantityInput = document.querySelector('#quantityInput').value;
-      moveItemToCart($quantityInput, $itemInfoInformation, e); // 수량 조절 버튼의 input값 추출
-    });
-    $itemInfoBuyNow.addEventListener('click', (e) => {
-      const $quantityInput = document.querySelector('#quantityInput').value;
-      moveItemToCart($quantityInput, $itemInfoInformation, e); // 수량 조절 버튼의 input값 추출
-    });
-  })
-  .catch((err) => console.error(err));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function addquantityControlEvent() {
+  const doc = await createItemInfoElements();
+  // 수량 조절 버튼 모듈입니다.
+  await quantityControlBox(document);
+  const $itemInfoInformation = document.getElementById('itemInfo_information').dataset.id; // 상품의 고유 아이디 추출
+  const $itemInfoCart = document.getElementById('itemInfo_cart'); // 장바구니 버튼
+  const $itemInfoBuyNow = document.getElementById('itemInfo_buyNow'); // 바로구매 버튼
+  $itemInfoCart.addEventListener('click', (e) => {
+    const $quantityInput = document.getElementById('quantityInput').value;
+    moveItemToCart($quantityInput, $itemInfoInformation, e); // 수량 조절 버튼의 input값 추출
+  });
+  $itemInfoBuyNow.addEventListener('click', (e) => {
+    const $quantityInput = document.getElementById('quantityInput').value;
+    moveItemToCart($quantityInput, $itemInfoInformation, e); // 수량 조절 버튼의 input값 추출
+  });
+}
 
 // 세션 스토리지에 장바구니 데이터를 넣는 함수
 function moveItemToCart(quantity, id, e) {
@@ -88,3 +90,5 @@ function moveItemToCart(quantity, id, e) {
   }
   alert('장바구니에 추가되었습니다!');
 }
+
+addquantityControlEvent();
