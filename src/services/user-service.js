@@ -108,6 +108,7 @@ class UserService {
   async getUser(useremail) {
     // const user = await this.userModel.findUser(username);
     const user = await this.userModel.findByEmail(useremail);
+    console.log('user from service: ', user);
     return user;
   }
 
