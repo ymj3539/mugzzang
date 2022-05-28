@@ -1,4 +1,4 @@
-import { orderModel } from "../db/models/order-model";
+import { orderModel } from "../db";
 
 class OrderService {
     constructor (orderModel) {
@@ -8,13 +8,12 @@ class OrderService {
     async addOrder (orderInfo){
         
 
-        const newOrder = await this.orderModel.create(orderInfo);
+        const newOrder = await this.orderModel.createOrder(orderInfo);
 
         return newOrder;
-        
-
-
+     
     }
+
     async getOrders(){
         const orders = await this.orderModel.findAll();
         return orders;
@@ -37,6 +36,6 @@ class OrderService {
 
 }
 
-const orderService = new OrderService();
+const orderService = new OrderService(orderModel);
 
 export {orderService};
