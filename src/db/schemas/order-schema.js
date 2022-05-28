@@ -7,7 +7,10 @@ const OrderSchema = new Schema({
         type : String,
         required : true
     },
-
+    productTitle : {
+        type : String,
+        required : true
+    },
     price : [{
         price_each : {
             type : Number,
