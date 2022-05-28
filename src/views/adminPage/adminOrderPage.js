@@ -23,7 +23,7 @@ function showOrderPage() {
     'beforeEnd',
     `<thead>
   <tr align="center">
-    <td></td>
+    <td>No.</td>
     <th>결제 일자</th>
     <th>상품명</th>
     <th>가격</th>
