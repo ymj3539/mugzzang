@@ -44,8 +44,8 @@ setData()
           <input id="quantityInput" class="input" type="text" value="1" />
           <button id="quantityUp" class="button is-info is-light">+</button>
         </div>
-        <button id='itemInfo_cart'>장바구니</a></button>
-        <button id='itemInfo_buyNow'><a href="#">바로구매</a></button>
+        <button id='itemInfo_cart'>장바구니</button>
+        <button id='itemInfo_buyNow'>바로구매</button>
       </div>
     </article>`
     );
@@ -84,6 +84,7 @@ function moveItemToCart(quantity, id, e) {
   }
   // 바로구매 버튼을 누른 경우, 장바구니 페이지로 바로 이동
   if (e.target.textContent === '바로구매') {
-    window.location.href = `http://localhost:8000/cart`;
+    return (window.location.href = `http://localhost:8000/cart`);
   }
+  alert('장바구니에 추가되었습니다!');
 }
