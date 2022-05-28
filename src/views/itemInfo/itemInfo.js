@@ -40,7 +40,7 @@ async function createItemInfoElements() {
         ${description}
       </p>
       <div class="itemInfo_btn">
-        <div class="itemInfo_btn_updown">
+        <div class="itemInfo_btn_updown" id="updownBtnBox">
           <button id="quantityDown" class="button is-danger is-light">-</button>
           <input id="quantityInput" class="input" type="text" value="1" />
           <button id="quantityUp" class="button is-info is-light">+</button>
