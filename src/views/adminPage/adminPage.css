@@ -34,11 +34,3 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-td {
-  padding: 0 30px;
-}
-
-th {
-  padding: 0 30px;
-}
