@@ -43,7 +43,7 @@ async function handleSubmit(e) {
 
     const result = await Api.post("/api/user/login", data);
     const token = result.token;
-    console.log(result);
+    console.log('login result:',result);
 
     // 로그인 성공, 토큰을 세션 스토리지에 저장 + id도 저장
     // 물론 다른 스토리지여도 됨
