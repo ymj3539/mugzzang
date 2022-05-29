@@ -1,21 +1,26 @@
 import * as Api from '/api.js';
-let $itemListFlexbox = document.querySelector('.itemlist_flexbox');
-const $itemSection = document.querySelector('#itemlist_section');
-const $category1 = document.querySelector('#category_1');
-const $category2 = document.querySelector('#category_2');
-let $article = document.querySelectorAll('#itemlist');
+const $itemSection = document.getElementById('itemlist_section');
+const $category1 = document.getElementById('category_1');
+const $category2 = document.getElementById('category_2');
+let $itemListFlexbox = document.getElementsByClassName('itemlist_flexbox');
+let $article;
 let flag = null;
+
 // 데이터 불러오기
 const itemList = await Api.get('/api/product/list');
-console.log(itemList);
 
 // 각 상품에 해당하는 상품 상세 페이지로 리다이렉션하는 이벤트 추가하기
 const locationItemInfo = () => {
-  $article = document.querySelectorAll('#itemlist');
-  $article.forEach((e) => {
-    e.addEventListener('click', () => {
-      window.location.href = `http://localhost:8000/itemInfo/?=${e.dataset.oid}`;
-    });
+  $itemListFlexbox.addEventListener('click', (e) => {
+    let target = e.target;
+    if (target.className === 'itemlist_flexbox') return;
+    while (!target.classList.contains('itemlist')) {
+      target = target.parentNode;
+      if (target === 'body') {
+        return;
+      }
+    }
+    window.location.href = `http://localhost:8000/itemInfo/?=${target.dataset.oid}`;
   });
 };
 
@@ -60,6 +65,8 @@ const showCategoryItem = (e) => {
   flag = e.target.parentNode.dataset.num;
   // 기존 상품 목록 노드 전부 지우고 재생성
   $itemListFlexbox = document.querySelector('.itemlist_flexbox');
+  // console.log($itemListFlexbox);
+  // console.log(document.getElementById('itemlist_flexbox'));
   $itemListFlexbox.remove();
   const flexbox = document.createElement('div');
   flexbox.className = 'itemlist_flexbox';
