@@ -1,3 +1,4 @@
+import * as Api from '/api.js';
 import showOrderedListModule from './adminOrderPage.js';
 import showAddItemModule from './adminAddItem.js';
 const $showOrderedListBtn = document.getElementById('showOrderedListBtn');
