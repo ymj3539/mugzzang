@@ -47,7 +47,6 @@ window.onload = () => {
       break;
     case 'addItem':
       showAddItemModule();
-      console.log('hi');
       break;
     default:
       break;

@@ -1,29 +1,47 @@
 const showOrderedListModule = () => {
   const $adminPage_content = document.querySelector('#adminPage_content');
-  const tempData = [
-    {
-      date: '2022-02-22',
-      name: '이솝 핸드크림',
-      price: '20,000',
-      quantity: '4',
-      shortId: 'x26ybshhd',
-      button: 'X',
-    },
-  ];
+  async function getData() {
+    const tempData = [
+      {
+        date: '2022-02-22',
+        name: '이솝 핸드크림',
+        price: '20,000',
+        quantity: '4',
+        shortId: 'x26ybshhd',
+        button: 'X',
+      },
+      {
+        date: '2022-02-22',
+        name: '이솝 핸드크림',
+        price: '20,000',
+        quantity: '4',
+        shortId: 'x26ybshhd',
+        button: 'X',
+      },
+      {
+        date: '2022-02-22',
+        name: '이솝 핸드크림',
+        price: '20,000',
+        quantity: '4',
+        shortId: 'x26ybshhd',
+        button: 'X',
+      },
+    ];
+    return tempData;
+  }
 
-  showOrderPage();
-
-  function showOrderPage() {
+  async function showOrderPage() {
+    const tempData = await getData();
     const $table = document.createElement('table');
     const $caption = document.createElement('caption');
-    $table.className = 'orderTable';
+    $table.className = 'table';
     $caption.textContent = '주문 조회';
     $adminPage_content.appendChild($table);
     $table.appendChild($caption);
     $table.insertAdjacentHTML(
       'beforeEnd',
       `<thead>
-  <tr align="center">
+  <tr>
     <td>No.</td>
     <th>결제 일자</th>
     <th>상품명</th>
@@ -32,42 +50,45 @@ const showOrderedListModule = () => {
     <th>결제아이디</th>
     <th>주문 취소</th>
   </tr>
-</thead>`
+</thead>
+<tbody id="orderTbody">
+</tbody`
     );
-    addOrderedItem(tempData, $table);
+    const $orderTbody = document.getElementById('orderTbody');
+    addOrderedItem(tempData, $orderTbody);
     addCancelEvent($table);
   }
+
+  showOrderPage();
 
   function addOrderedItem(data, addAt) {
     data.forEach((e, i) => {
       addAt.insertAdjacentHTML(
         'beforeend',
-        `
-        <tbody>
-            <tr align="center">
+        `<tr id="tRowId" data-rowid=${i + 1} align="center">
                  <td>${i + 1}</td>
                  <th>${e.date}</th>
                  <th>${e.name}</th>
                  <th>${e.price}원</th>
                  <th>${e.quantity}</th>
                  <th>${e.shortId}</th>
-                 <th id='cancelBtn'>X</th>
-            </tr>
-         </tbody>`
+                 <th data-rowid=${i + 1} id='cancelBtn'>X</th>
+            </tr>`
       );
     });
   }
 
   function addCancelEvent($table) {
-    const $cancelBtn = $table.querySelector('#cancelBtn');
-    $cancelBtn.addEventListener('click', cancelEvent);
+    $table.addEventListener('click', cancelEvent);
   }
 
   function cancelEvent(e) {
-    console.log(e.target);
+    let target = e.target;
+    if (e.target.id !== 'cancelBtn') return;
+    target.parentNode.remove();
     // api delete
-    // node 삭제 추가 필요
-    // alert
+    // alert 추가
   }
 };
+
 export default showOrderedListModule;
