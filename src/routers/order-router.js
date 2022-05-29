@@ -58,4 +58,24 @@ orderRouter.get(
   }
 );
 
+//주문 삭제
+orderRouter.delete(
+  '/orderlist/:orderId',
+  loginRequired,
+  async (req, res, next) => {
+    try {
+      if (is.emptyObject(req.params)) {
+        throw new Error('조회하려는 주문ID가 정확한지 확인해주세요.');
+      }
+      const { orderId } = req.params;
+
+      const order = await orderService.deleteOrder(orderId);
+
+      res.status(200).json({ message: '성공' });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 export { orderRouter };
