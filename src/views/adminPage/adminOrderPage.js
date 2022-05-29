@@ -1,3 +1,5 @@
+import * as Api from '/api.js';
+
 const showOrderedListModule = () => {
   const $adminPage_content = document.querySelector('#adminPage_content');
   async function getData() {
