@@ -23,6 +23,11 @@ const OrderSchema = new Schema(
       required: true,
     },
 
+    priceEach: {
+      type: [Number],
+      required: true,
+    },
+
     priceTotal: {
       type: Number,
       required: true,

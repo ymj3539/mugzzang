@@ -14,12 +14,20 @@ orderRouter.post('/', loginRequired, async (req, res, next) => {
       );
     }
 
-    const { email, productName, productCount, priceTotal, delivery } = req.body;
+    const {
+      email,
+      productName,
+      productCount,
+      priceEach,
+      priceTotal,
+      delivery,
+    } = req.body;
 
     const newOrder = await orderService.addOrder({
       email,
       productName,
       productCount,
+      priceEach,
       priceTotal,
       delivery,
     });
