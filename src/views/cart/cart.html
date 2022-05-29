@@ -24,9 +24,7 @@
           <li><a href="/itemList">shop</a></li>
           <li>
             <a href="/cart" aria-current="page">
-              <span class="icon">
-                <i class="fas fa-cart-shopping"></i> </span
-              ><span>장바구니</span>
+              <span class="icon"> <i class="fas fa-cart-shopping"></i> </span><span>장바구니</span>
             </a>
           </li>
         </ul>
@@ -43,11 +41,12 @@
         <h1>장바구니</h1>
       </section>
       <div class="cartInfoContainer">
-        <section class="cartList">
+        <section class="cartList" id="cartList">
           <div>
             <button type="button" class="deleteSom">선택 삭제</button>
             <button type="button" class="deleteAll">전체 삭제</button>
           </div>
+          <div id="cartContainer"></div>
         </section>
         <section class="payInfo"></section>
       </div>
