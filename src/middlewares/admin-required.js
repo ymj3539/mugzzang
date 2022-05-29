@@ -7,6 +7,7 @@ const adminRequired = (req, res, next) => {
         const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
         const jwtDecoded = jwt.verify(userToken, secretKey);
         const userRole = jwtDecoded.role;
+        console.log(userRole);
 
         if(userRole !== "admin"){
             res.status(403).json({

@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import is from '@sindresorhus/is';
 import { loginRequired } from '../middlewares';
+import { adminRequired } from '../middlewares';
 import { productService } from '../services/product-service';
 
 const productRouter = Router();
@@ -38,7 +39,7 @@ productRouter.get('/list/:id', async(req,res,next)=>{
 })
 
 // 상품 등록
-productRouter.post('/upload', loginRequired, async(req,res,next)=>{
+productRouter.post('/upload', loginRequired, adminRequired, async(req,res,next)=>{
     try{
         if (is.emptyObject(req.body)) {
             throw new Error(
@@ -59,7 +60,7 @@ productRouter.post('/upload', loginRequired, async(req,res,next)=>{
 })
 
 // 상품 정보 수정
-productRouter.patch('/update/:productId', loginRequired, async(req,res,next)=>{
+productRouter.patch('/update/:productId', loginRequired, adminRequired, async(req,res,next)=>{
 try {
      
     if (is.emptyObject(req.body)) {
