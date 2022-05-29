@@ -1,12 +1,13 @@
 import {Router} from 'express';
 import is from '@sindresorhus/is';
 import { loginRequired } from '../middlewares';
+import { adminRequired } from '../middlewares';
 import {orderService} from '../services';
 
 const orderRouter = Router();
 
 //상품을 DB에 등록하기
-orderRouter.post('/register',loginRequired, async(req,res,next)=>{
+orderRouter.post('/register',loginRequired, adminRequired, async(req,res,next)=>{
 
     try {
         if (is.emptyObject(req.body)) {
