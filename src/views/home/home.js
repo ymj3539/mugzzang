@@ -21,18 +21,9 @@ function addAllEvents() {
   testBtn.addEventListener("click", testfun);
 }
 
-async function getDataFromApi() {
-  // 예시 URI입니다. 현재 주어진 프로젝트 코드에는 없는 URI입니다.
-  const data = await Api.get("/api/user/data");
-  const random = randomId();
-
-  console.log({ data });
-  console.log({ random });
-}
-
 async function testfun() {
   //테스트버튼
-  const result = await Api.get(`api/userlist`);
+  const result = await Api.get(`api/user/userlist`);
 
   console.log(result);
   // console.log(

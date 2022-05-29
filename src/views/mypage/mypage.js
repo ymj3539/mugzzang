@@ -1,5 +1,4 @@
 import * as Api from "/api.js";
-import { randomId } from "/useful-functions.js";
 
 // 요소(element), input 혹은 상수
 const logoutBtn = document.querySelector("#logoutBtn");
@@ -34,17 +33,17 @@ function logout() {
 //마이페이지에 쓰일 로그인 유저의 정보 get (세션 스토리지값을 이용)
 async function mypageInfo() {
   const resUser = await Api.get(
-    `/api/userlist/${sessionStorage.getItem("id")}`
+    `/api/user/userlist/${sessionStorage.getItem("id")}`
   );
   console.log(resUser);
 
   userName.innerHTML = `이름: ${resUser.fullName}`;
   userEmail.innerHTML = `이메일: ${resUser.email}`;
 
-  if (resUser.address === undefined) {
+  if (resUser.address === undefined || resUser.address.address1 === "") {
     userAdd.innerHTML = `주소: 주소를 등록해주세요`;
   } else {
-    userAdd.innerHTML = `주소: ${resUser.address}`;
+    userAdd.innerHTML = `주소: ${resUser.address.address1} ${resUser.address.address2}`;
   }
 
   if (resUser.phoneNumber === undefined) {

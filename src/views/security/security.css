@@ -8,6 +8,7 @@
 
 .mypageInfo {
   margin: 30px;
+  width: 500px;
 }
 
 .mypage {
@@ -29,4 +30,8 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.addressInfo {
+  display: flex;
 }
