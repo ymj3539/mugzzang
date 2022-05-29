@@ -1,56 +1,61 @@
-import {Schema} from 'mongoose';
-import {shortId} from './types/short-id';
+import { Schema } from 'mongoose';
+import { shortId } from './types/short-id';
 
-const OrderSchema = new Schema({
-    shortId, 
-    email : {
-        type : String,
-        required : true
+const OrderProductSchema = new Schema({
+  productTitle: String,
+  productCount: Number,
+});
+const OrderSchema = new Schema(
+  {
+    shortId,
+    email: {
+      type: String,
+      required: true,
     },
-    productTitle : {
-        type : String,
-        required : true
+
+    productName: {
+      type: [String],
+      required: true,
     },
-    
-    priceEach : {
-            type : Number,
-            required : true
-        },
 
-    priceCount : {
-            type : Number,
-            required : true
-        },
+    productCount: {
+      type: [Number],
+      required: true,
+    },
 
-    priceTotal : {
-            type : Number,
-            required : true
-        }
-    ,
+    priceEach: {
+      type: [Number],
+      required: true,
+    },
 
-  
-    delivery : {
-        type : new Schema({
-            name : String,
-            contact : String,
-            address: String
+    priceTotal: {
+      type: Number,
+      required: true,
+    },
+
+    delivery: {
+      type: new Schema(
+        {
+          name: String,
+          phoneNumber: String,
+          address: String,
         },
         {
-            _id: false,
-          }
-        ),
-        required : true   
-    },   
-   
+          _id: false,
+        }
+      ),
+      required: true,
+    },
 
-    orderNumber : {
-        type : String,
-        required : false
-    }
-
-}, {
+    // orderId: {
+    //   type: String,
+    //   required: false,
+    // },
+  },
+  {
     collection: 'orders',
     timestamps: true,
-  });
+  }
+);
 
-  export {OrderSchema};
+export { OrderSchema };
