@@ -3,37 +3,12 @@ import * as Api from '/api.js';
 const showOrderedListModule = () => {
   const $adminPage_content = document.querySelector('#adminPage_content');
   async function getData() {
-    const tempData = [
-      {
-        date: '2022-02-22',
-        name: '이솝 핸드크림',
-        price: '20,000',
-        quantity: '4',
-        shortId: 'x26ybshhd',
-        button: 'X',
-      },
-      {
-        date: '2022-02-22',
-        name: '이솝 핸드크림',
-        price: '20,000',
-        quantity: '4',
-        shortId: 'x26ybshhd',
-        button: 'X',
-      },
-      {
-        date: '2022-02-22',
-        name: '이솝 핸드크림',
-        price: '20,000',
-        quantity: '4',
-        shortId: 'x26ybshhd',
-        button: 'X',
-      },
-    ];
-    return tempData;
+    const orderData = await Api.get('/api/order/orderlist');
+    return orderData;
   }
 
   async function showOrderPage() {
-    const tempData = await getData();
+    const orderData = await getData();
     const $table = document.createElement('table');
     const $caption = document.createElement('caption');
     $table.className = 'table';
@@ -46,10 +21,11 @@ const showOrderedListModule = () => {
   <tr>
     <td>No.</td>
     <th>결제 일자</th>
+    <th>유저 아이디</th>
     <th>상품명</th>
     <th>가격</th>
     <th>수량</th>
-    <th>결제아이디</th>
+    <th>결제번호</th>
     <th>주문 취소</th>
   </tr>
 </thead>
@@ -57,7 +33,7 @@ const showOrderedListModule = () => {
 </tbody`
     );
     const $orderTbody = document.getElementById('orderTbody');
-    addOrderedItem(tempData, $orderTbody);
+    addOrderedItem(orderData, $orderTbody);
     addCancelEvent($table);
   }
 
@@ -65,16 +41,18 @@ const showOrderedListModule = () => {
 
   function addOrderedItem(data, addAt) {
     data.forEach((e, i) => {
+      const {email, productName, productCount, shortId, priceEach, createdAt} = e;
       addAt.insertAdjacentHTML(
         'beforeend',
         `<tr id="tRowId" data-rowid=${i + 1} align="center">
                  <td>${i + 1}</td>
-                 <th>${e.date}</th>
-                 <th>${e.name}</th>
-                 <th>${e.price}원</th>
-                 <th>${e.quantity}</th>
-                 <th>${e.shortId}</th>
-                 <th data-rowid=${i + 1} id='cancelBtn'>X</th>
+                 <th>${createdAt.slice(0, 10)}</th>
+                 <th>${email}</th>
+                 <th>${productName}</th>
+                 <th>${priceEach}원</th>
+                 <th>${productCount}</th>
+                 <th>${shortId}</th>
+                 <th data-rowid=${i + 1} data-shortid=${shortId} id='cancelBtn'>X</th>
             </tr>`
       );
     });
@@ -84,12 +62,12 @@ const showOrderedListModule = () => {
     $table.addEventListener('click', cancelEvent);
   }
 
-  function cancelEvent(e) {
+  async function cancelEvent(e) {
     let target = e.target;
     if (e.target.id !== 'cancelBtn') return;
+    await Api.delete('/api/order/orderlist', target.dataset.shortid);
     target.parentNode.remove();
-    // api delete
-    // alert 추가
+    alert('주문이 취소되었습니다.');
   }
 };
 

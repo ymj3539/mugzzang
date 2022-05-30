@@ -106,3 +106,10 @@ const io = new IntersectionObserver(ioCallback, {threshold: 0.9});
 observeLastItem(io, document.querySelectorAll('#itemlist'));
 $category1.addEventListener('click', showCategoryItem);
 $category2.addEventListener('click', showCategoryItem);
+
+// window.onload = () => {
+//   switch (sessionStorage.getItem('chosenCategory')) {
+//     default
+//     break
+//   }
+// };
