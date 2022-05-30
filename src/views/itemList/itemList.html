@@ -14,13 +14,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="itemList.css" />
 
-    <script src="itemList.js" type="module"></script>
+    <script src="itemList.js" type="module" defer></script>
   </head>
   <body>
     <header>header</header>
-    <nav class="category_container">
-      <button id="category_1" data-num="남성"><a href="#">손님</a></button>
-      <button id="category_2" data-num="여성"><a href="#">사장님</a></button>
+    <nav id="categorySection" class="category_container">
+      <button data-num="채소">채소</button>
+      <button data-num="냉동식품">냉동식품</button>
+      <button data-num="가공육">가공육</button>
+      <button data-num="통조림">통조림</button>
     </nav>
     <section class="itemlist_container" id="itemlist_section">
       <div class="itemlist_flexbox" id="itemlist_flexbox"></div>

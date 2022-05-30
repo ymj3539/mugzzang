@@ -17,16 +17,17 @@ const showAddItemModule = () => {
   async function postItem(e) {
     e.preventDefault();
     const prod_title = $titleInput.value;
-    const title_additional = $additionalInput.value;
     const price = Number($priceInput.value);
     const img = $imgInput.value;
     const category = [$category_1_value.innerText, $category_2_value.innerText];
     const manufacturer = $manufacturerInput.value;
     const description = $descriptionInput.value;
     try {
-      const data = {prod_title, title_additional, price, img, category, manufacturer, description};
+      const data = {prod_title, price, img, category, manufacturer, description};
       console.log(data);
       await Api.post('/api/product/upload', data);
+      alert('상품 등록이 완료되었습니다.');
+      window.location.reload();
       console.log('check');
     } catch (err) {
       console.error(err);
@@ -42,12 +43,6 @@ const showAddItemModule = () => {
         <div class="control">
           <input class="input is-success" id="prod_title" type="text" value="" />
         </div>
-        </div>
-        <div class="field">
-        <label class="label">상품 한 줄 소개</label>
-          <div class="control">
-            <input class="input is-success" id="title_additional" type="text" value="" />
-          </div>
         </div>
         <div class="field">
           <label class="label">가격</label>

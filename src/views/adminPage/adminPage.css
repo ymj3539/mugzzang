@@ -19,18 +19,25 @@ body {
   display: flex;
   flex-direction: row;
   height: 100vh;
-  gap: 15%;
+  gap: 5%;
 }
 
 .adminPage_content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 10%;
+  justify-content: space-between;
+  height: 90vh;
+  width: 90vw;
+  overflow: scroll;
+  margin-top: 40px;
 }
 
 .adminPage_list {
   font-size: medium;
   display: flex;
   flex-direction: column;
+}
+
+.thead {
+  text-align: center;
 }

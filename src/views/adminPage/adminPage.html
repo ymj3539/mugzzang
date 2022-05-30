@@ -12,7 +12,7 @@
     <script defer src="https://kit.fontawesome.com/7630448495.js" crossorigin="anonymous"></script>
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="adminPage.css" />
-    <script src="adminPage.js" type="module"></script>
+    <script src="adminPage.js" type="module" defer></script>
   </head>
   <body>
     <div class="adminPage_container">
@@ -20,12 +20,13 @@
         <p class="menu-label">Admin Menu</p>
         <p class="menu-label">상품 추가/수정/삭제</p>
         <ul class="menu-list">
-          <li><button id="showAddItemBtn">상품 등록하기</button></li>
-          <li><a>상품 수정/삭제</a></li>
+          <li><button id="showItemList">상품 조회하기</button></li>
+          <li><button id="showAddItem">상품 등록하기</button></li>
+          <li><button id="showPatchDelItem">상품 수정/삭제</button></li>
         </ul>
         <p class="menu-label">주문 조회</p>
         <ul class="menu-list">
-          <li><button id="showOrderedListBtn">주문 조회/취소</button></li>
+          <li><button id="showOrderedList">주문 조회/취소</button></li>
         </ul>
       </aside>
       <div id="adminPage_content" class="adminPage_content"></div>
