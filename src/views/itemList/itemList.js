@@ -4,7 +4,6 @@ const $categoryContainer = document.getElementById('categorySection');
 let $itemListFlexbox = document.getElementsByClassName('itemlist_flexbox');
 let $article;
 let CategoryFlag = null;
-let asyncFlag = true;
 
 // 데이터 불러오기
 const itemList = await Api.get('/api/product/list');
@@ -51,9 +50,9 @@ async function showContent(index, category) {
      <div>
         <img src=${img} alt="itemImg" />
         <div>
-          <h2>${manufacturer}</h2>
-          <h2>${prod_title}</h2>
-          <p>${price}</p>
+          <p class='manufacturer'>${manufacturer}</p>
+          <p class='prod_title'>${prod_title}</h2>
+          <p class='price'>${price}</p>
         </div>
       </div>
       </a>
@@ -108,3 +107,7 @@ function observeLastItem(io, items) {
 const io = new IntersectionObserver(ioCallback, {threshold: 0.9});
 observeLastItem(io, document.querySelectorAll('#itemlist'));
 $categoryContainer.addEventListener('click', showCategoryItem);
+
+// css
+const $buttons = document.querySelectorAll('#categorySection button');
+$buttons.forEach((e) => e.classList.add('category', 'button', 'is-large', 'is-success', 'is-light'));

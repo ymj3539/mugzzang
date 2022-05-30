@@ -2,6 +2,7 @@ import * as Api from '/api.js';
 
 const showOrderedListModule = () => {
   const $adminPage_content = document.querySelector('#adminPage_content');
+
   async function getData() {
     const orderData = await Api.get('/api/order/orderlist');
     return orderData;

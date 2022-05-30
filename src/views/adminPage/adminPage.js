@@ -38,16 +38,16 @@ function setSessionNowPage(e) {
 // 새로고침 되었을 때, sessionStorage에 flag변수에 맞게 목록 다시 띄우기
 window.onload = () => {
   switch (sessionStorage.getItem('adminPagestate')) {
-    case 'showOrderedList':
+    case showOrderedList:
       showOrderedListModule();
       break;
-    case 'showAddItem':
+    case showAddItem:
       showAddItemModule();
       break;
-    case 'showPatchDelItem':
+    case showPatchDelItem:
       showPathDelItemModule();
       break;
-    case 'showItemList':
+    case showItemList:
       showItemListModule();
       break;
     default:
