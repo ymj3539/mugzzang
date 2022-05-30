@@ -39,7 +39,16 @@ const ProductSchema = new Schema(
         manufacturer: {
             type : String,
             required : false
+        },
+
+        inStock : {
+            type: Number,
+            required : true,
+            default : 10
         }
-});
+}, {
+    collection: 'product',
+    timestamps: true,
+  });
 
 export {ProductSchema};
