@@ -79,6 +79,7 @@ async function createCartElements() {
   return document;
 }
 
+//수량조절
 async function controlQuantityBox() {
   await createCartElements();
   const $cartItems = document.querySelectorAll('.cartItem');
@@ -103,14 +104,14 @@ async function controlQuantityBox() {
     $eachPrices.forEach(elem => {
       if(elem.dataset.priceid === quantity) $eachPrice = elem
     });
-
     if (e.target.id === 'quantityUp') { 
       $quantityInput.value = Number($quantityInput.value) + 1;
     } else if (e.target.id === 'quantityDown' && $quantityInput.value > 1) {
       $quantityInput.value = Number($quantityInput.value) + -1;
     }
 
-    $totalItemPrice.textContent = addCommas(Number($eachPrice.textContent) * Number($quantityInput.value));
+    $totalItemPrice.textContent = addCommas(convertToNumber($eachPrice.textContent) * Number($quantityInput.value));
+
     calcTotalPrice($totalItemPrices);
   }
 }
@@ -121,9 +122,18 @@ function calcTotalPrice($totalItemPrices) {
   const totalEl = document.querySelector('.total');
   const totalPriceEl = document.querySelector('.totalPrice');
   $totalItemPrices.forEach((elem) => (totalPrice += Number(convertToNumber(elem.textContent))));
-
+  
   totalPriceEl.textContent = `상품 금액 ${addCommas(totalPrice)}원`;
-  totalEl.textContent = `총 ${addCommas(totalPrice + delivery)}원`;
+  
+  if(totalPrice === 0) {
+    const $orderBtn = totalEl.parentElement.nextElementSibling;
+    $orderBtn.disabled = true;
+    $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다:(`)
+    // alert("상품을 담아주세요!");
+    totalEl.textContent = `총 0원`;
+  } else {
+    totalEl.textContent = `총 ${addCommas(totalPrice + delivery)}원`;
+  }  
 }
 
 //선택삭제 및 전체삭제 버튼
