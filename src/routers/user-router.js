@@ -6,7 +6,7 @@ import { userService } from '../services';
 
 const userRouter = Router();
 
-// 회원가입 api (아래는 /register이지만, 실제로는 /api/register로 요청해야 함.)
+// 회원가입 api (아래는 /register이지만, 실제로는 /api/user/register로 요청해야 함.)
 userRouter.post('/register', async (req, res, next) => {
   try {
     // Content-Type: application/json 설정을 안 한 경우, 에러를 만들도록 함.
@@ -64,7 +64,7 @@ userRouter.post('/register/admin', async (req, res, next) => {
   }
 });
 
-// 로그인 api (아래는 /login 이지만, 실제로는 /api/login로 요청해야 함.)
+// 로그인 api (아래는 /login 이지만, 실제로는 /api/user/login로 요청해야 함.)
 userRouter.post('/login', async function (req, res, next) {
   try {
     // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
@@ -80,6 +80,7 @@ userRouter.post('/login', async function (req, res, next) {
 
     // 로그인 진행 (로그인 성공 시 jwt 토큰을 프론트에 보내 줌)
     const userToken = await userService.getUserToken({ email, password });
+  
 
     // jwt 토큰을 프론트에 보냄 (jwt 토큰은, 문자열임)
     res.status(200).json(userToken);
@@ -111,6 +112,7 @@ userRouter.get('/userlist/:useremail', async (req, res, next) => {
     const { useremail } = req.params;
 
     const user = await userService.getUser(useremail);
+    console.log('user from router: ', user);
     res.status(200).json(user);
   } catch (error) {
     next(error);

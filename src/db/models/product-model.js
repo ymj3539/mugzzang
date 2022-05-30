@@ -4,14 +4,10 @@ import { ProductSchema } from '../schemas/product-schema';
 const Product = model('product', ProductSchema);
 
 export class ProductModel {
-    async findByProductTitle(productTitle){
-        const product = await Product.findOne({productTitle})
-        return productTitle;
-    }
-
+   
 
     async findById(shortId){
-        const product = await Product.findOne({shortId : shortId});
+        const product = await Product.findOne({_id : shortId});
         return product;
     }
 
@@ -25,7 +21,20 @@ export class ProductModel {
         return products;
     }
 
-    // async update
+    async update ({productId, update}){
+        const filter = {_id : productId};
+        const option = {returnOriginal : false};
+
+        const updatedProduct = await Product.updateMany(filter, update, option);
+        return updatedProduct;
+    }
+
+    async delete(productId){
+        await Product.findOneAndDelete({_id : productId});
+        return;
+
+
+    }
 
 }
 
