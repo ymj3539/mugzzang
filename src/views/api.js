@@ -5,7 +5,9 @@ async function get(endpoint, params = "") {
 
   const res = await fetch(apiUrl, {
     // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
+
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
   });
@@ -34,6 +36,7 @@ async function post(endpoint, data) {
   const res = await fetch(apiUrl, {
     method: "POST",
     headers: {
+      // "Accept": 'application/json',
       "Content-Type": "application/json",
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
