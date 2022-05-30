@@ -39,7 +39,7 @@ function logout() {
 //마이페이지에 쓰일 로그인 유저의 정보 get (세션 스토리지값을 이용)
 async function securityInfo() {
   const resUser = await Api.get(`/api/userlist/${sessionStorage.getItem('id')}`);
-  console.log(resUser);
+  console.log("resUser:", resUser);
 
   nameInput.value = `${resUser.fullName}`;
 
