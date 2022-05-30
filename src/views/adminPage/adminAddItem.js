@@ -44,12 +44,6 @@ const showAddItemModule = () => {
         </div>
         </div>
         <div class="field">
-        <label class="label">상품 한 줄 소개</label>
-          <div class="control">
-            <input class="input is-success" id="title_additional" type="text" value="" />
-          </div>
-        </div>
-        <div class="field">
           <label class="label">가격</label>
           <div class="control">
             <input class="input is-success" id="price"type="text" value="" />
