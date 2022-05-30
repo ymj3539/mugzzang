@@ -5,7 +5,6 @@ const showAddItemModule = () => {
   showAddItemPage();
   const $addItemForm = document.getElementById('addItemForm');
   const $titleInput = document.getElementById('prod_title');
-  const $additionalInput = document.getElementById('title_additional');
   const $category_1_value = document.getElementById('category_1_value');
   const $category_2_value = document.getElementById('category_2_value');
   const $manufacturerInput = document.getElementById('manufacturer');
