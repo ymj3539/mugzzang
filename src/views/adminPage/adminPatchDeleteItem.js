@@ -54,7 +54,7 @@ const showPathDelItemModule = () => {
   async function deleteItem(e) {
     e.preventDefault();
     try {
-      await Api.delete('/api/product/delete', $shortIdInput.value, $shortIdInput.value);
+      await Api.delete('/api/product/delete', $shortIdInput.value);
     } catch (err) {
       console.error(err);
     }
