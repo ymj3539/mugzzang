@@ -1,6 +1,5 @@
 import {addCommas, convertToNumber} from '../useful-functions.js';
 import * as Api from '/api.js';
-// let $quantityInput = document.getElementById('quantityInput');
 const $cartList = document.querySelector('.cartList');
 const $cartContainer = document.getElementById('cartContainer');
 const $payInfo = document.querySelector('.payInfo');
@@ -10,36 +9,53 @@ let totalPrice = 0;
 let total = 0;
 const delivery = 3000;
 
-//장바구니, 전체 상품 리스트 불러오기
+//장바구니 불러오기
 async function getCartList() {
   try {
     const cartList = [];
-    const itemList = await Api.get('/api/product/list'); //전체 상품 목록
     const cartObject = Object.keys(sessionStorage).filter((e) => e.slice(0, 4) === 'cart');
     cartObject.forEach((e, i) => {
       cartList.push(JSON.parse(sessionStorage.getItem(cartObject[i])));
     });
-    return [cartList, itemList];
+    return cartList;
   } catch (err) {
     console.error(err);
-    $cartList.innerText = `불러오기에서 무언가 잘못되었습니다! \n${err}`;
+    $cartList.innerText = `장바구니를 불러올 수 없습니다:( \n${err}`;
   }
 }
 
+async function getItemInfo(productId) {
+  try {
+    const itemInfo = await Api.get('/api/product/list', `${productId}`);
+    return itemInfo;
+  } catch (err) {
+    console.error(`getItemInfo-err: ${err}`);
+  }
+}
+
+//장바구니 안 제품의 상세정보 불러오기 
+async function getItemInfos() {
+  const cartList = await getCartList();
+  const incartList = [];
+  for(let item of cartList){
+    const {id, quantity} = item;
+    const res = await getItemInfo(id);
+    incartList.push({img: res.img, title: res.prod_title, price: res.price, quantity: quantity, shortId: res.shortId});
+  }
+  return incartList;
+}
+
 async function createCartElements() {
-  const res = await getCartList();
-  const [incartList, initemList] = res;
+  const incartList = await getItemInfos();
+
   if (incartList.length < 1) return $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다:(`);
 
-  //장바구니 목록을 돌면서 전체 상품 중 id 일치하는 제품 가져오기
+  //장바구니 목록을 돌면서 화면에 렌더링
   incartList.forEach((cart, i) => {
-    const foundItem = initemList.find((item) => {
-      if (item.shortId == cart.id) return item;
-    });
-
+    const {img, title, price, quantity, shortId} = cart;
     //상품 수량 및 가격 계산
-    totalItemPrice = foundItem.price * convertToNumber(cart.quantity); //제품 별 총 금액
-    totalItemQuantity += parseInt(cart.quantity);
+    totalItemPrice = price * parseInt(quantity); //제품 별 총 금액
+    totalItemQuantity += parseInt(quantity);
     totalPrice += totalItemPrice; //총 상품 금액
     total = totalPrice + delivery; //총 주문금액
 
@@ -52,17 +68,18 @@ async function createCartElements() {
             <input type="checkbox" name="buy" value="${i}">
           </label>
           <a href="#">
-            <img class="itemInfo" src="${foundItem.img}"/>
-          </a>    
+            <img class="itemInfo" src="${img}"/>
+          </a>
+          <span style="display:none" class="shortId">${shortId}</span>
           <a href="#">
-            <span class="itemInfo">${foundItem.prod_title}</span>
+            <span class="itemInfo title">${title}</span>
           </a>  
           <div id="controlBox" class="itemInfo_btn_updown itemInfo">
             <button data-quantity=${i} id="quantityDown" class="button is-danger is-light">-</button>
-            <input data-quantity=${i} id="quantityInput" class="input" type="text" value="${cart.quantity}" />
+            <input data-quantity=${i} id="quantityInput" class="input" type="text" value="${quantity}" />
             <button data-quantity=${i} id="quantityUp" class="button is-info is-light">+</button>
           </div>
-          <span data-priceid=${i} class="itemInfo eachPrice">${addCommas(foundItem.price)}</span>
+          <span data-priceid=${i} class="itemInfo eachPrice">${addCommas(price)}</span>
           <span data-calcprice=${i} class="itemInfo totalItemPrice" id="calcItemPrice">${addCommas(totalItemPrice)}</span>  
           <button class="trash" data-checkBox=${i}><i class="fa-solid fa-trash-can"></i></button>    
         </div>`
@@ -71,11 +88,13 @@ async function createCartElements() {
   $payInfo.insertAdjacentHTML(
     'beforeend',
     `
-  <div class="totalPrice">상품 금액 ${addCommas(totalPrice)}원</div>
-  <div class="shipping">배송비 ${addCommas(delivery)}원</div>
-  <div class="total">총 ${addCommas(total)}원</div>
-`
+    <div class="totalPrice">상품 금액 ${addCommas(totalPrice)}원</div>
+    <div class="shipping">배송비 ${addCommas(delivery)}원</div>
+    <div class="total">총 ${addCommas(total)}원</div>
+    ` 
   );
+  
+  //장바구니 목록 세션스토리지에 넣기
   return document;
 }
 
@@ -84,6 +103,7 @@ async function controlQuantityBox() {
   await createCartElements();
   const $cartItems = document.querySelectorAll('.cartItem');
   $cartItems.forEach((e) => e.addEventListener('click', controlCartInfo));
+
   function controlCartInfo(e) {
     if (e.target.id !== 'quantityUp' && e.target.id !== 'quantityDown') return;
 
@@ -117,11 +137,12 @@ async function controlQuantityBox() {
 }
 
 //결제정보 재계산
-function calcTotalPrice($totalItemPrices) {
+export function calcTotalPrice($totalItemPrices) {
   totalPrice = 0;
   const totalEl = document.querySelector('.total');
   const totalPriceEl = document.querySelector('.totalPrice');
-  $totalItemPrices.forEach((elem) => (totalPrice += Number(convertToNumber(elem.textContent))));
+
+  $totalItemPrices.forEach(elem => (totalPrice += Number(convertToNumber(elem.textContent))));
   
   totalPriceEl.textContent = `상품 금액 ${addCommas(totalPrice)}원`;
   
@@ -129,7 +150,7 @@ function calcTotalPrice($totalItemPrices) {
     const $orderBtn = totalEl.parentElement.nextElementSibling;
     $orderBtn.disabled = true;
     $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다:(`)
-    // alert("상품을 담아주세요!");
+    alert("상품을 담아주세요!");
     totalEl.textContent = `총 0원`;
   } else {
     totalEl.textContent = `총 ${addCommas(totalPrice + delivery)}원`;
@@ -150,8 +171,6 @@ async function deleteItem() {
       $cartContainer.remove();
     } else if (className === 'deleteSom') {
       const checkedBtns = document.querySelectorAll("input[name='buy']:checked");
-      
-      // if(checkedBtns.length < 1) return
 
       checkedBtns.forEach(btn => {
         document.getElementById(`item_${btn.value}`).remove();
@@ -164,4 +183,23 @@ async function deleteItem() {
     calcTotalPrice($totalPrice);
   });
 }
-deleteItem();
+// deleteItem();
+
+async function moveToOrderPage() {
+  await deleteItem();
+  document.getElementById('ordering').addEventListener('click', e => {
+    let shortIds = document.getElementsByClassName('shortId');
+    let titles = document.getElementsByClassName('title');
+    let quantitys = document.getElementsByClassName('input');
+
+    for(let i = 0; i < shortIds.length; i++) {
+      const id = shortIds[i].innerText;
+      const item = {title: titles[i].innerText, quantity: quantitys[i].value};
+      console.log(id, item);
+      sessionStorage.setItem(`order_${id}`, JSON.stringify(item));
+    }
+
+  location.href='http://localhost:8000/order';
+  })
+}
+moveToOrderPage();

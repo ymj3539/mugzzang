@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #E9EFC0;
   font-family: 'Elice Digital Coding', 'monospace'; 
   color: #4a4a4a;
   text-decoration: none;
@@ -28,49 +29,21 @@ nav ul li:last-child {
 }
 
 /* main */
-.cartTitle {
-  font-size: 20px;
-  padding: 50px 0 10px 50px;
+.orderTitle {
+  font-size: 30px;
+  padding: 50px 0 10px 20px;
   font-weight: bolder;
 }
-.cartInfoContainer {
+.orderContainer {
   min-height: 300px;
 }
-.cartList {
-  padding: 40px;
-  margin: 10px 10px 50px 50px;
-  border: 2px solid #B4E197;
+.userInfo {
+  font-size: 15px;
+  font-weight: 300;
+}
+.field {
+  padding: 20px;
   width: 800px;
-  float: left;
-}
-
-.item{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: stretch;
-  flex-basis: 0;
-  gap: 30px;
-  margin: 10px;
-}
-.item .itemInfo:nth-child(1) { flex-grow: 1; }
-.item .itemInfo:nth-child(2) { flex-grow: 3; }
-.item .itemInfo:nth-child(4) { flex-grow: 1; }
-.item .itemInfo:nth-child(5) { flex-grow: 1; }
-
-.item a img {
-  max-width: 70px;
-  max-height: 70px;
-}
-.itemInfo_btn_updown {
-  display: flex;
-  flex-direction: row;
-}
-.itemInfo_btn_updown .input {
-  text-align: center;
-}
-.fa-trash-can {
-  pointer-events: none;
 }
 
 .payInfo {
@@ -97,6 +70,7 @@ footer .footer {
   font-size: small;
   line-height: 200%;
   padding: 0 0 10px 20px;
+  background-color: #E9EFC0;
 }
 
 .footer .companyName {

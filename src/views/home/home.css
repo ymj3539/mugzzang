@@ -1,11 +1,7 @@
-/* 앨리스배움체 */
-@import url("https://font.elice.io/EliceDigitalCoding.css");
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #E9EFC0;
   font-family: 'Elice Digital Coding', 'monospace'; 
   color: #4a4a4a;
   text-decoration: none;
@@ -105,7 +101,6 @@ footer .footer {
   /* height: 100px;
   width: 100vw; */
   padding: 0 0 0 10px;
-  background-color: #E9EFC0;
 }
 
 .footer .companyName {
