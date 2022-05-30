@@ -1,7 +1,6 @@
 import * as Api from '/api.js';
 import {quantityControlBox} from './quantityControlBox.js';
 
-const $itemImg = document.getElementById('itemInfo_img');
 const $itemInfoSection = document.getElementById('itemInfo_section');
 const params = window.location.href.split('?=')[1];
 
@@ -30,11 +29,13 @@ async function createItemInfoElements() {
     </picture>
     <article data-id=${shortId} id= "itemInfo_information" class="itemInfo_information">
       <h2>
-        <p>${prod_title}</p>
-        <p>${manufacturer}</p>
+        <p class='item_manufacturer'>${manufacturer}</p>
+        <p class='item_title'>${prod_title}</p>
       </h2>
       <h2>
-        <p>${price}원</p>
+        <p class='item_price'>${Number(price)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
       </h2>
       <p class="itemInfo_description">
         ${description}
@@ -45,8 +46,10 @@ async function createItemInfoElements() {
           <input id="quantityInput" class="input" type="text" value="1" />
           <button id="quantityUp" class="button is-info is-light">+</button>
         </div>
+        <div>
         <button id='itemInfo_cart'>장바구니</button>
         <button id='itemInfo_buyNow'>바로구매</button>
+        </div>
       </div>
     </article>`
     );
@@ -71,6 +74,9 @@ async function addquantityControlEvent() {
     const $quantityInput = document.getElementById('quantityInput').value;
     moveItemToCart($quantityInput, $itemInfoInformation, e); // 수량 조절 버튼의 input값 추출
   });
+  const $itemInfo_btn = document.querySelectorAll('.itemInfo_btn button');
+
+  $itemInfo_btn.forEach((e) => e.classList.add('button'));
 }
 
 // 세션 스토리지에 장바구니 데이터를 넣는 함수
