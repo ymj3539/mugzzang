@@ -1,8 +1,5 @@
 import { productModel } from "../db";
 
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-
 class ProductService {
     constructor (productModel) {
         this.productModel = productModel;

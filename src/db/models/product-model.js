@@ -7,7 +7,7 @@ export class ProductModel {
    
 
     async findById(shortId){
-        const product = await Product.findOne({_id : shortId});
+        const product = await Product.findOne({shortId : shortId}).exec();
         return product;
     }
 
@@ -22,7 +22,7 @@ export class ProductModel {
     }
 
     async update ({productId, update}){
-        const filter = {_id : productId};
+        const filter = {shortId : productId};
         const option = {returnOriginal : false};
 
         const updatedProduct = await Product.updateMany(filter, update, option);
