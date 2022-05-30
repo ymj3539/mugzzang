@@ -1,6 +1,6 @@
 import {addCommas, convertToNumber} from '../useful-functions.js';
 import * as Api from '/api.js';
-let $quantityInput = document.getElementById('quantityInput');
+// let $quantityInput = document.getElementById('quantityInput');
 const $cartList = document.querySelector('.cartList');
 const $cartContainer = document.getElementById('cartContainer');
 const $payInfo = document.querySelector('.payInfo');
@@ -11,7 +11,7 @@ let total = 0;
 const delivery = 3000;
 
 //장바구니, 전체 상품 리스트 불러오기
-async function getList() {
+async function getCartList() {
   try {
     const cartList = [];
     const itemList = await Api.get('/api/product/list'); //전체 상품 목록
@@ -27,21 +27,14 @@ async function getList() {
 }
 
 async function createCartElements() {
-  const res = await getList();
+  const res = await getCartList();
   const [incartList, initemList] = res;
   if (incartList.length < 1) return $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다:(`);
 
   //장바구니 목록을 돌면서 전체 상품 중 id 일치하는 제품 가져오기
   incartList.forEach((cart, i) => {
     const foundItem = initemList.find((item) => {
-      const {img, price, prod_title} = item;
-      if (item.shortId == cart.id) {
-        // const itemName = prod_title;
-        // const itemPrice = price;
-        // const itemImg = img;
-        // return {itemName, itemPrice, itemImg};
-        return item;
-      }
+      if (item.shortId == cart.id) return item;
     });
 
     //상품 수량 및 가격 계산
@@ -69,8 +62,8 @@ async function createCartElements() {
             <input data-quantity=${i} id="quantityInput" class="input" type="text" value="${cart.quantity}" />
             <button data-quantity=${i} id="quantityUp" class="button is-info is-light">+</button>
           </div>
-          <span data-priceid=${i} class="itemInfo eachPrice">${foundItem.price}</span>
-          <span data-calcprice=${i} class="itemInfo totalItemPrice" id="calcItemPrice">${totalItemPrice}</span>  
+          <span data-priceid=${i} class="itemInfo eachPrice">${addCommas(foundItem.price)}</span>
+          <span data-calcprice=${i} class="itemInfo totalItemPrice" id="calcItemPrice">${addCommas(totalItemPrice)}</span>  
           <button class="trash" data-checkBox=${i}><i class="fa-solid fa-trash-can"></i></button>    
         </div>`
     );
@@ -78,11 +71,9 @@ async function createCartElements() {
   $payInfo.insertAdjacentHTML(
     'beforeend',
     `
-  <div class="payInfoTitle">결제정보</div>
-  <div class="totalPrice">상품 금액 ${totalPrice}원</div>
-  <div class="shipping">배송비 ${delivery}원</div>
-  <div class="total">총 ${total}원</div>
-  <button type="button">주문하기</button>
+  <div class="totalPrice">상품 금액 ${addCommas(totalPrice)}원</div>
+  <div class="shipping">배송비 ${addCommas(delivery)}원</div>
+  <div class="total">총 ${addCommas(total)}원</div>
 `
   );
   return document;
@@ -119,7 +110,7 @@ async function controlQuantityBox() {
       $quantityInput.value = Number($quantityInput.value) + -1;
     }
 
-    $totalItemPrice.textContent = Number($eachPrice.textContent) * Number($quantityInput.value);
+    $totalItemPrice.textContent = addCommas(Number($eachPrice.textContent) * Number($quantityInput.value));
     calcTotalPrice($totalItemPrices);
   }
 }
@@ -129,9 +120,10 @@ function calcTotalPrice($totalItemPrices) {
   totalPrice = 0;
   const totalEl = document.querySelector('.total');
   const totalPriceEl = document.querySelector('.totalPrice');
-  $totalItemPrices.forEach((e) => (totalPrice += Number(e.textContent)));
-  totalPriceEl.textContent = `상품 금액 ${totalPrice}원`;
-  totalEl.textContent = `총 ${totalPrice + delivery}원`;
+  $totalItemPrices.forEach((elem) => (totalPrice += Number(convertToNumber(elem.textContent))));
+
+  totalPriceEl.textContent = `상품 금액 ${addCommas(totalPrice)}원`;
+  totalEl.textContent = `총 ${addCommas(totalPrice + delivery)}원`;
 }
 
 //선택삭제 및 전체삭제 버튼
@@ -148,6 +140,8 @@ async function deleteItem() {
       $cartContainer.remove();
     } else if (className === 'deleteSom') {
       const checkedBtns = document.querySelectorAll("input[name='buy']:checked");
+      
+      // if(checkedBtns.length < 1) return
 
       checkedBtns.forEach(btn => {
         document.getElementById(`item_${btn.value}`).remove();
