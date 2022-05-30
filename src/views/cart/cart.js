@@ -183,7 +183,6 @@ async function deleteItem() {
     calcTotalPrice($totalPrice);
   });
 }
-// deleteItem();
 
 async function moveToOrderPage() {
   await deleteItem();
@@ -191,15 +190,16 @@ async function moveToOrderPage() {
     let shortIds = document.getElementsByClassName('shortId');
     let titles = document.getElementsByClassName('title');
     let quantitys = document.getElementsByClassName('input');
-
+  
     for(let i = 0; i < shortIds.length; i++) {
       const id = shortIds[i].innerText;
       const item = {title: titles[i].innerText, quantity: quantitys[i].value};
-      console.log(id, item);
+
       sessionStorage.setItem(`order_${id}`, JSON.stringify(item));
     }
-
-  location.href='http://localhost:8000/order';
+    sessionStorage.setItem(`itemPrice`, JSON.stringify(totalPrice));
+    sessionStorage.setItem(`delivery`, JSON.stringify(delivery));
+    location.href='http://localhost:8000/order';
   })
 }
 moveToOrderPage();
