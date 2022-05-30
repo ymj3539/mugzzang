@@ -7,7 +7,7 @@ let CategoryFlag = null;
 
 // 데이터 불러오기
 const itemList = await Api.get('/api/product/list');
-showContent(8); // 랜딩했을 때 최초 상품 8개 띄우기
+showContent(9); // 랜딩했을 때 최초 상품 8개 띄우기
 
 // 각 상품에 해당하는 상품 상세 페이지로 리다이렉션하는 이벤트 추가하기
 function locationItemInfo() {
@@ -26,7 +26,6 @@ function locationItemInfo() {
 
 // 상품 화면에 띄우는 함수
 async function showContent(index, category) {
-  console.log('쇼컨텐츠');
   sessionStorage.setItem(`chosenCategory`, JSON.stringify('도매'));
   const selectedList = itemList.filter((e) => e.category[0] === '도매');
   $article = document.querySelectorAll('#itemlist');
@@ -48,11 +47,15 @@ async function showContent(index, category) {
       'beforeend',
       `<article data-oid=${shortId} data-cg=${category[1]} id="itemlist" class="itemlist">
      <div>
-        <img src=${img} alt="itemImg" />
-        <div>
+        <div class='img-size'>
+          <img class='img' src=${img} alt="itemImg" />
+        </div>
+        <div class='articleInfo'>
           <p class='manufacturer'>${manufacturer}</p>
           <p class='prod_title'>${prod_title}</h2>
-          <p class='price'>${price}</p>
+          <p class='price'>${Number(price)
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
         </div>
       </div>
       </a>
@@ -81,7 +84,7 @@ const showCategoryItem = async (e) => {
   setTimeout(() => {
     showContent(8, CategoryFlag); // button 태그의 dataset
     observeLastItem(io, document.querySelectorAll('#itemlist'));
-  }, 50);
+  }, 0);
 };
 
 // intersectionObserver 콜백함수
@@ -92,7 +95,7 @@ function ioCallback(entries, io) {
     io.unobserve(target); // 기존 관찰 대상을 취소해줘야 스크롤 했을 때 콜백함수가 생성됨 관찰 대상이 유지된다면 스크롤 안해도 계속 콜백함수가 실행됨.
     setTimeout(() => {
       // 비동기 처리
-      showContent(4, CategoryFlag);
+      showContent(3, CategoryFlag);
       observeLastItem(io, $article);
     }, 700);
   }
@@ -100,7 +103,6 @@ function ioCallback(entries, io) {
 
 // 관찰 대상 상품 리스트 마지막 요소로 변경
 function observeLastItem(io, items) {
-  console.log('옵저버라스트');
   let lastItem = items[items.length - 1];
   io.observe(lastItem);
 }
