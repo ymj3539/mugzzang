@@ -5,8 +5,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #E9EFC0;
-  font-family: 'Elice Digital Coding', 'monospace'; 
+  background-color: #e9efc0;
+  font-family: "Elice Digital Coding", "monospace";
   color: #4a4a4a;
   text-decoration: none;
 }
@@ -27,18 +27,18 @@ nav ul li:last-child {
   margin-right: 0;
 }
 header {
-  height:80px;
+  height: 80px;
 }
 .pageTop {
   height: 100%;
   font-weight: bold;
   font-size: 40px;
   text-align: center;
-  color:#4E944F;
+  color: #4e944f;
 }
 .brand {
   position: relative;
-  Top: 50%;
+  top: 50%;
   transform: translateY(-50%);
   font-size: 50px;
 }
@@ -47,7 +47,7 @@ header {
   vertical-align: middle;
 }
 header #title {
-  color:#4E944F;
+  color: #4e944f;
 }
 header .subTitle {
   font-size: 30px;
@@ -88,7 +88,7 @@ header .subTitle {
   height: 50vh;
 }
 
-#slider .slide a{
+#slider .slide a {
   width: 100%;
   height: 100%;
 }
@@ -105,11 +105,11 @@ footer .footer {
   /* height: 100px;
   width: 100vw; */
   padding: 0 0 0 10px;
-  background-color: #E9EFC0;
+  background-color: #e9efc0;
 }
 
 .footer .companyName {
   font-size: medium;
   font-weight: bold;
-  line-height: 300%
+  line-height: 300%;
 }
