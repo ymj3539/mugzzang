@@ -38,7 +38,20 @@ orderRouter.post('/', loginRequired, async (req, res, next) => {
   }
 });
 
-//주문 조회
+// 주문 전체 조회
+orderRouter.get('/orderlist', loginRequired, async (req, res, next) => {
+  try {
+    // 전체 주문 목록을 얻음(admin에서 사용)
+    const orders = await orderService.getOrders();
+
+    // 사용자 목록(배열)을 JSON 형태로 프론트에 보냄
+    res.status(200).json(orders);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//개별 주문 조회
 orderRouter.get(
   '/orderlist/:orderId',
   loginRequired,
