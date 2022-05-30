@@ -1,10 +1,8 @@
 import * as Api from "/api.js";
-import { randomId } from "/useful-functions.js";
 
 // 요소(element), input 혹은 상수
 const navBar = document.querySelector("#navbar");
 // const logoutBtn = document.querySelector("#logoutBtn"); //로그아웃 버튼
-const testBtn = document.querySelector("#testBtn"); //테스트 버튼
 
 addAllElements();
 addAllEvents();
@@ -18,17 +16,6 @@ async function addAllElements() {
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   // logoutBtn.addEventListener("click", logout); 로그아웃 이벤트
-  testBtn.addEventListener("click", testfun);
-}
-
-async function testfun() {
-  //테스트버튼
-  const result = await Api.get(`api/user/userlist`);
-
-  console.log(result);
-  // console.log(
-  //   result.filter((data) => data.email === sessionStorage.getItem("id"))
-  // );
 }
 
 function loginTrue() {
@@ -101,30 +88,3 @@ setInterval(function () {
     currentSlide = 0;
   }
 }, 3000);
-
-// leftButton.onclick = () => {
-//     var nowSlide = document.querySelector("#photo .slide.active");
-//     var previousSlide = nowSlide.previousElementSibling;
-//     if (previousSlide === null) {
-//         previousSlide = nowSlide.parentElement.lastElementChild;
-//     }
-//     nowSlide.animate({
-//         opacity: [1, 0]
-//     }, {
-//         duration: 500,
-//         easing: "ease",
-//         iterations : 1,
-//         fill: "both",
-//     })
-//     nowSlide.classList.remove("active");
-//     previousSlide.animate({
-//          opacity: [1, 0]
-//     }, {
-//         duration: 500,
-//         easing: "ease",
-//         iterations: 1,
-//         fill: "both"
-//     })
-//     previousSlide.classList.add("active");
-// }
-// }
