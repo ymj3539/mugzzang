@@ -1,4 +1,3 @@
-// import {get} from 'express/lib/response';
 import {addCommas, convertToNumber} from '../useful-functions.js';
 import * as Api from '/api.js';
 let $quantityInput = document.getElementById('quantityInput');
@@ -9,7 +8,7 @@ let totalItemPrice;
 let totalItemQuantity = 0;
 let totalPrice = 0;
 let total = 0;
-let delivery = 3000;
+const delivery = 3000;
 
 //장바구니, 전체 상품 리스트 불러오기
 async function getList() {
@@ -31,22 +30,25 @@ async function createCartElements() {
   const res = await getList();
   const [incartList, initemList] = res;
   if (incartList.length < 1) return $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다:(`);
+
   //장바구니 목록을 돌면서 전체 상품 중 id 일치하는 제품 가져오기
   incartList.forEach((cart, i) => {
     const foundItem = initemList.find((item) => {
       const {img, price, prod_title} = item;
       if (item.shortId == cart.id) {
-        let itemName = prod_title;
-        let itemPrice = price;
-        let itemImg = img;
-        return {itemName, itemPrice, itemImg};
+        // const itemName = prod_title;
+        // const itemPrice = price;
+        // const itemImg = img;
+        // return {itemName, itemPrice, itemImg};
+        return item;
       }
     });
+
     //상품 수량 및 가격 계산
     totalItemPrice = foundItem.price * convertToNumber(cart.quantity); //제품 별 총 금액
     totalItemQuantity += parseInt(cart.quantity);
     totalPrice += totalItemPrice; //총 상품 금액
-    total = totalPrice + 3000; //총 주문금액
+    total = totalPrice + delivery; //총 주문금액
 
     //장바구니 목록
     $cartContainer.insertAdjacentHTML(
@@ -91,30 +93,43 @@ async function controlQuantityBox() {
   const $cartItems = document.querySelectorAll('.cartItem');
   $cartItems.forEach((e) => e.addEventListener('click', controlCartInfo));
   function controlCartInfo(e) {
-    const {quantity} = e.target.dataset;
-    const $quantityInput = document.querySelectorAll('#quantityInput');
-    const $eachPrice = document.querySelectorAll('.eachPrice');
-    const $totalPrice = document.querySelectorAll('.totalItemPrice');
-
     if (e.target.id !== 'quantityUp' && e.target.id !== 'quantityDown') return;
 
-    if (e.target.id === 'quantityUp') {
-      $quantityInput[quantity].value = Number($quantityInput[quantity].value) + 1;
-    } else if (e.target.id === 'quantityDown' && $quantityInput[quantity].value > 1) {
-      $quantityInput[quantity].value = Number($quantityInput[quantity].value) - 1;
+    const {quantity} = e.target.dataset;
+    const $quantityInputs = document.querySelectorAll('#quantityInput');
+    const $eachPrices = document.querySelectorAll('.eachPrice');
+    const $totalItemPrices = document.querySelectorAll('.totalItemPrice');
+    let $quantityInput;
+    let $totalItemPrice;
+    let $eachPrice;
+
+    $quantityInputs.forEach(elem => {
+      if(elem.dataset.quantity === quantity) $quantityInput = elem
+    });
+    $totalItemPrices.forEach(elem => {
+      if(elem.dataset.calcprice === quantity) $totalItemPrice = elem
+    });
+    $eachPrices.forEach(elem => {
+      if(elem.dataset.priceid === quantity) $eachPrice = elem
+    });
+
+    if (e.target.id === 'quantityUp') { 
+      $quantityInput.value = Number($quantityInput.value) + 1;
+    } else if (e.target.id === 'quantityDown' && $quantityInput.value > 1) {
+      $quantityInput.value = Number($quantityInput.value) + -1;
     }
 
-    $totalPrice[quantity].textContent = Number($eachPrice[quantity].textContent) * Number($quantityInput[quantity].value);
-    calcTotalPrice($totalPrice);
+    $totalItemPrice.textContent = Number($eachPrice.textContent) * Number($quantityInput.value);
+    calcTotalPrice($totalItemPrices);
   }
 }
 
 //결제정보 재계산
-function calcTotalPrice($totalPrice) {
+function calcTotalPrice($totalItemPrices) {
   totalPrice = 0;
   const totalEl = document.querySelector('.total');
   const totalPriceEl = document.querySelector('.totalPrice');
-  $totalPrice.forEach((e) => (totalPrice += Number(e.textContent)));
+  $totalItemPrices.forEach((e) => (totalPrice += Number(e.textContent)));
   totalPriceEl.textContent = `상품 금액 ${totalPrice}원`;
   totalEl.textContent = `총 ${totalPrice + delivery}원`;
 }
@@ -132,13 +147,13 @@ async function deleteItem() {
     if (className === 'deleteAll') {
       $cartContainer.remove();
     } else if (className === 'deleteSom') {
-      let checkedBtns = document.querySelectorAll("input[name='buy']:checked");
+      const checkedBtns = document.querySelectorAll("input[name='buy']:checked");
 
       checkedBtns.forEach(btn => {
         document.getElementById(`item_${btn.value}`).remove();
       });
     } else if (className === 'trash') {
-        let {checkbox} = e.target.dataset;
+        const {checkbox} = e.target.dataset;
         document.getElementById(`item_${checkbox}`).remove();
     }
     const $totalPrice = document.querySelectorAll('.totalItemPrice');
