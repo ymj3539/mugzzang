@@ -14,23 +14,23 @@ const OrderSchema = new Schema(
     },
 
     productName: {
-      type: [String],
+      type: String,
       required: true,
     },
 
     productCount: {
-      type: [Number],
+      type: Number,
       required: true,
     },
 
     priceEach: {
-      type: [Number],
+      type: Number,
       required: true,
     },
 
     priceTotal: {
       type: Number,
-      required: true,
+      required: false,
     },
 
     delivery: {
