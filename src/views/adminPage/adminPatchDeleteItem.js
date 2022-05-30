@@ -33,8 +33,8 @@ const showPathDelItemModule = () => {
     $manufacturerInput.value = manufacturer;
   }
 
-  $itemModifyBtn.addEventListener('click', ModifyItem);
-  async function ModifyItem(e) {
+  $itemModifyBtn.addEventListener('click', modifyItem);
+  async function modifyItem(e) {
     e.preventDefault();
     const prod_title = $titleInput.value;
     const price = Number($priceInput.value);
@@ -44,9 +44,17 @@ const showPathDelItemModule = () => {
     const description = $descriptionInput.value;
     try {
       const data = {prod_title, price, img, category, manufacturer, description};
-      console.log(data);
-      await Api.patch('/api/product/update', $searchItemBtn.value, data);
-      console.log('check');
+      await Api.patch('/api/product/update', $shortIdInput.value, data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  $itemDeleteBtn.addEventListener('click', deleteItem);
+  async function deleteItem(e) {
+    e.preventDefault();
+    try {
+      await Api.delete('/api/product/delete', $shortIdInput.value, $shortIdInput.value);
     } catch (err) {
       console.error(err);
     }
