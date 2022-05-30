@@ -8,9 +8,10 @@ let flag = null;
 
 // 데이터 불러오기
 const itemList = await Api.get('/api/product/list');
+showContent(8); // 랜딩했을 때 최초 상품 8개 띄우기
 
 // 각 상품에 해당하는 상품 상세 페이지로 리다이렉션하는 이벤트 추가하기
-const locationItemInfo = () => {
+function locationItemInfo() {
   $itemListFlexbox.addEventListener('click', (e) => {
     let target = e.target;
     if (target.className === 'itemlist_flexbox') return;
@@ -22,10 +23,11 @@ const locationItemInfo = () => {
     }
     window.location.href = `http://localhost:8000/itemInfo/?=${target.dataset.oid}`;
   });
-};
+}
 
 // 상품 화면에 띄우는 함수
-const showContent = (index, category) => {
+function showContent(index, category) {
+  sessionStorag.setItem();
   $article = document.querySelectorAll('#itemlist');
   $itemListFlexbox = document.querySelector('.itemlist_flexbox');
   // 화면에 상품 띄우고 싶은 만큼 data에서 slice하기
@@ -57,7 +59,7 @@ const showContent = (index, category) => {
     );
   });
   locationItemInfo();
-};
+}
 
 // 카테고리 버튼 이벤트리스너 콜백함수
 const showCategoryItem = (e) => {
@@ -101,7 +103,6 @@ const observeLastItem = (io, items) => {
   io.observe(lastItem);
 };
 
-showContent(8); // 랜딩했을 때 최초 상품 8개 띄우기
 const io = new IntersectionObserver(ioCallback, {threshold: 0.9});
 observeLastItem(io, document.querySelectorAll('#itemlist'));
 $category1.addEventListener('click', showCategoryItem);
@@ -109,6 +110,7 @@ $category2.addEventListener('click', showCategoryItem);
 
 // window.onload = () => {
 //   switch (sessionStorage.getItem('chosenCategory')) {
+
 //     default
 //     break
 //   }
