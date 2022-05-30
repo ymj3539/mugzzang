@@ -21,7 +21,7 @@ productRouter.get('/list', loginRequired, async(req,res,next)=>{
 });
 
 // 개별상품조회
-productRouter.get('/list/:id', async(req,res,next)=>{
+productRouter.get('/list/:shortId', async(req,res,next)=>{
     try {
         if (is.emptyObject(req.params)) {
           throw new Error(
@@ -29,7 +29,7 @@ productRouter.get('/list/:id', async(req,res,next)=>{
           );
         }
 
-        const shortId = req.params.id;
+        const {shortId} = req.params;
         const product = await productService.getProduct(shortId);
         res.status(200).json(product);
 
