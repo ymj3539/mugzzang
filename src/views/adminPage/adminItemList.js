@@ -23,9 +23,9 @@ const showItemListModule = () => {
     <th>상품명</th>
     <th>제조자</th>
     <th>가격</th>
-    <th>상품아이디</th>
     <th>대분류</th>
     <th>중분류</th>
+    <th>상품아이디</th>
   </tr>
 </thead>
 <tbody id="orderTbody">

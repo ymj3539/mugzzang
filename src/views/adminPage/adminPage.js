@@ -34,11 +34,6 @@ function setSessionNowPage(e) {
   else if (pageflag === showPatchDelItem) return showPathDelItemModule();
   else if (pageflag === showItemList) return showItemListModule();
 }
-//
-///
-//
-//
-//
 
 // 새로고침 되었을 때, sessionStorage에 flag변수에 맞게 목록 다시 띄우기
 window.onload = () => {
