@@ -45,6 +45,8 @@ const showPathDelItemModule = () => {
     try {
       const data = {prod_title, price, img, category, manufacturer, description};
       await Api.patch('/api/product/update', $shortIdInput.value, data);
+      alert('상품 수정이 완료되었습니다.');
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -55,6 +57,8 @@ const showPathDelItemModule = () => {
     e.preventDefault();
     try {
       await Api.delete('/api/product/delete', $shortIdInput.value);
+      alert('상품 삭제가 완료되었습니다.');
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }

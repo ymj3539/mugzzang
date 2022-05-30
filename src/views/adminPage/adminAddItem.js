@@ -26,6 +26,8 @@ const showAddItemModule = () => {
       const data = {prod_title, price, img, category, manufacturer, description};
       console.log(data);
       await Api.post('/api/product/upload', data);
+      alert('상품 등록이 완료되었습니다.');
+      window.location.reload();
       console.log('check');
     } catch (err) {
       console.error(err);
