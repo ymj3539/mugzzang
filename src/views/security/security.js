@@ -1,7 +1,6 @@
 import * as Api from "/api.js";
 
 // 요소(element), input 혹은 상수
-const logoutBtn = document.querySelector("#logoutBtn");
 //회원정보 input 모음
 const nameInput = document.querySelector("#nameInput");
 const passwordInput = document.querySelector("#passwordInput");
@@ -26,19 +25,8 @@ async function addAllElements() {
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
-  logoutBtn.addEventListener("click", logout);
   infoChangeBtn.addEventListener("click", changSubmit);
   findAddressBtn.addEventListener("click", addressFind);
-}
-
-function logout() {
-  //로그아웃 버튼 클릭시 세션스토리지 삭제
-  if (sessionStorage.getItem("token")) {
-    console.log(sessionStorage.getItem("id"));
-    sessionStorage.clear();
-    alert("로그아웃 하였습니다.");
-    window.location.href = "/";
-  }
 }
 
 //회원정보 관리 보유한 데이터 value값 넣어두기
