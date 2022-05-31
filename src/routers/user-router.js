@@ -5,12 +5,13 @@ import 'module-alias/register';
 import { loginRequired } from '@middlewares';
 import { adminRequired } from '@middlewares';
 import { userService } from '@services';
+import { asyncHandler } from '@asyncHandler';
 
 const userRouter = Router();
 
 // 회원가입 api (아래는 /register이지만, 실제로는 /api/user/register로 요청해야 함.)
-userRouter.post('/register', async (req, res, next) => {
-  try {
+userRouter.post('/register', asyncHandler(async (req, res, next) => {
+ 
     // Content-Type: application/json 설정을 안 한 경우, 에러를 만들도록 함.
     // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
     if (is.emptyObject(req.body)) {
@@ -34,10 +35,8 @@ userRouter.post('/register', async (req, res, next) => {
     // 추가된 유저의 db 데이터를 프론트에 다시 보내줌
     // 물론 프론트에서 안 쓸 수도 있지만, 편의상 일단 보내 줌
     res.status(201).json(newUser);
-  } catch (error) {
-    next(error);
-  }
-});
+  
+}));
 
 //admin 등록
 userRouter.post('/register/admin', async (req, res, next) => {
