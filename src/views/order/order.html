@@ -25,6 +25,8 @@
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="order.css" />
     <script src="order.js" type="module" defer></script>
+    <!-- 다음 주소 api -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </head>
   <body>
     <!-- 헤더 -->      
@@ -63,7 +65,7 @@
               <label class="label" for="phonenumInput">전화번호</label>
               <input class="input" id="phonenumInput" type="number" placeholder="-없이 입력해 주세요">
             </div>
-            <div class="field">
+            <!-- <div class="field">
               <label class="label" for="zipCodeInput">우편번호</label>
               <input class="input" id="zipCodeInput" type="number">
             </div>
@@ -74,6 +76,36 @@
             <div class="field">
               <label class="label" for="detailedAddInput">상세주소</label>
               <input class="input" id="detailedAddInput" type="text" placeholder="동, 호수까지 정확하게 입력해 주세요">
+            </div> -->
+            <div class="field">
+              <label class="label" for="postalNumber">주소</label>
+              <div class="addressInfo">
+                <input
+                  type="text"
+                  class="input"
+                  id="postalNumber"
+                  placeholder="우편번호"
+                  readonly
+                />
+                <input type="button" id="findAddress" value="주소찾기" />
+              </div>
+            </div>
+            <div class="field">
+              <input
+                type="text"
+                class="input"
+                id="addInput1"
+                placeholder="주소"
+                readonly
+              />
+            </div>
+            <div class="field">
+              <input
+                type="text"
+                class="input"
+                id="addInput2"
+                placeholder="상세주소"
+              />
             </div>
           </form>
           <section class="PayInfo">

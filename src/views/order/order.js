@@ -6,6 +6,8 @@ let prodId = [];
 const $itemInfo = document.querySelector('.itemInfo');
 const $priceInfo = document.querySelector('.priceInfo');
 const $orderBtn = document.querySelector('.ordering');
+const $findAddressBtn = document.querySelector("#findAddress");
+
 
 const userEmail = sessionStorage.getItem('id');
 const token = sessionStorage.getItem('token');
@@ -35,9 +37,9 @@ function getItems() {
 async function sendDataToDb() {
   const deliveryName = document.getElementById('nameInput').value;
   const deliveryPhone = document.getElementById('phonenumInput').value;
-  const deliveryZipCode = document.getElementById('zipCodeInput').value;
-  const deliveryAdd = document.getElementById('addInput').value;
-  const deliveryDeAdd = document.getElementById('detailedAddInput').value;
+  const deliveryZipCode = document.getElementById('postalNumber').value;
+  const deliveryAdd = document.getElementById('addInput1').value;
+  const deliveryDeAdd = document.getElementById('addInput2').value;
 
   const deliveryAddFull = `(${deliveryZipCode}) ${deliveryAdd} ${deliveryDeAdd}`;
   const deliveryInfo = { name: deliveryName, phoneNumber: deliveryPhone, address: deliveryAddFull };
@@ -52,7 +54,8 @@ async function sendDataToDb() {
     const data = {"email": userEmail, "productName": title, "productCount": quantity, "priceEach": numPrice, "delivery": deliveryInfo, "productShortId": productId, "orderId": orderId };
 
     try {
-      await Api.post('/api/order/', data);
+      let res = await Api.post('/api/order/', data);
+      console.log(res);
       sendSuccess = true;
     } catch (error) {
       sendSuccess = false; 
@@ -60,20 +63,21 @@ async function sendDataToDb() {
     }; 
   }
 
+  //데이터 전송에 성공하면 장바구니 리셋
   if (sendSuccess === true){
     sessionStorage.clear();
     sessionStorage.setItem('id', userEmail);
     sessionStorage.setItem('token', token);
     alert('주문이 완료되었습니다. 메인 페이지로 돌아갑니다.');
-    location.href = '../home/home.html';
+    // location.href = '../home/home.html';
   } else {
     alert('오류 발생. 다시 시도해 주세요.');
   }
-
 }
 
 getItems();
 $orderBtn.addEventListener('click', sendDataToDb);
+$findAddressBtn.addEventListener("click", addressFind);
 
 function addressFind() {
   new daum.Postcode({
