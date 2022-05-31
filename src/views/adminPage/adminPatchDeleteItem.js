@@ -13,6 +13,7 @@ const showPathDelItemModule = () => {
   const $shortIdInput = document.getElementById('shortIdInput');
   const $itemModifyBtn = document.getElementById('formModifyBtn');
   const $itemDeleteBtn = document.getElementById('formDeleteBtn');
+  const $category_3_value = document.getElementById('category_3_value');
 
   $searchItemBtn.addEventListener('click', searchItem);
   async function searchItem() {
@@ -27,6 +28,7 @@ const showPathDelItemModule = () => {
     $imgInput.value = img;
     $category_1_value.innerText = category[0];
     $category_2_value.innerText = category[1];
+    $category_3_value.value = category[2];
     $descriptionInput.value = description;
     $manufacturerInput.value = manufacturer;
   }
@@ -37,7 +39,7 @@ const showPathDelItemModule = () => {
     const prod_title = $titleInput.value;
     const price = Number($priceInput.value);
     const img = $imgInput.value;
-    const category = [$category_1_value.innerText, $category_2_value.innerText];
+    const category = [$category_1_value.innerText, $category_2_value.innerText, $category_3_value.value];
     const manufacturer = $manufacturerInput.value;
     const description = $descriptionInput.value;
     try {
