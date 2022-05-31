@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
-import { loginRequired } from '../middlewares';
-import { orderService } from '../services';
+import 'module-alias/register';
+import { loginRequired } from '@middlewares';
+import { orderService } from '@services';
 
 const orderRouter = Router();
 
