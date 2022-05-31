@@ -37,13 +37,11 @@ async function getItemInfo(productId) {
 async function getItemInfos() {
   const cartList = await getCartList();
   const incartList = [];
-  // console.time('함수');
   for(let item of cartList){
     const {id, quantity} = item;
     const res = await getItemInfo(id);
     incartList.push({img: res.img, title: res.prod_title, price: res.price, quantity: quantity, shortId: res.shortId});
   }
-  // console.timeEnd('함수');
   return incartList;
 }
 
@@ -96,7 +94,6 @@ async function createCartElements() {
     ` 
   );
   
-  //장바구니 목록 세션스토리지에 넣기
   return document;
 }
 
@@ -185,12 +182,14 @@ async function deleteItem() {
   });
 }
 
+//세션스토리지에 넣어서 결제 페이지로 전송
 async function moveToOrderPage() {
   await deleteItem();
   document.getElementById('ordering').addEventListener('click', e => {
-    let shortIds = document.getElementsByClassName('shortId');
-    let titles = document.getElementsByClassName('title');
-    let quantitys = document.getElementsByClassName('input');
+    const shortId = document.getElementsByClassName('shortId');
+    const title = document.getElementsByClassName('title');
+    const quantity = document.getElementsByClassName('input');
+    const price = document.getElementsByClassName('eachPrice');
 
     const orderSession = Object.keys(sessionStorage).filter((e) => e.slice(0, 5) === 'order');
  
@@ -200,9 +199,9 @@ async function moveToOrderPage() {
       })
     };
 
-    for(let i = 0; i < shortIds.length; i++) {
-      const id = shortIds[i].innerText;
-      const item = {title: titles[i].innerText, quantity: quantitys[i].value};
+    for(let i = 0; i < shortId.length; i++) {
+      const id = shortId[i].innerText;
+      const item = {title: title[i].innerText, quantity: quantity[i].value, price: price[i].innerText};
 
       sessionStorage.setItem(`order_${id}`, JSON.stringify(item));
     }

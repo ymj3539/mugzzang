@@ -1,7 +1,16 @@
 import { addCommas } from '../useful-functions.js'
+import * as Api from '/api.js';
 
 const $itemInfo = document.querySelector('.itemInfo');
 const $priceInfo = document.querySelector('.priceInfo');
+// const userId = JSON.parse(sessionStorage.getItem('id'));
+const userId = sessionStorage.getItem('id');
+
+const deliveryName = document.getElementById('nameInput').value;
+const deliveryPhone = document.getElementById('phonenumInput').value;
+const deliveryZipCode = document.getElementById('zipCodeInput').value;
+const deliveryAdd = document.getElementById('addInput').value;
+const deliveryDeAdd = document.getElementById('detailedAddInput').value;
 
 function getItems() {
   const cartObject = Object.keys(sessionStorage).filter((e) => e.slice(0, 5) === 'order'); 
@@ -10,8 +19,9 @@ function getItems() {
 
   cartObject.forEach((e, i) => {
     const item = JSON.parse(sessionStorage.getItem(cartObject[i]));
-    const {title, quantity} = item
+    const {title, quantity, price} = item
     $itemInfo.insertAdjacentHTML('beforeend', `<p>${title} × ${quantity}</p>`);
+    // sendDataToDb(title, quantity, price);
   });
   $priceInfo.insertAdjacentHTML('beforeend', 
       `
@@ -22,6 +32,25 @@ function getItems() {
     );
 }
 getItems();
+
+// function sendDataToDb(title, quantity, price) {
+//   const data = {userId, title, quantity, price, { , }
+//   };
+//   /*
+//   {"email":"this@is.com",
+//     "productName": "여름용샌달",
+//     "productCount": 1,
+//     "priceEach": 20000,
+//     "delivery" : {"name" : "정형돈",
+//                 "phoneNumber" : "01012345678",
+//                 "address" : "경기도 고양시"},
+//     "productShortId" : "aweawffgreag",
+//     "orderId" : "yVoJh-lIUWtwh18I7IAWLaaaaaa"
+//   }
+//   */
+//   await Api.post('/api/order', data);
+// }
+// sendDataToDb();
 
 function addressFind() {
   new daum.Postcode({
