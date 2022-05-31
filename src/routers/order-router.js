@@ -22,6 +22,8 @@ orderRouter.post('/', loginRequired, async (req, res, next) => {
       priceEach,
       priceTotal,
       delivery,
+      productShortId,
+      orderId
     } = req.body;
 
     const newOrder = await orderService.addOrder({
@@ -31,6 +33,8 @@ orderRouter.post('/', loginRequired, async (req, res, next) => {
       priceEach,
       priceTotal,
       delivery,
+      productShortId,
+      orderId
     });
 
     res.status(200).json(newOrder);

@@ -48,7 +48,7 @@ const OrderSchema = new Schema(
     },
 
     productShortId: {
-      type: [String],
+      type: String,
       required: false,
     },
     orderId: {
