@@ -8,7 +8,9 @@ const $priceInfo = document.querySelector('.priceInfo');
 const $orderBtn = document.querySelector('.ordering');
 
 const userEmail = sessionStorage.getItem('id');
+const token = sessionStorage.getItem('token');
 
+//세션스토리지에서 장바구니 정보를 가져와서 결제 정보를 화면에 렌더
 function getItems() {
   const cartObject = Object.keys(sessionStorage).filter((e) => e.slice(0, 5) === 'order'); 
   const itemPrice = JSON.parse(sessionStorage.getItem('itemPrice'));
@@ -17,7 +19,7 @@ function getItems() {
   cartObject.forEach((key, i) => {
     prodId[i] = key.slice(6);
     items[i] = JSON.parse(sessionStorage.getItem(cartObject[i]));
-    const {title, quantity, price} = items[i]; 
+    const {title, quantity} = items[i]; 
     $itemInfo.insertAdjacentHTML('beforeend', `<p>${title} × ${quantity}</p>`);
   });
   $priceInfo.insertAdjacentHTML('beforeend', 
@@ -29,6 +31,7 @@ function getItems() {
     );
 }
 
+//주문 버튼을 누르면 데이터를 디비로 보내는 함수
 async function sendDataToDb() {
   const deliveryName = document.getElementById('nameInput').value;
   const deliveryPhone = document.getElementById('phonenumInput').value;
@@ -38,7 +41,9 @@ async function sendDataToDb() {
 
   const deliveryAddFull = `(${deliveryZipCode}) ${deliveryAdd} ${deliveryDeAdd}`;
   const deliveryInfo = { name: deliveryName, phoneNumber: deliveryPhone, address: deliveryAddFull };
+  let sendSuccess = false;
 
+  //상품 하나에 대해 data를 생성
   for (let i = 0; i < items.length; i++ ) {
     const {title, quantity, price} = items[i];
     let numPrice= convertToNumber(price);
@@ -47,14 +52,24 @@ async function sendDataToDb() {
     const data = {"email": userEmail, "productName": title, "productCount": quantity, "priceEach": numPrice, "delivery": deliveryInfo, "productShortId": productId, "orderId": orderId };
 
     try {
-      let res = await Api.post('/api/order/', data);
-      alert('주문이 완료되었습니다. 메인 페이지로 돌아갑니다.');
-      console.log(res);
-      // location.href = '../home/home.html';
+      await Api.post('/api/order/', data);
+      sendSuccess = true;
     } catch (error) {
+      sendSuccess = false; 
       console.log(error);
     }; 
   }
+
+  if (sendSuccess === true){
+    sessionStorage.clear();
+    sessionStorage.setItem('id', userEmail);
+    sessionStorage.setItem('token', token);
+    alert('주문이 완료되었습니다. 메인 페이지로 돌아갑니다.');
+    location.href = '../home/home.html';
+  } else {
+    alert('오류 발생. 다시 시도해 주세요.');
+  }
+
 }
 
 getItems();
