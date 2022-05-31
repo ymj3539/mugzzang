@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #E9EFC0;
+  font-family: 'Elice Digital Coding', 'monospace'; 
+  color: #4a4a4a;
+  text-decoration: none;
+}
+
+/* header */
+nav ul {
+  height: 20px;
+  text-align: right;
+  padding: 10px;
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li:last-child {
+  margin-right: 0;
+}
+.pageTop h2 {
+  font-size: 35px;
+  padding-left: 20px;
+  padding-top: 10px;
+  font-weight: bolder;
+  color: #4E944F;
+}
+
+/* main */
+.orderTitle {
+  font-size: 30px;
+  padding: 50px 0 10px 20px;
+  font-weight: bolder;
+}
+.orderContainer {
+  min-height: 300px;
+}
+.userInfo {
+  font-size: 15px;
+  font-weight: 300;
+}
+.field {
+  padding: 20px;
+  width: 800px;
+}
+
+.payInfo {
+  width: 300px;
+  min-height: auto;
+  padding: 20px;
+  margin: 50px 50px 50px 0;
+  border: 2px solid #B4E197;
+  line-height: 40px;
+  float: right;
+}
+
+.payInfo .payInfoTitle {
+  font-size: 25px;
+  font-weight: 300;
+}
+
+/* footer */
+footer {
+  clear: both;
+}
+
+footer .footer {
+  font-size: small;
+  line-height: 200%;
+  padding: 0 0 10px 20px;
+  background-color: #E9EFC0;
+}
+
+.footer .companyName {
+  font-size: medium;
+  font-weight: bold;
+  line-height: 300%
+}
