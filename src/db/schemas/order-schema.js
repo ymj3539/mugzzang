@@ -47,10 +47,14 @@ const OrderSchema = new Schema(
       required: true,
     },
 
-    // orderId: {
-    //   type: String,
-    //   required: false,
-    // },
+    productShortId: {
+      type: String,
+      required: false,
+    },
+    orderId: {
+      type: String,
+      required: false,
+      }
   },
   {
     collection: 'orders',

@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express from 'express';
-import {viewsRouter, userRouter, productRouter, orderRouter} from './routers';
-import {errorHandler} from './middlewares';
+import { viewsRouter, userRouter, productRouter, orderRouter } from './routers';
+import { errorHandler } from './middlewares';
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // Content-Type: application/x-www-form-urlencoded 형태의 데이터를 인식하고 핸들링할 수 있게 함.
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 // html, css, js 라우팅
 app.use(viewsRouter);
@@ -29,4 +29,7 @@ app.use('/api/order', orderRouter);
 // 그래야, 에러가 났을 때 next(error) 했을 때 여기로 오게 됨
 app.use(errorHandler);
 
-export {app};
+// 이미지 경로
+app.use('/static', express.static(__dirname + '/public'));
+
+export { app };
