@@ -61,6 +61,9 @@
 .itemInfo_btn_updown .input {
   text-align: center;
 }
+.fa-trash-can {
+  pointer-events: none;
+}
 
 .payInfo {
   width: 300px;
