@@ -18,27 +18,33 @@
       crossorigin="anonymous"
     ></script>
     <!-- 커스텀 css, js -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="home.css" />
     <script src="home.js" type="module" defer></script>
+    <link rel="stylesheet" href="../header/header.css" />
+    <script src="../header/header.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
-    <nav role="navigation" aria-label="main navigation">
-      <ul id="navbar">
-        <!-- <li><a href="/login">로그인</a></li> -->
-        <!-- <li><a href="/register">회원가입</a></li> -->
-
-        <li><a href="/itemlist">shop</a></li>
-        <li><a id="testBtn">테스트버튼</a></li>
-      </ul>
-    </nav>
     <header>
-      <div class="pageTop">
-        <a href="/" class="brand">
-          <img src="./images/로고.jpg" />
-          <span id="title"><span class="subTitle">먹거리장터</span>먹짱</span>
-        </a>
-      </div>
+      <section id="headerNav" class="headerNav">
+        <nav role="navigation" aria-label="main navigation">
+          <ul id="navbar" class="navbar"></ul>
+        </nav>
+        <div class="pageTop">
+          <a href="/" class="brand">
+            <img src="../elice-rabbit.png" />
+            <span id="title"><span class="subTitle">먹거리장터</span>먹짱</span>
+          </a>
+        </div>
+        <div class="category">
+          <button id="category1" class="catebtn">도매</button>
+          <button id="category2" class="catebtn">소매</button>
+        </div>
+      </section>
     </header>
     <!--메인-->
     <section class="section">
@@ -55,34 +61,7 @@
             </span>
           </button>
         </div>
-        <div id="slider">
-          <div class="slides">
-            <div class="slide active">
-              <a href="/" target="_self">
-                <img src="./images/도매.jpg" alt="도매 카테고리로 이동" />
-              </a>
-            </div>
-            <div class="slide">
-              <a href="/" target="_self">
-                <img src="./images/소매.jpg" alt="소매 카테고리로 이동" />
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
-    <footer>
-      <div class="footer">
-        <p class="companyName">(주)사팀</p>
-        <p>
-          사업자 등록번호: 000-00-00000 | 통신판매업 신고번호:
-          제0000-0000-00000호 | 대표: 이준서
-        </p>
-        <p>
-          주소: 서울시 강남구 테헤란로 53길 16 B1 데마코홀 | 이메일:
-          team4@elice.io | 고객센터: 1588-0000
-        </p>
-      </div>
-    </footer>
   </body>
 </html>
