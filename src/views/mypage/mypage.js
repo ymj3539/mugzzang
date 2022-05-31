@@ -15,9 +15,7 @@ async function addAllElements() {
 }
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllEvents() {
-  logoutBtn.addEventListener("click", logout);
-}
+function addAllEvents() {}
 
 //마이페이지에 쓰일 로그인 유저의 정보 get (세션 스토리지값을 이용)
 async function mypageInfo() {
