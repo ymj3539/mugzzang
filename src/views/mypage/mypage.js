@@ -23,7 +23,6 @@ function addAllEvents() {
 function logout() {
   //로그아웃 버튼 클릭시 세션스토리지 삭제
   if (sessionStorage.getItem("token")) {
-    console.log(sessionStorage.getItem("id"));
     sessionStorage.clear();
     alert("로그아웃 하였습니다.");
     window.location.href = "/";
