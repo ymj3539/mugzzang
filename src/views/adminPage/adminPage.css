@@ -88,3 +88,12 @@ body {
   cursor: pointer;
   background-color: #f5f4f3;
 }
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.input-container #img {
+  width: 90vw;
+}

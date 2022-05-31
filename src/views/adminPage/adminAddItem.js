@@ -54,11 +54,12 @@ const showAddItemModule = () => {
         </div>
         <div class="field">
           <label class="label">이미지url</label>
-          <div class="control">
+          <div class="control input-container">
             <input class="input is-success" id="img" type="text" value="" />
+            <input class='input' type='file' id='fileUpload' value='파일 선택'/>
           </div>
         </div>
-        <div class="field">
+        <div class="field categoryField">
           <label class="label">카테고리</label>
           <div id="category_1" class="dropdown">
             <div class="dropdown-trigger">
@@ -91,18 +92,18 @@ const showAddItemModule = () => {
             </div>
             <div class="dropdown-menu" id="dropdown-menu3" role="menu">
               <div class="dropdown-content">
-              <a class="dropdown-item">
-                채소
-              </a>
-              <a class="dropdown-item">
-                냉동식품
-              </a>
-              <a class="dropdown-item">
-                가공육
-              </a>
-              <a class="dropdown-item">
-                통조림
-              </a>
+                <a class="dropdown-item">
+                  채소
+                </a>
+                <a class="dropdown-item">
+                 냉동식품
+                </a>
+                <a class="dropdown-item">
+                 가공육
+                </a>
+                <a class="dropdown-item">
+                 통조림
+                </a>
               </div>
             </div>
           </div>
@@ -125,6 +126,16 @@ const showAddItemModule = () => {
       `
     );
   }
+  const $fileUpload = document.getElementById('fileUpload');
+  $fileUpload.addEventListener('change', saveFile);
+  async function saveFile() {
+    let formData = new FormData();
+    formData.append('file', $fileUpload.files[0]);
+  }
+  $fileUpload.onchange = () => {
+    const imgFile = $fileUpload.files[0];
+    console.log(imgFile);
+  };
 
   //드랍다운 함수
   const dropdown = document.querySelectorAll('.dropdown');

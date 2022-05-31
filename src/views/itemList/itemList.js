@@ -82,7 +82,7 @@ const showCategoryItem = async (e) => {
   // showContent 함수로 카테고리에 맞는 상품 띄우기
   // 기존 노드가 삭제됨으로서 intersectionObserver가 관찰하고 있는 관찰 대상이 없음. 다시 관찰 대상 추가해주기
   setTimeout(() => {
-    showContent(8, CategoryFlag); // button 태그의 dataset
+    showContent(9, CategoryFlag); // button 태그의 dataset
     observeLastItem(io, document.querySelectorAll('#itemlist'));
   }, 0);
 };
