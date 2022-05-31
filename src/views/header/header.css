@@ -1,26 +1,31 @@
 @import url("https://font.elice.io/EliceDigitalCoding.css");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+header {
   background-color: #e9efc0;
-  font-family: "Elice Digital Coding", "monospace";
-  color: #4a4a4a;
-  text-decoration: none;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: bold;
 }
 
-/* header */
-/* nav {
-  height: 10vh;
-} */
-#navbar {
+.headerNav {
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: #e9efc0;
+  /* display: flex; */
   justify-content: right;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 30px;
   height: 50px;
-  padding: 10px;
+  padding: 15px 30px;
+}
+
+.mainlogo {
+  position: absolute;
+  left: 20px;
 }
 
 .pageTop {
@@ -45,4 +50,18 @@ header #title {
 }
 header .subTitle {
   font-size: 30px;
+}
+
+.catebtn {
+  padding: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: #4e944f;
+}
+.catebtn:hover {
+  color: black;
 }

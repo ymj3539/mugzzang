@@ -5,19 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>쇼핑-n팀</title>
     <!-- 아이콘 -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/elice-rabbit-favicon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/elice-rabbit-favicon.png"
+    />
     <!-- bulma css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
     <!-- 폰트 어썸: 아이콘 -->
-    <script defer src="https://kit.fontawesome.com/7630448495.js" crossorigin="anonymous"></script>
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
     <!-- 커스텀 css, js -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="itemList.css" />
-
     <script src="itemList.js" type="module" defer></script>
+    <link rel="stylesheet" href="../header/header.css" />
+    <script src="../header/header.js" type="module" defer></script>
   </head>
   <body>
-    <header>header</header>
+    <header>
+      <section id="headerNav" class="headerNav">
+        <nav role="navigation" aria-label="main navigation">
+          <ul id="navbar" class="navbar"></ul>
+        </nav>
+        <div class="pageTop">
+          <a href="/" class="brand">
+            <img src="../elice-rabbit.png" />
+            <span id="title"><span class="subTitle">먹거리장터</span>먹짱</span>
+          </a>
+        </div>
+        <div class="category">
+          <button id="category1" class="catebtn">도매</button>
+          <button id="category2" class="catebtn">소매</button>
+        </div>
+      </section>
+    </header>
     <nav id="categorySection" class="category_container">
       <button data-num="채소">채소</button>
       <button data-num="냉동식품">냉동식품</button>
