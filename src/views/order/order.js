@@ -7,7 +7,6 @@ function getItems() {
   const cartObject = Object.keys(sessionStorage).filter((e) => e.slice(0, 5) === 'order'); 
   const itemPrice = JSON.parse(sessionStorage.getItem('itemPrice'));
   const delivery = JSON.parse(sessionStorage.getItem('delivery'));
-  console.log(delivery);
 
   cartObject.forEach((e, i) => {
     const item = JSON.parse(sessionStorage.getItem(cartObject[i]));
