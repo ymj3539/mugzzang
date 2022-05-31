@@ -1,27 +1,24 @@
-import { addCommas } from '../useful-functions.js'
+import { addCommas, convertToNumber } from '../useful-functions.js'
 import * as Api from '/api.js';
+let items = [];
+let prodId = [];
 
 const $itemInfo = document.querySelector('.itemInfo');
 const $priceInfo = document.querySelector('.priceInfo');
-// const userId = JSON.parse(sessionStorage.getItem('id'));
-const userId = sessionStorage.getItem('id');
+const $orderBtn = document.querySelector('.ordering');
 
-const deliveryName = document.getElementById('nameInput').value;
-const deliveryPhone = document.getElementById('phonenumInput').value;
-const deliveryZipCode = document.getElementById('zipCodeInput').value;
-const deliveryAdd = document.getElementById('addInput').value;
-const deliveryDeAdd = document.getElementById('detailedAddInput').value;
+const userEmail = sessionStorage.getItem('id');
 
 function getItems() {
   const cartObject = Object.keys(sessionStorage).filter((e) => e.slice(0, 5) === 'order'); 
   const itemPrice = JSON.parse(sessionStorage.getItem('itemPrice'));
   const delivery = JSON.parse(sessionStorage.getItem('delivery'));
 
-  cartObject.forEach((e, i) => {
-    const item = JSON.parse(sessionStorage.getItem(cartObject[i]));
-    const {title, quantity, price} = item
+  cartObject.forEach((key, i) => {
+    prodId[i] = key.slice(6);
+    items[i] = JSON.parse(sessionStorage.getItem(cartObject[i]));
+    const {title, quantity, price} = items[i]; 
     $itemInfo.insertAdjacentHTML('beforeend', `<p>${title} × ${quantity}</p>`);
-    // sendDataToDb(title, quantity, price);
   });
   $priceInfo.insertAdjacentHTML('beforeend', 
       `
@@ -31,26 +28,37 @@ function getItems() {
       `
     );
 }
-getItems();
 
-// function sendDataToDb(title, quantity, price) {
-//   const data = {userId, title, quantity, price, { , }
-//   };
-//   /*
-//   {"email":"this@is.com",
-//     "productName": "여름용샌달",
-//     "productCount": 1,
-//     "priceEach": 20000,
-//     "delivery" : {"name" : "정형돈",
-//                 "phoneNumber" : "01012345678",
-//                 "address" : "경기도 고양시"},
-//     "productShortId" : "aweawffgreag",
-//     "orderId" : "yVoJh-lIUWtwh18I7IAWLaaaaaa"
-//   }
-//   */
-//   await Api.post('/api/order', data);
-// }
-// sendDataToDb();
+async function sendDataToDb() {
+  const deliveryName = document.getElementById('nameInput').value;
+  const deliveryPhone = document.getElementById('phonenumInput').value;
+  const deliveryZipCode = document.getElementById('zipCodeInput').value;
+  const deliveryAdd = document.getElementById('addInput').value;
+  const deliveryDeAdd = document.getElementById('detailedAddInput').value;
+
+  const deliveryAddFull = `(${deliveryZipCode}) ${deliveryAdd} ${deliveryDeAdd}`;
+  const deliveryInfo = { name: deliveryName, phoneNumber: deliveryPhone, address: deliveryAddFull };
+
+  for (let i = 0; i < items.length; i++ ) {
+    const {title, quantity, price} = items[i];
+    let numPrice= convertToNumber(price);
+    let productId = prodId[i];
+    const orderId = `${Date.now()}_${userEmail}`
+    const data = {"email": userEmail, "productName": title, "productCount": quantity, "priceEach": numPrice, "delivery": deliveryInfo, "productShortId": productId, "orderId": orderId };
+
+    try {
+      let res = await Api.post('/api/order/', data);
+      alert('주문이 완료되었습니다. 메인 페이지로 돌아갑니다.');
+      console.log(res);
+      // location.href = '../home/home.html';
+    } catch (error) {
+      console.log(error);
+    }; 
+  }
+}
+
+getItems();
+$orderBtn.addEventListener('click', sendDataToDb);
 
 function addressFind() {
   new daum.Postcode({
