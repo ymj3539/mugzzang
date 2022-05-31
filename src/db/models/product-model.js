@@ -1,5 +1,6 @@
 import { model } from 'mongoose';
-import { ProductSchema } from '../schemas/product-schema';
+import 'module-alias/register';
+import { ProductSchema } from '@db';
 
 const Product = model('product', ProductSchema);
 
