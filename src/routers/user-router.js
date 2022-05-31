@@ -1,12 +1,14 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-import { loginRequired } from '../middlewares';
-import { userService } from '../services';
+import 'module-alias/register';
+import { loginRequired } from '@middlewares';
+import { adminRequired } from '@middlewares';
+import { userService } from '@services';
 
 const userRouter = Router();
 
-// 회원가입 api (아래는 /register이지만, 실제로는 /api/register로 요청해야 함.)
+// 회원가입 api (아래는 /register이지만, 실제로는 /api/user/register로 요청해야 함.)
 userRouter.post('/register', async (req, res, next) => {
   try {
     // Content-Type: application/json 설정을 안 한 경우, 에러를 만들도록 함.
@@ -37,7 +39,34 @@ userRouter.post('/register', async (req, res, next) => {
   }
 });
 
-// 로그인 api (아래는 /login 이지만, 실제로는 /api/login로 요청해야 함.)
+//admin 등록
+userRouter.post('/register/admin', async (req, res, next) => {
+  try {
+    if (is.emptyObject(req.body)) {
+      throw new Error(
+        `headers의 Content-Type을 application/json으로 설정해주세요`
+      );
+    }
+
+    const fullName = req.body.fullName;
+    const email = req.body.email;
+    const password = req.body.password;
+    const role = req.body.role;
+
+    const newAdmin = await userService.addAdmin({
+      fullName,
+      email,
+      password,
+      role,
+    });
+
+    res.status(201).json(newAdmin);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// 로그인 api (아래는 /login 이지만, 실제로는 /api/user/login로 요청해야 함.)
 userRouter.post('/login', async function (req, res, next) {
   try {
     // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
@@ -53,6 +82,7 @@ userRouter.post('/login', async function (req, res, next) {
 
     // 로그인 진행 (로그인 성공 시 jwt 토큰을 프론트에 보내 줌)
     const userToken = await userService.getUserToken({ email, password });
+  
 
     // jwt 토큰을 프론트에 보냄 (jwt 토큰은, 문자열임)
     res.status(200).json(userToken);
@@ -75,10 +105,26 @@ userRouter.get('/userlist', loginRequired, async function (req, res, next) {
   }
 });
 
+//개별 사용자 정보 조회
+userRouter.get('/userlist/:useremail', async (req, res, next) => {
+  try {
+    if (is.emptyObject(req.params)) {
+      throw new Error('조회하려는 사용자 이름이 정확한지 확인해주세요.');
+    }
+    const { useremail } = req.params;
+
+    const user = await userService.getUser(useremail);
+    console.log('user from router: ', user);
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // 사용자 정보 수정
 // (예를 들어 /api/users/abc12345 로 요청하면 req.params.userId는 'abc12345' 문자열로 됨)
 userRouter.patch(
-  '/users/:userId',
+  '/userlist/:useremail',
   loginRequired,
   async function (req, res, next) {
     try {
@@ -91,7 +137,7 @@ userRouter.patch(
       }
 
       // params로부터 id를 가져옴
-      const userId = req.params.userId;
+      const useremail = req.params.useremail;
 
       // body data 로부터 업데이트할 사용자 정보를 추출함.
       const fullName = req.body.fullName;
@@ -108,7 +154,7 @@ userRouter.patch(
         throw new Error('정보를 변경하려면, 현재의 비밀번호가 필요합니다.');
       }
 
-      const userInfoRequired = { userId, currentPassword };
+      const userInfoRequired = { useremail, currentPassword };
 
       // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해
       // 보내주었다면, 업데이트용 객체에 삽입함.
@@ -133,5 +179,47 @@ userRouter.patch(
     }
   }
 );
+
+// 사용자 정보 삭제
+userRouter.delete(
+  '/userlist/:useremail',
+  loginRequired,
+  async function (req, res, next) {
+    try {
+      // content-type 을 application/json 로 프론트에서
+      // 설정 안 하고 요청하면, body가 비어 있게 됨.
+      if (is.emptyObject(req.body)) {
+        throw new Error(
+          'headers의 Content-Type을 application/json으로 설정해주세요'
+        );
+      }
+
+      // params로부터 id를 가져옴
+      const useremail = req.params.useremail;
+
+      // body data로부터, 확인용으로 사용할 현재 비밀번호를 추출함.
+      const currentPassword = req.body.password;
+
+      // currentPassword 없을 시, 진행 불가
+      if (!currentPassword) {
+        throw new Error('정보를 변경하려면, 현재의 비밀번호가 필요합니다.');
+      }
+
+      const userInfoRequired = { useremail, currentPassword };
+
+      await userService.deleteUser(userInfoRequired);
+
+      // 업데이트 이후의 유저 데이터를 프론트에 보내 줌
+      res.status(200).json({ message: '성공' });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// 로그아웃
+userRouter.get('/logoutCheck', (req, res) => {
+  console.log(req.user);
+});
 
 export { userRouter };

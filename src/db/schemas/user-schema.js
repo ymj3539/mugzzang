@@ -1,4 +1,6 @@
 import { Schema } from 'mongoose';
+// import Schema from 'mongoose';
+
 
 const UserSchema = new Schema(
   {

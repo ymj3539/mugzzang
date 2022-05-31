@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>먹짱ㅣ관리자용 페이지</title>
+    <!-- 아이콘 -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/elice-rabbit-favicon.png" />
+    <!-- bulma css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script defer src="https://kit.fontawesome.com/7630448495.js" crossorigin="anonymous"></script>
+    <!-- 커스텀 css, js -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="adminPage.css" />
+    <script src="adminPage.js" type="module" defer></script>
+  </head>
+  <body>
+    <div class="adminPage_container">
+      <aside class="menu menu_container">
+        <p class="menu-label">Admin Menu</p>
+        <div>
+          <p class="menu-label">상품 추가/수정/삭제</p>
+          <ul class="menu-list">
+            <li><button class="button" id="showItemList">상품 조회하기</button></li>
+            <li><button class="button" id="showAddItem">상품 등록하기</button></li>
+            <li><button class="button" id="showPatchDelItem">상품 수정/삭제</button></li>
+          </ul>
+        </div>
+        <div>
+          <p class="menu-label">주문 조회</p>
+          <ul class="menu-list">
+            <li><button class="button" id="showOrderedList">주문 조회/취소</button></li>
+          </ul>
+        </div>
+      </aside>
+      <div id="adminPage_content" class="adminPage_content"></div>
+    </div>
+  </body>
+</html>

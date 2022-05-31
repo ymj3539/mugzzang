@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>쇼핑-n팀</title>
+    <!-- 아이콘 -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/elice-rabbit-favicon.png"
+    />
+    <!-- bulma css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="signout.css" />
+    <script src="signout.js" type="module" defer></script>
+    <link rel="stylesheet" href="../../header/header.css" />
+    <script src="../../header/header.js" type="module" defer></script>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header>
+      <section id="headerNav">
+        <nav role="navigation" aria-label="main navigation">
+          <ul id="navbar" class="navbar"></ul>
+        </nav>
+      </section>
+    </header>
+
+    <section id="signout-container" class="signout-container">
+      <h2>계정삭제</h2>
+      <label for="passwordInput"
+        >계정삭제를 위한 현재 비밀번호를 입력해 주세요.</label
+      >
+      <input type="password" id="passwordInput" placeholder="현재 비밀번호" />
+      <button id="deleteBtn">삭제완료</button>
+    </section>
+  </body>
+</html>
