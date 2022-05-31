@@ -1,0 +1,22 @@
+.orderlistpage-container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  height: 100vh;
+}
+
+.orderlistpageInfo {
+  margin: 30px;
+}
+
+.orderlistpage {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.orderlist {
+  display: flex;
+  flex-direction: column;
+}
