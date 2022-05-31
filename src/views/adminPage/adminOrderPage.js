@@ -19,17 +19,17 @@ const showOrderedListModule = () => {
     $table.insertAdjacentHTML(
       'beforeEnd',
       `<thead class='thead'>
-  <tr>
-    <td>No.</td>
-    <th>결제 일자</th>
-    <th>유저 아이디</th>
-    <th>상품명</th>
-    <th>가격</th>
-    <th>수량</th>
-    <th>결제번호</th>
-    <th>주문 취소</th>
-  </tr>
-</thead>
+    <tr class='is-selected'>
+     <td>No.</td>
+     <th>결제 일자</th>
+     <th>유저 아이디</th>
+     <th>상품명</th>
+     <th>가격</th>
+     <th>수량</th>
+     <th>결제번호</th>
+     <th>주문 취소</th>
+    </tr>
+  </thead>
 <tbody id="orderTbody">
 </tbody`
     );

@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express from 'express';
-import {viewsRouter, userRouter, productRouter, orderRouter} from './routers';
-import {errorHandler} from './middlewares';
+import { viewsRouter, userRouter, productRouter, orderRouter } from './routers';
+import { errorHandler } from './middlewares';
 
 const app = express();
 
@@ -28,5 +28,8 @@ app.use('/api/order', orderRouter);
 // 순서 중요 (errorHandler은 다른 일반 라우팅보다 나중에 있어야 함)
 // 그래야, 에러가 났을 때 next(error) 했을 때 여기로 오게 됨
 app.use(errorHandler);
+
+// 이미지 경로
+app.use('/static', express.static(__dirname + '/public'));
 
 export { app };

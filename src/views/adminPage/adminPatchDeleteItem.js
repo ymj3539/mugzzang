@@ -2,9 +2,7 @@ import * as Api from '/api.js';
 const showPathDelItemModule = () => {
   const $adminPage_content = document.getElementById('adminPage_content');
   showAddItemPage();
-  const $addItemForm = document.getElementById('addItemForm');
   const $titleInput = document.getElementById('prod_title');
-  const $additionalInput = document.getElementById('title_additional');
   const $category_1_value = document.getElementById('category_1_value');
   const $category_2_value = document.getElementById('category_2_value');
   const $manufacturerInput = document.getElementById('manufacturer');
@@ -69,14 +67,16 @@ const showPathDelItemModule = () => {
       'beforeend',
 
       `
+      <div class='form_container'>
+      <h2 class='module_title'>상품 수정/삭제</h2>
       <div class="searchSection">
         <label class="label">상품 아이디</label>
         <div class="control">
-          <input class="input is-success" id="shortIdInput" type="text" value="" />
-          <button id="searchItemBtn" class="button is-link">상품 검색</button>
+          <input class="input is-success" id="shortIdInput" type="text" placeholder="상품 아이디를 입력하시고 검색 버튼을 눌러주세요" />
+          <button id="searchItemBtn" class="button is-success">상품 검색</button>
         </div>
       </div>
-      <form id='addItemForm'>  
+      <form id='itemForm'>  
         <div class="field">
           <label class="label">상품명</label>
           <div class="control">
@@ -129,16 +129,16 @@ const showPathDelItemModule = () => {
             <div class="dropdown-menu" id="dropdown-menu3" role="menu">
               <div class="dropdown-content">
               <a class="dropdown-item">
-                밀키트
+                채소
+              </a>
+              <a class="dropdown-item">
+                냉동식품
               </a>
               <a class="dropdown-item">
                 가공육
               </a>
               <a class="dropdown-item">
-                중분류3
-              </a>
-              <a class="dropdown-item">
-                중분류4
+                통조림
               </a>
               </div>
             </div>
@@ -158,7 +158,8 @@ const showPathDelItemModule = () => {
         </div>
         <button type="submit" id="formModifyBtn" class="button is-warning">상품 수정</button>
         <button type="submit" id="formDeleteBtn" class="button is-danger">상품 삭제</button>
-      </form>`
+      </form>
+      </div>`
     );
   }
 

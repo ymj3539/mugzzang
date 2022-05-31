@@ -1,8 +1,9 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
-import { loginRequired } from '../middlewares';
-import { adminRequired } from '../middlewares';
-import { productService } from '../services/product-service';
+import 'module-alias/register';
+import { loginRequired } from '@middlewares';
+import { adminRequired } from '@middlewares';
+import { productService } from '@services';
 
 const productRouter = Router();
 

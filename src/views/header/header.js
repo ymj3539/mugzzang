@@ -1,6 +1,8 @@
 import * as Api from "/api.js";
 
-const navBar = document.querySelector("#navbar");
+const navBar = document.getElementById("navbar");
+const category1 = document.getElementById("category1");
+const category2 = document.getElementById("category2");
 
 addAllElements();
 addAllEvents();
@@ -10,7 +12,10 @@ async function addAllElements() {
   creatLogout();
 }
 
-function addAllEvents() {}
+function addAllEvents() {
+  category1.addEventListener("click", categoryBtn);
+  category2.addEventListener("click", categoryBtn);
+}
 
 function loginUser() {
   //세션스토리지에 토큰 유무로 nev에 보여야할 옵션 변경(로그인 상태와 비로그인 상태 구분)
@@ -18,6 +23,7 @@ function loginUser() {
     navBar.insertAdjacentHTML(
       "beforeend",
       `
+        <li class="mainlogo"><a href="/"><span>쇼핑-n팀</span></a></li>
         <li><a href="/itemlist">shop</a></li>
         <li><a href="/login">로그인</a></li>
         <li><a href="/register">회원가입</a></li>
@@ -27,6 +33,7 @@ function loginUser() {
     navBar.insertAdjacentHTML(
       "beforeend",
       `
+        <li class="mainlogo"><a href="/"><span>쇼핑-n팀</span></a></li>
         <li><a href="/itemlist">shop</a></li>
         <li>
           <a href="/cart" aria-current="page">
@@ -54,6 +61,16 @@ function creatLogout() {
   if (sessionStorage.getItem("id")) {
     navBar.appendChild(logoutbtn);
   }
+}
+
+function categoryBtn(event) {
+  if (event.target.innerHTML === "도매") {
+    sessionStorage.setItem("chosenCategory", "도매");
+  }
+  if (event.target.innerHTML === "소매") {
+    sessionStorage.setItem("chosenCategory", "소매");
+  }
+  window.location.href = "/itemlist";
 }
 
 // const headerNavbar = {
