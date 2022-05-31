@@ -7,6 +7,7 @@ const showAddItemModule = () => {
   const $titleInput = document.getElementById('prod_title');
   const $category_1_value = document.getElementById('category_1_value');
   const $category_2_value = document.getElementById('category_2_value');
+  const $category_3_value = document.getElementById('category_3_value');
   const $manufacturerInput = document.getElementById('manufacturer');
   const $descriptionInput = document.getElementById('description');
   const $priceInput = document.getElementById('price');
@@ -18,7 +19,7 @@ const showAddItemModule = () => {
     const prod_title = $titleInput.value;
     const price = Number($priceInput.value);
     const img = $imgInput.value;
-    const category = [$category_1_value.innerText, $category_2_value.innerText];
+    const category = [$category_1_value.innerText, $category_2_value.innerText, $category_3_value.value];
     const manufacturer = $manufacturerInput.value;
     const description = $descriptionInput.value;
     try {
@@ -59,52 +60,57 @@ const showAddItemModule = () => {
             <input class='input' type='file' id='fileUpload' value='파일 선택'/>
           </div>
         </div>
-        <div class="field categoryField">
+        <div class="field">
           <label class="label">카테고리</label>
-          <div id="category_1" class="dropdown">
-            <div class="dropdown-trigger">
-            <button type="button" class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-            <span id='category_1_value'>대분류</span>
-              <span class="icon is-small">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-              </span>
-            </button>
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-              <div class="dropdown-content">
-              <a class="dropdown-item">
-               도매
-              </a>
-              <a class="dropdown-item">
-               소매
-              </a>
+          <div class='categoryField'>
+            <div id="category_1" class="dropdown">
+              <div class="dropdown-trigger">
+              <button type="button" class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+              <span id='category_1_value'>대분류</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                <div class="dropdown-content">
+                <a class="dropdown-item">
+                도매
+                </a>
+                <a class="dropdown-item">
+                소매
+                </a>
+                </div>
               </div>
             </div>
-          </div>
-          <div id="category_2" class="dropdown">
-            <div class="dropdown-trigger">
-            <button type="button" class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-            <span id='category_2_value'>중분류</span>
-              <span class="icon is-small">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-              </span>
-            </button>
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-              <div class="dropdown-content">
-                <a class="dropdown-item">
-                  채소
-                </a>
-                <a class="dropdown-item">
-                 냉동식품
-                </a>
-                <a class="dropdown-item">
-                 가공육
-                </a>
-                <a class="dropdown-item">
-                 통조림
-                </a>
+            <div id="category_2" class="dropdown">
+              <div class="dropdown-trigger">
+              <button type="button" class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+              <span id='category_2_value'>중분류</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
               </div>
+              <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                <div class="dropdown-content">
+                  <a class="dropdown-item">
+                    채소
+                  </a>
+                  <a class="dropdown-item">
+                  냉동식품
+                  </a>
+                  <a class="dropdown-item">
+                  가공육
+                  </a>
+                  <a class="dropdown-item">
+                  통조림
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div>
+              <input id="category_3_value" class="input" type="text" value="" />
             </div>
           </div>
         </div>
@@ -126,16 +132,13 @@ const showAddItemModule = () => {
       `
     );
   }
-  const $fileUpload = document.getElementById('fileUpload');
-  $fileUpload.addEventListener('change', saveFile);
-  async function saveFile() {
-    let formData = new FormData();
-    formData.append('file', $fileUpload.files[0]);
-  }
-  $fileUpload.onchange = () => {
-    const imgFile = $fileUpload.files[0];
-    console.log(imgFile);
-  };
+  // const $fileUpload = document.getElementById('fileUpload');
+  // $fileUpload.addEventListener('change', saveFile);
+  // async function saveFile() {
+  //   let formData = new FormData();
+  //   formData.append('file', $fileUpload.files[0]);
+  //   await fetch('/');
+  // }
 
   //드랍다운 함수
   const dropdown = document.querySelectorAll('.dropdown');

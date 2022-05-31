@@ -97,3 +97,9 @@ body {
 .input-container #img {
   width: 90vw;
 }
+
+.categoryField {
+  display: flex;
+  flex-direction: row;
+  gap: 2%;
+}
