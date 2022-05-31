@@ -97,6 +97,7 @@ const showPathDelItemModule = () => {
         </div>
         <div class="field">
           <label class="label">카테고리</label>
+          <div class='categoryField'>
           <div id="category_1" class="dropdown">
             <div class="dropdown-trigger">
             <button type="button" class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
@@ -140,9 +141,13 @@ const showPathDelItemModule = () => {
               <a class="dropdown-item">
                 통조림
               </a>
-              </div>
             </div>
           </div>
+          </div>
+          <div>
+            <input id="category_3_value"    class="input" type="text" value="" />
+          </div>
+         </div
         </div>
         <div class="field">
           <label class="label">제조사</label>
