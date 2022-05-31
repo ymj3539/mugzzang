@@ -20,7 +20,7 @@ function locationItemInfo() {
         return;
       }
     }
-    window.location.href = `http://localhost:8000/itemInfo/?=${target.dataset.oid}`;
+    window.location.href = `/itemInfo/?=${target.dataset.oid}`;
   });
 }
 

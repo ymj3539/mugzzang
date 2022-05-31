@@ -62,7 +62,7 @@ async function createItemInfoElements() {
 async function addquantityControlEvent() {
   const doc = await createItemInfoElements();
   // 수량 조절 버튼 모듈입니다.
-  await quantityControlBox(document);
+  quantityControlBox(document);
   const $itemInfoInformation = document.getElementById('itemInfo_information').dataset.id; // 상품의 고유 아이디 추출
   const $itemInfoCart = document.getElementById('itemInfo_cart'); // 장바구니 버튼
   const $itemInfoBuyNow = document.getElementById('itemInfo_buyNow'); // 바로구매 버튼
@@ -92,7 +92,7 @@ function moveItemToCart(quantity, id, e) {
   }
   // 바로구매 버튼을 누른 경우, 장바구니 페이지로 바로 이동
   if (e.target.textContent === '바로구매') {
-    return (window.location.href = `http://localhost:8000/cart`);
+    return (window.location.href = `/cart`);
   }
   alert('장바구니에 추가되었습니다!');
 }
