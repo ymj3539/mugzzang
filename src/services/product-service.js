@@ -1,4 +1,5 @@
-import { productModel } from "../db";
+import 'module-alias/register';
+import { productModel } from "@db";
 
 class ProductService {
     constructor (productModel) {
