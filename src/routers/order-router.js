@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
-import { loginRequired } from '../middlewares';
-import { orderService } from '../services';
+import 'module-alias/register';
+import { loginRequired } from '@middlewares';
+import { orderService } from '@services';
 
 const orderRouter = Router();
 
@@ -21,6 +22,8 @@ orderRouter.post('/', loginRequired, async (req, res, next) => {
       priceEach,
       priceTotal,
       delivery,
+      productShortId,
+      orderId
     } = req.body;
 
     const newOrder = await orderService.addOrder({
@@ -30,6 +33,8 @@ orderRouter.post('/', loginRequired, async (req, res, next) => {
       priceEach,
       priceTotal,
       delivery,
+      productShortId,
+      orderId
     });
 
     res.status(200).json(newOrder);
