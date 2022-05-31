@@ -1,0 +1,99 @@
+/* 앨리스배움체 */
+@import url("https://font.elice.io/EliceDigitalCoding.css");
+
+/* header */
+
+.pageTop h2 {
+  font-size: 35px;
+  padding-left: 20px;
+  padding-top: 10px;
+  font-weight: bolder;
+  color: #4e944f;
+}
+
+/* main */
+.cartTitle {
+  font-size: 20px;
+  padding: 50px 0 10px 50px;
+  font-weight: bolder;
+}
+.cartInfoContainer {
+  min-height: 300px;
+}
+.cartList {
+  padding: 40px;
+  margin: 10px 10px 50px 50px;
+  border: 2px solid #b4e197;
+  width: 800px;
+  float: left;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  flex-basis: 0;
+  gap: 30px;
+  margin: 10px;
+}
+.item .itemInfo:nth-child(1) {
+  flex-grow: 1;
+}
+.item .itemInfo:nth-child(2) {
+  flex-grow: 3;
+}
+.item .itemInfo:nth-child(4) {
+  flex-grow: 1;
+}
+.item .itemInfo:nth-child(5) {
+  flex-grow: 1;
+}
+
+.item a img {
+  max-width: 70px;
+  max-height: 70px;
+}
+.itemInfo_btn_updown {
+  display: flex;
+  flex-direction: row;
+}
+.itemInfo_btn_updown .input {
+  text-align: center;
+}
+.fa-trash-can {
+  pointer-events: none;
+}
+
+.payInfo {
+  width: 300px;
+  min-height: auto;
+  padding: 20px;
+  margin: 50px 50px 50px 0;
+  border: 2px solid #b4e197;
+  line-height: 40px;
+  float: right;
+}
+
+.payInfo .payInfoTitle {
+  font-size: 25px;
+  font-weight: 300;
+}
+
+/* footer */
+footer {
+  clear: both;
+}
+
+footer .footer {
+  font-size: small;
+  line-height: 200%;
+  padding: 0 0 10px 20px;
+  background-color: #e9efc0;
+}
+
+.footer .companyName {
+  font-size: medium;
+  font-weight: bold;
+  line-height: 300%;
+}
