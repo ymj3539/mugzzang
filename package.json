@@ -36,6 +36,7 @@
     "@models" : "src/db/models",
     "@schemas" : "src/db/schemas",
     "@middlewares" : "src/middlewares",
-    "@services" : "src/services"
+    "@services" : "src/services",
+    "@asyncHandler" : "src/utils/async-handler"
   }
 }
