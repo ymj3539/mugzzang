@@ -3,7 +3,7 @@ import * as Api from '/api.js';
 const showAddItemModule = () => {
   const $adminPage_content = document.getElementById('adminPage_content');
   showAddItemPage();
-  const $addItemForm = document.getElementById('addItemForm');
+  const $addItemForm = document.getElementById('itemForm');
   const $titleInput = document.getElementById('prod_title');
   const $category_1_value = document.getElementById('category_1_value');
   const $category_2_value = document.getElementById('category_2_value');
@@ -36,7 +36,10 @@ const showAddItemModule = () => {
   function showAddItemPage() {
     $adminPage_content.insertAdjacentHTML(
       'beforeend',
-      `<form id='addItemForm'>
+      `
+      <div class='form_container'>
+      <h2 class='module_title'>상품 등록</h2>
+      <form id='itemForm'>
         <div class="field">
         <label class="label">상품명</label>
         <div class="control">
@@ -89,16 +92,16 @@ const showAddItemModule = () => {
             <div class="dropdown-menu" id="dropdown-menu3" role="menu">
               <div class="dropdown-content">
               <a class="dropdown-item">
-                밀키트
+                채소
+              </a>
+              <a class="dropdown-item">
+                냉동식품
               </a>
               <a class="dropdown-item">
                 가공육
               </a>
               <a class="dropdown-item">
-                중분류3
-              </a>
-              <a class="dropdown-item">
-                중분류4
+                통조림
               </a>
               </div>
             </div>
@@ -116,8 +119,10 @@ const showAddItemModule = () => {
             <textarea id="description" class="textarea is-primary"></textarea>
           </div>
         </div>
-        <button type="submit" id="formSubmitBtn" class="button is-link">상품 추가</button>
-      </form>`
+        <button type="submit" id="formSubmitBtn" class="button is-link">상품 등록</button>
+      </form>
+      </div>
+      `
     );
   }
 

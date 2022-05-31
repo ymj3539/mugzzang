@@ -44,14 +44,21 @@ header {
 .itemInfo_description {
   padding-bottom: 20px;
 }
+.itemInfo_btn {
+  display: flex;
+  flex-direction: column;
+}
 .itemInfo_btn_updown {
   display: flex;
   flex-direction: row;
+  padding-bottom: 20px;
 }
 
 .input {
   text-align: center;
-  width: 30%;
+  height: 100%;
+  font-weight: 700 !important;
+  font-size: 20px;
 }
 
 .item_manufacturer {
@@ -69,5 +76,14 @@ header {
 
 .item_price {
   font-size: 30px;
+  font-weight: 700;
+}
+.itemInfo_cartBuy_Btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.itemInfo_cartBuy_Btn .buyCart {
+  width: 49%;
   font-weight: 700;
 }

@@ -42,13 +42,13 @@ async function createItemInfoElements() {
       </p>
       <div class="itemInfo_btn">
         <div class="itemInfo_btn_updown" id="updownBtnBox">
-          <button id="quantityDown" class="button is-danger is-light">-</button>
-          <input id="quantityInput" class="input" type="text" value="1" />
-          <button id="quantityUp" class="button is-info is-light">+</button>
+         <button id="quantityDown" class="button is-success is-light">-</button>
+         <input id="quantityInput" class="input" type="text" value="1" />
+         <button id="quantityUp" class="button is-success is-light">+</button>
         </div>
-        <div>
-        <button id='itemInfo_cart'>장바구니</button>
-        <button id='itemInfo_buyNow'>바로구매</button>
+        <div class='itemInfo_cartBuy_Btn'>
+          <button class='is-outlined is-success' id='itemInfo_cart'>장바구니</button>
+          <button id='itemInfo_buyNow' class='is-success'>바로구매</button>
         </div>
       </div>
     </article>`
@@ -76,7 +76,7 @@ async function addquantityControlEvent() {
   });
   const $itemInfo_btn = document.querySelectorAll('.itemInfo_btn button');
 
-  $itemInfo_btn.forEach((e) => e.classList.add('button'));
+  $itemInfo_btn.forEach((e) => e.classList.add('button', 'is-large', 'buyCart'));
 }
 
 // 세션 스토리지에 장바구니 데이터를 넣는 함수

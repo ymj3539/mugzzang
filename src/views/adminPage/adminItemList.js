@@ -18,7 +18,7 @@ const showItemListModule = () => {
     $table.insertAdjacentHTML(
       'beforeEnd',
       `<thead class='thead'>
-  <tr>
+  <tr class='is-selected'>
     <td>No.</td>
     <th>상품명</th>
     <th>제조자</th>
