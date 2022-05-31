@@ -1,35 +1,38 @@
 import {model} from 'mongoose';
-import { ProductSchema } from '../schemas/product-schema';
+import {ProductSchema} from '../schemas/product-schema';
 
 const Product = model('product', ProductSchema);
 
 export class ProductModel {
-    async findByProductTitle(productTitle){
-        const product = await Product.findOne({productTitle})
-        return productTitle;
-    }
+  async findById(shortId) {
+    const product = await Product.findOne({shortId: shortId}).exec();
+    return product;
+  }
 
+  async create(productInfo) {
+    const createNewProduct = await Product.create(productInfo);
+    return createNewProduct;
+  }
 
-    async findById(shortId){
-        const product = await Product.findOne({shortId : shortId});
-        return product;
-    }
+  async findAllProducts() {
+    const products = await Product.find({});
+    return products;
+  }
 
-    async create(productInfo) {
-        const createNewProduct = await Product.create(productInfo);
-        return createNewProduct;
-    }
+  async update({productId, update}) {
+    const filter = {shortId: productId};
+    const option = {returnOriginal: false};
 
-    async findAllProducts() {
-        const products = await Product.find({});
-        return products;
-    }
+    const updatedProduct = await Product.updateMany(filter, update, option);
+    return updatedProduct;
+  }
 
-    // async update
-
+  async delete(productId) {
+    await Product.findOneAndDelete({shortId: productId});
+    return;
+  }
 }
 
 const productModel = new ProductModel();
 
-export { productModel};
-
+export {productModel};

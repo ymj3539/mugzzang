@@ -1,7 +1,6 @@
 import * as Api from '/api.js';
 import {quantityControlBox} from './quantityControlBox.js';
 
-const $itemImg = document.getElementById('itemInfo_img');
 const $itemInfoSection = document.getElementById('itemInfo_section');
 const params = window.location.href.split('?=')[1];
 
@@ -30,23 +29,27 @@ async function createItemInfoElements() {
     </picture>
     <article data-id=${shortId} id= "itemInfo_information" class="itemInfo_information">
       <h2>
-        <p>${prod_title}</p>
-        <p>${manufacturer}</p>
+        <p class='item_manufacturer'>${manufacturer}</p>
+        <p class='item_title'>${prod_title}</p>
       </h2>
       <h2>
-        <p>${price}원</p>
+        <p class='item_price'>${Number(price)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
       </h2>
       <p class="itemInfo_description">
         ${description}
       </p>
       <div class="itemInfo_btn">
         <div class="itemInfo_btn_updown" id="updownBtnBox">
-          <button id="quantityDown" class="button is-danger is-light">-</button>
-          <input id="quantityInput" class="input" type="text" value="1" />
-          <button id="quantityUp" class="button is-info is-light">+</button>
+         <button id="quantityDown" class="button is-success is-light">-</button>
+         <input id="quantityInput" class="input" type="text" value="1" />
+         <button id="quantityUp" class="button is-success is-light">+</button>
         </div>
-        <button id='itemInfo_cart'>장바구니</button>
-        <button id='itemInfo_buyNow'>바로구매</button>
+        <div class='itemInfo_cartBuy_Btn'>
+          <button class='is-outlined is-success' id='itemInfo_cart'>장바구니</button>
+          <button id='itemInfo_buyNow' class='is-success'>바로구매</button>
+        </div>
       </div>
     </article>`
     );
@@ -59,7 +62,7 @@ async function createItemInfoElements() {
 async function addquantityControlEvent() {
   const doc = await createItemInfoElements();
   // 수량 조절 버튼 모듈입니다.
-  await quantityControlBox(document);
+  quantityControlBox(document);
   const $itemInfoInformation = document.getElementById('itemInfo_information').dataset.id; // 상품의 고유 아이디 추출
   const $itemInfoCart = document.getElementById('itemInfo_cart'); // 장바구니 버튼
   const $itemInfoBuyNow = document.getElementById('itemInfo_buyNow'); // 바로구매 버튼
@@ -71,6 +74,9 @@ async function addquantityControlEvent() {
     const $quantityInput = document.getElementById('quantityInput').value;
     moveItemToCart($quantityInput, $itemInfoInformation, e); // 수량 조절 버튼의 input값 추출
   });
+  const $itemInfo_btn = document.querySelectorAll('.itemInfo_btn button');
+
+  $itemInfo_btn.forEach((e) => e.classList.add('button', 'is-large', 'buyCart'));
 }
 
 // 세션 스토리지에 장바구니 데이터를 넣는 함수
@@ -86,7 +92,7 @@ function moveItemToCart(quantity, id, e) {
   }
   // 바로구매 버튼을 누른 경우, 장바구니 페이지로 바로 이동
   if (e.target.textContent === '바로구매') {
-    return (window.location.href = `http://localhost:8000/cart`);
+    return (window.location.href = `/cart`);
   }
   alert('장바구니에 추가되었습니다!');
 }

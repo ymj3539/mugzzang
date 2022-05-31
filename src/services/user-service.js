@@ -1,4 +1,5 @@
-import { userModel } from '../db';
+import 'module-alias/register';
+import { userModel } from '@db';
 
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -37,7 +38,9 @@ class UserService {
 
   // admin 가입
   async addAdmin(userInfo) {
-    const { email, fullName, password, role } = userInfo;
+    const { email, password } = userInfo;
+
+    // const role = 
 
     const user = await this.userModel.findByEmail(email);
 
@@ -96,6 +99,8 @@ class UserService {
     return { token };
   }
 
+
+  
   // 사용자 목록을 받음.
   async getUsers() {
     const users = await this.userModel.findAll();
@@ -106,6 +111,7 @@ class UserService {
   async getUser(useremail) {
     // const user = await this.userModel.findUser(username);
     const user = await this.userModel.findByEmail(useremail);
+    console.log('user from service: ', user);
     return user;
   }
 

@@ -1,40 +1,19 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Elice Digital Coding', 'monospace'; 
-  color: #4a4a4a;
-  text-decoration: none;
-}
-
-/* header */
-nav {
-  height: 10vh;
-}
-nav ul {
-  height: 50px;
-  text-align: right;
-  padding: 10px;
-}
-nav ul li {
-  display: inline-block;
-}
-nav ul li:last-child {
-  margin-right: 0;
-}
-header {
-  height:80px;
+/* 앨리스배움체 */
+@import url("https://font.elice.io/EliceDigitalCoding.css");
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: bold;
 }
 .pageTop {
   height: 100%;
   font-weight: bold;
   font-size: 40px;
   text-align: center;
-  color:#4E944F;
+  color: #4e944f;
 }
 .brand {
   position: relative;
-  Top: 50%;
+  top: 50%;
   transform: translateY(-50%);
   font-size: 50px;
 }
@@ -43,7 +22,7 @@ header {
   vertical-align: middle;
 }
 header #title {
-  color:#4E944F;
+  color: #4e944f;
 }
 header .subTitle {
   font-size: 30px;
@@ -84,7 +63,7 @@ header .subTitle {
   height: 50vh;
 }
 
-#slider .slide a{
+#slider .slide a {
   width: 100%;
   height: 100%;
 }
@@ -92,19 +71,4 @@ header .subTitle {
 #slider .slide img {
   width: 100%;
   height: 100%;
-}
-
-/* footer */
-footer .footer {
-  font-size: small;
-  line-height: 200%;
-  /* height: 100px;
-  width: 100vw; */
-  padding: 0 0 0 10px;
-}
-
-.footer .companyName {
-  font-size: medium;
-  font-weight: bold;
-  line-height: 300%
 }
