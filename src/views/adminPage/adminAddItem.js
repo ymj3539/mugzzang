@@ -12,6 +12,8 @@ const showAddItemModule = () => {
   const $descriptionInput = document.getElementById('description');
   const $priceInput = document.getElementById('price');
   const $imgInput = document.getElementById('img');
+  const $fileUpload = document.getElementById('fileUpload');
+  const $uploadImageBtn = document.querySelector('.uploadImageBtn');
 
   $addItemForm.addEventListener('submit', postItem);
   async function postItem(e) {
@@ -23,11 +25,13 @@ const showAddItemModule = () => {
     const manufacturer = $manufacturerInput.value;
     const description = $descriptionInput.value;
     try {
-      const data = {prod_title, price, img, category, manufacturer, description};
-      console.log(data);
+      let imgData = new FormData();
+      imgData.append('imageFile', $fileUpload.files[0]);
+      console.log(imgData.get('imageFile'));
+      const data = {prod_title, price, img, category, manufacturer, description, imgData};
       await Api.post('/api/product/upload', data);
       alert('상품 등록이 완료되었습니다.');
-      window.location.reload();
+      // window.location.reload();
       console.log('check');
     } catch (err) {
       console.error(err);
@@ -57,7 +61,8 @@ const showAddItemModule = () => {
           <label class="label">이미지url</label>
           <div class="control input-container">
             <input class="input is-success" id="img" type="text" value="" />
-            <input class='input' type='file' id='fileUpload' value='파일 선택'/>
+            <button type='button' class='button uploadImageBtn'>사진 업로드</button>
+            <input style='display:none' class='input' type='file' id='fileUpload' value='파일 선택'/>
           </div>
         </div>
         <div class="field">
@@ -132,13 +137,6 @@ const showAddItemModule = () => {
       `
     );
   }
-  // const $fileUpload = document.getElementById('fileUpload');
-  // $fileUpload.addEventListener('change', saveFile);
-  // async function saveFile() {
-  //   let formData = new FormData();
-  //   formData.append('file', $fileUpload.files[0]);
-  //   await fetch('/');
-  // }
 
   //드랍다운 함수
   const dropdown = document.querySelectorAll('.dropdown');
@@ -150,6 +148,14 @@ const showAddItemModule = () => {
       el.classList.toggle('is-active');
     })
   );
+
+  $uploadImageBtn.addEventListener('click', () => {
+    $fileUpload.click();
+  });
+
+  $fileUpload.addEventListener('change', () => {
+    $imgInput.value = $fileUpload.files[0].name;
+  });
 
   $category_1.addEventListener('click', pickCategory);
   $category_2.addEventListener('click', pickCategory);
