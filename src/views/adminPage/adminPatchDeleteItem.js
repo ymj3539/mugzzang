@@ -14,6 +14,8 @@ const showPathDelItemModule = () => {
   const $itemModifyBtn = document.getElementById('formModifyBtn');
   const $itemDeleteBtn = document.getElementById('formDeleteBtn');
   const $category_3_value = document.getElementById('category_3_value');
+  const $fileUpload = document.getElementById('fileUpload');
+  const $uploadImageBtn = document.querySelector('.uploadImageBtn');
 
   $searchItemBtn.addEventListener('click', searchItem);
   async function searchItem() {
@@ -43,7 +45,11 @@ const showPathDelItemModule = () => {
     const manufacturer = $manufacturerInput.value;
     const description = $descriptionInput.value;
     try {
-      const data = {prod_title, price, img, category, manufacturer, description};
+      let imgData = new FormData();
+      imgData.append('image', $fileUpload.files[0]);
+      let uploadedImage = await Api.formPost('/api/product/upload', imgData);
+      let imageName = uploadedImage.result;
+      const data = {prod_title, price, img, category, manufacturer, description, imageName};
       await Api.patch('/api/product/update', $shortIdInput.value, data);
       alert('상품 수정이 완료되었습니다.');
       window.location.reload();
@@ -93,8 +99,10 @@ const showPathDelItemModule = () => {
         </div>
         <div class="field">
           <label class="label">이미지url</label>
-          <div class="control">
+          <div class="control input-container">
             <input class="input is-success" id="img" type="text" value="" />
+            <button type='button' class='button uploadImageBtn'>사진 업로드</button>
+            <input style='display:none' class='input' type='file' id='fileUpload' value='파일 선택'/>
           </div>
         </div>
         <div class="field">
@@ -180,6 +188,14 @@ const showPathDelItemModule = () => {
       el.classList.toggle('is-active');
     })
   );
+
+  $uploadImageBtn.addEventListener('click', () => {
+    $fileUpload.click();
+  });
+
+  $fileUpload.addEventListener('change', () => {
+    $imgInput.value = $fileUpload.files[0].name;
+  });
 
   $category_1.addEventListener('click', pickCategory);
   $category_2.addEventListener('click', pickCategory);

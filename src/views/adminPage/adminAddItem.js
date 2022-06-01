@@ -26,12 +26,13 @@ const showAddItemModule = () => {
     const description = $descriptionInput.value;
     try {
       let imgData = new FormData();
-      imgData.append('imageFile', $fileUpload.files[0]);
-      console.log(imgData.get('imageFile'));
-      const data = {prod_title, price, img, category, manufacturer, description, imgData};
-      await Api.post('/api/product/upload', data);
+      imgData.append('image', $fileUpload.files[0]);
+      let uploadedImage = await Api.formPost('/api/product/upload', imgData);
+      let imageName = uploadedImage.result;
+      const data = {prod_title, price, img, category, manufacturer, description, imageName};
+      await Api.post('/api/product/', data);
       alert('상품 등록이 완료되었습니다.');
-      // window.location.reload();
+      window.location.reload();
       console.log('check');
     } catch (err) {
       console.error(err);

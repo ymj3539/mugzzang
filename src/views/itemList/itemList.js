@@ -1,9 +1,11 @@
 import * as Api from '/api.js';
 const $itemSection = document.getElementById('itemlist_section');
 const $categoryContainer = document.getElementById('categorySection');
+const domain = window.location.host;
 let $itemListFlexbox = document.getElementsByClassName('itemlist_flexbox');
 let $article;
 let CategoryFlag = null;
+let reader = new FileReader();
 
 // 데이터 불러오기
 const itemList = await Api.get('/api/product/list');
@@ -44,14 +46,14 @@ async function showContent(index, category) {
 
   // 상품 목록 개수와 추출한 데이터 개수가 일치한다면 이스케이프
   if ($article.length === sliceItem.length) return;
-  sliceItem.forEach((e) => {
+  for (let e of sliceItem) {
     const {shortId, manufacturer, prod_title, price, img, category} = e;
     $itemListFlexbox.insertAdjacentHTML(
       'beforeend',
       `<article data-oid=${shortId} data-cg=${category[1]} id="itemlist" class="itemlist">
      <div>
         <div class='img-size'>
-          <img class='img' src=${img} alt="itemImg" />
+          <img class='img' src='${'http://' + domain + '/static/' + img}'/> 
         </div>
         <div class='articleInfo'>
           <p class='manufacturer'>${manufacturer}</p>
@@ -64,7 +66,7 @@ async function showContent(index, category) {
       </a>
     </article>`
     );
-  });
+  }
   locationItemInfo();
 }
 
