@@ -21,5 +21,7 @@ async function mypageInfo() {
   const resUser = await Api.get(
     `/api/user/userlist/${sessionStorage.getItem("id")}`
   );
+  const resOrder = await Api.get(`/api/order/${sessionStorage.getItem("id")}`);
   console.log(resUser);
+  console.log(resOrder);
 }
