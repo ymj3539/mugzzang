@@ -31,6 +31,11 @@ function addAllEvents() {
 
 //회원정보 관리 보유한 데이터 value값 넣어두기
 async function securityInfo() {
+  if (!sessionStorage.getItem("id")) {
+    alert("로그인한 유저만 사용할 수 있는 서비스입니다.");
+    window.location.href = "/login";
+  }
+
   const resUser = await Api.get(
     `/api/user/userlist/${sessionStorage.getItem("id")}`
   );
