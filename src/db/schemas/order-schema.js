@@ -54,7 +54,7 @@ const OrderSchema = new Schema(
     orderId: {
       type: String,
       required: false,
-      }
+    },
   },
   {
     collection: 'orders',
