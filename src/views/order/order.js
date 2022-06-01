@@ -7,7 +7,7 @@ const $itemInfo = document.querySelector('.itemInfo');
 const $priceInfo = document.querySelector('.priceInfo');
 const $orderBtn = document.querySelector('.ordering');
 const $findAddressBtn = document.querySelector("#findAddress");
-
+const $getMyAddBtn = document.querySelector(".getMyAdd");
 
 const userEmail = sessionStorage.getItem('id');
 const token = sessionStorage.getItem('token');
@@ -48,13 +48,13 @@ async function sendDataToDb() {
   //상품 하나에 대해 data를 생성
   for (let i = 0; i < items.length; i++ ) {
     const {title, quantity, price} = items[i];
-    let numPrice= convertToNumber(price);
-    let productId = prodId[i];
+    const numPrice= convertToNumber(price);
+    const productId = prodId[i];
     const orderId = `${Date.now()}_${userEmail}`
     const data = {"email": userEmail, "productName": title, "productCount": quantity, "priceEach": numPrice, "delivery": deliveryInfo, "productShortId": productId, "orderId": orderId };
 
     try {
-      let res = await Api.post('/api/order/', data);
+      const res = await Api.post('/api/order/', data);
       console.log(res);
       sendSuccess = true;
     } catch (error) {
@@ -69,21 +69,17 @@ async function sendDataToDb() {
     sessionStorage.setItem('id', userEmail);
     sessionStorage.setItem('token', token);
     alert('주문이 완료되었습니다. 메인 페이지로 돌아갑니다.');
-    // location.href = '../home/home.html';
+    location.href = '../home/home.html';
   } else {
     alert('오류 발생. 다시 시도해 주세요.');
   }
 }
 
-getItems();
-$orderBtn.addEventListener('click', sendDataToDb);
-$findAddressBtn.addEventListener("click", addressFind);
-
 function addressFind() {
   new daum.Postcode({
     oncomplete: function (data) {
-      var addr = ""; // 주소 변수
-      var extraAddr = ""; // 참고항목 변수
+      let addr = ""; // 주소 변수
+      let extraAddr = ""; // 참고항목 변수
 
       if (data.userSelectedType === "R") {
         // 사용자가 도로명 주소를 선택했을 경우
@@ -114,3 +110,8 @@ function addressFind() {
     },
   }).open();
 }
+
+getItems();
+$orderBtn.addEventListener('click', sendDataToDb);
+$findAddressBtn.addEventListener("click", addressFind);
+// $getMyAddBtn.addEventListener();

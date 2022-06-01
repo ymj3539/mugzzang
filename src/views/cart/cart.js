@@ -48,7 +48,7 @@ async function getItemInfos() {
 async function createCartElements() {
   const incartList = await getItemInfos();
 
-  if (incartList.length < 1) return $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다:(`);
+  if (incartList.length < 1) return $cartList.insertAdjacentHTML('beforeEnd', `<p class="empty">장바구니가 비었습니다 :(</p>`);
 
   //장바구니 목록을 돌면서 화면에 렌더링
   incartList.forEach((cart, i) => {
@@ -63,16 +63,16 @@ async function createCartElements() {
     $cartContainer.insertAdjacentHTML(
       'beforeend',
       `
-        <div class="item cartItem" id="item_${i}">
+        <div class="item" id="item_${i}">
           <label >
-            <input type="checkbox" name="buy" value="${i}">
+            <input type="checkbox" class="checkbox" name="buy" value="${i}">
           </label>
-          <a href="#">
-            <img class="itemInfo" src="${img}"/>
+          <a href="#" class="itemInfo">
+            <img src="${img}"/>
           </a>
           <span style="display:none" class="shortId">${shortId}</span>
-          <a href="#">
-            <span class="itemInfo title">${title}</span>
+          <a href="#" class="itemInfo title">
+            <span >${title}</span>
           </a>  
           <div id="controlBox" class="itemInfo_btn_updown itemInfo">
             <button data-quantity=${i} id="quantityDown" class="button is-danger is-light">-</button>
@@ -90,6 +90,7 @@ async function createCartElements() {
     `
     <div class="totalPrice">상품 금액 ${addCommas(totalPrice)}원</div>
     <div class="shipping">배송비 ${addCommas(delivery)}원</div>
+    <hr>
     <div class="total">총 ${addCommas(total)}원</div>
     ` 
   );
@@ -100,7 +101,7 @@ async function createCartElements() {
 //수량조절
 async function controlQuantityBox() {
   await createCartElements();
-  const $cartItems = document.querySelectorAll('.cartItem');
+  const $cartItems = document.querySelectorAll('.item');
   $cartItems.forEach((e) => e.addEventListener('click', controlCartInfo));
 
   function controlCartInfo(e) {
