@@ -22,6 +22,11 @@ class OrderService {
     return order;
   }
 
+  async getOrderByEmail(email) {
+    const order = await this.orderModel.findByEmail(email);
+    return order;
+  }
+
   async deleteOrder(orderId) {
     const order = await this.orderModel.findById(orderId);
     if (!order) {

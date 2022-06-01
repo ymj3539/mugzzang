@@ -53,7 +53,7 @@ nav ul li:last-child {
   min-height: auto;
   padding: 20px;
   margin: 50px 50px 50px 0;
-  border: 2px solid #B4E197;
+  border: 2px solid #b4e197;
   line-height: 40px;
   float: right;
 }
@@ -72,11 +72,11 @@ footer .footer {
   font-size: small;
   line-height: 200%;
   padding: 0 0 10px 20px;
-  background-color: #E9EFC0;
+  background-color: #e9efc0;
 }
 
 .footer .companyName {
   font-size: medium;
   font-weight: bold;
-  line-height: 300%
+  line-height: 300%;
 }
