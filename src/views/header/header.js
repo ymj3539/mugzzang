@@ -33,7 +33,7 @@ function loginUser() {
     navBar.insertAdjacentHTML(
       "beforeend",
       `
-        <li class="mainlogo"><a href="/"><span>쇼핑-n팀</span></a></li>
+        <li class="mainlogo"><a href="/"><span>먹짱-4팀</span></a></li>
         <li><a href="/itemlist">shop</a></li>
         <li>
           <a href="/cart" aria-current="page">
