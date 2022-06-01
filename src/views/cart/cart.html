@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>장바구니</title>
+    <title>먹짱ㅣ장바구니</title>
     <!-- 아이콘 -->
     <link
       rel="icon"
@@ -22,6 +22,8 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
+    <!-- noto sans 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <!-- 커스텀 css, js -->
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
@@ -52,38 +54,25 @@
       </section>
     </header>
     <!--메인-->
-    <main role="main">
-      <section class="cartTitle">
-        <div>장바구니</div>
+    <main role="main" class="main">
+      <section >
+        <div class="cartTitle">장바구니🛒</div>
+        <div class="cartInfoContainer">
+          <section class="cartList" id="cartList">
+            <div>
+              <button type="button" class="deleteSom">선택 삭제</button>
+              <button type="button" class="deleteAll">전체 삭제</button>
+            </div>
+            <div id="cartContainer"></div>
+          </section>
+          <section class="PayContainer">
+            <div class="payInfo">
+              <div class="payInfoTitle">결제정보</div>
+            </div>
+            <button type="button" id="ordering">주문하기</button>
+          </section>
+        </div>
       </section>
-      <div class="cartInfoContainer">
-        <section class="cartList" id="cartList">
-          <div>
-            <button type="button" class="deleteSom">선택 삭제</button>
-            <button type="button" class="deleteAll">전체 삭제</button>
-          </div>
-          <div id="cartContainer"></div>
-        </section>
-        <section class="payInfo">
-          <div class="payInfoTitle">결제정보</div>
-        </section>
-        <button type="button" id="ordering">주문하기</button>
-      </div>
     </main>
-
-    <!-- footer -->
-    <footer>
-      <div class="footer">
-        <p class="companyName">(주)사팀</p>
-        <p>
-          사업자 등록번호: 000-00-00000 | 통신판매업 신고번호:
-          제0000-0000-00000호 | 대표: 이준서
-        </p>
-        <p>
-          주소: 서울시 강남구 테헤란로 53길 16 B1 데마코홀 | 이메일:
-          team4@elice.io | 고객센터: 1588-0000
-        </p>
-      </div>
-    </footer>
   </body>
 </html>

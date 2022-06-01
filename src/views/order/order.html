@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>먹짱-결제</title>
+    <title>먹짱ㅣ결제</title>
     <!-- 아이콘 -->
     <link
       rel="icon"
@@ -22,58 +22,80 @@
       src="https://kit.fontawesome.com/7630448495.js"
       crossorigin="anonymous"
     ></script>
+    <!-- noto sans 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <!-- 커스텀 css, js -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="order.css" />
     <script src="order.js" type="module" defer></script>
+    <link rel="stylesheet" href="../header/header.css" />
+    <script src="../header/header.js" type="module" defer></script>
+    <!-- 다음 주소 api -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </head>
   <body>
-    <!-- 헤더 -->      
-    <nav role="navigation" aria-label="main navigation">
-      <ul>
-        <li><a href="/login">로그인</a></li>
-        <li><a href="/register">회원가입</a></li>
-        <li><a href="/itemList">shop</a></li>
-        <li>
-          <a href="/cart" aria-current="page">
-            <span class="icon">
-              <i class="fas fa-cart-shopping"></i>
-            </span><span>장바구니</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="pageTop">
-        <a href="/" class="brand">
-          <h2>먹짱</h2>
-        </a>
-    </div>
+    <!-- 헤더 -->
+    <header>
+      <section id="headerNav">
+        <nav role="navigation" aria-label="main navigation">
+          <ul id="navbar" class="navbar"></ul>
+        </nav>
+      </section>
+    </header>
     <!--메인-->
     <main role="main">
       <section class="orderTitle">
         <div>배송 정보</div>
       </section>
+      <!-- <button type="button" class="getMyAdd">+ 기본 배송지 불러오기</button> -->
       <div class="orderContainer">
         <section class="shippingInfo">
           <form class="userInfo">
             <div class="field">
               <label class="label" for="nameInput">이름</label>
-              <input class="input" id="nameInput" type="text">
+              <input class="input" id="nameInput" type="text" />
             </div>
             <div class="field">
               <label class="label" for="phonenumInput">전화번호</label>
-              <input class="input" id="phonenumInput" type="number" placeholder="-없이 입력해 주세요">
+              <input
+                class="input"
+                id="phonenumInput"
+                type="number"
+                placeholder="-없이 입력해 주세요"
+              />
             </div>
             <div class="field">
-              <label class="label" for="zipCodeInput">우편번호</label>
-              <input class="input" id="zipCodeInput" type="number">
+              <label class="label" for="postalNumber">주소</label>
+              <div class="addressInfo">
+                <input
+                  type="text"
+                  class="input"
+                  id="postalNumber"
+                  placeholder="우편번호"
+                  readonly
+                />
+                <input type="button" id="findAddress" value="주소찾기" />
+              </div>
             </div>
             <div class="field">
-              <label class="label" for="addInput">주소</label>
-              <input class="input" id="addInput" type="text">
+              <input
+                type="text"
+                class="input"
+                id="addInput1"
+                placeholder="주소"
+                readonly
+              />
             </div>
             <div class="field">
-              <label class="label" for="detailedAddInput">상세주소</label>
-              <input class="input" id="detailedAddInput" type="text" placeholder="동, 호수까지 정확하게 입력해 주세요">
+              <input
+                type="text"
+                class="input"
+                id="addInput2"
+                placeholder="상세주소"
+              />
             </div>
           </form>
           <section class="PayInfo">
@@ -81,18 +103,8 @@
             <div class="priceInfo"></div>
           </section>
         </section>
-        <button type="button" class="ordering" onclick="alert('주문이 완료되었습니다. 메인 페이지로 돌아갑니다.');
-        location.href = '../home/home.html'">주문하기</button>
+        <button type="button" class="ordering">주문하기</button>
       </div>
     </main>
-     
-    <!-- footer -->
-    <footer>
-      <div class="footer">
-        <p class="companyName">(주)사팀</p>
-        <p>사업자 등록번호: 000-00-00000 | 통신판매업 신고번호: 제0000-0000-00000호 | 대표: 이준서</p>
-        <p>주소: 서울시 강남구 테헤란로 53길 16 B1 데마코홀 | 이메일: team4@elice.io | 고객센터: 1588-0000</p>
-      </div>
-    </footer>
   </body>
 </html>

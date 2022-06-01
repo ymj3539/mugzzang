@@ -27,10 +27,10 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="mypage.css" />
-    <script src="mypage.js" type="module" defer></script>
-    <link rel="stylesheet" href="../header/header.css" />
-    <script src="../header/header.js" type="module" defer></script>
+    <link rel="stylesheet" href="orderlist.css" />
+    <script src="orderlist.js" type="module" defer></script>
+    <link rel="stylesheet" href="../../header/header.css" />
+    <script src="../../header/header.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
@@ -42,21 +42,18 @@
       </section>
     </header>
 
-    <section class="mypage-container">
-      <div class="mypageInfo">
-        <h1 class="mypage">마이페이지</h1>
-        <div class="userInfo">
-          <span id="userName"></span>
-          <span id="userEmail"></span>
-          <span id="userAdd"></span>
-          <span id="userPhonenum"></span>
+    <section class="orderlistpage-container">
+      <div class="orderlistpageInfo">
+        <h1 class="orderlistpage">주문조회</h1>
+        <div id="orderlist-container" class="orderlist-container">
+          <div class="orderlist-standard">
+            <span>날짜</span>
+            <span>주문정보</span>
+            <span>상태</span>
+            <span>신청</span>
+          </div>
+          <!-- <div id="orderInfo"></div> -->
         </div>
-      </div>
-      <div class="mypageNav">
-        <a href="/mypage/security">정보수정</a>
-        <a href="/mypage/signout">계정삭제</a>
-        <a href="/mypage/orderlist">주문조회</a>
-        <a href="/adminPage">관리자</a>
       </div>
     </section>
   </body>
