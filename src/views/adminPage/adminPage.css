@@ -1,5 +1,5 @@
 body {
-  margin: 0 auto;
+  margin: 0;
   max-width: 96%;
   font-family: 'Noto Sans KR', sans-serif;
 }
@@ -50,6 +50,10 @@ body {
 .menu-label {
   font-weight: 700;
   font-size: 18px;
+}
+
+.menu_container {
+  margin-left: 2%;
 }
 
 .menu_container .button {

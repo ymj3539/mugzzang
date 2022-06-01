@@ -8,7 +8,8 @@ const showItemListModule = () => {
   }
 
   async function showOrderPage() {
-    const itemList = await getData();
+    let itemList = await getData();
+    itemList = itemList.slice(0, 20);
     const $table = document.createElement('table');
     const $caption = document.createElement('caption');
     $table.className = 'table';
@@ -29,11 +30,10 @@ const showItemListModule = () => {
   </tr>
 </thead>
 <tbody id="orderTbody">
-</tbody`
+</tbody>`
     );
     const $orderTbody = document.getElementById('orderTbody');
     addOrderedItem(itemList, $orderTbody);
-    addCancelEvent($table);
   }
 
   showOrderPage();
@@ -54,18 +54,14 @@ const showItemListModule = () => {
             </tr>`
       );
     });
-  }
-
-  function addCancelEvent($table) {
-    $table.addEventListener('click', cancelEvent);
-  }
-
-  function cancelEvent(e) {
-    let target = e.target;
-    if (e.target.id !== 'cancelBtn') return;
-    target.parentNode.remove();
-    // api delete
-    // alert 추가
+    addAt.insertAdjacentHTML(
+      'beforeend',
+      `<tr>
+        <td>
+          <button class='showMoreBtn is-medium is-ghost button'>더보기</button>
+        </td>
+      </tr>`
+    );
   }
 };
 
