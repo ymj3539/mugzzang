@@ -37,7 +37,7 @@ async function post(endpoint, data) {
     method: "POST",
     headers: {
       // "Accept": 'application/json',
-      "Content-Type": "application/json",
+      // "Content-Type": "application/json",
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
     body: bodyData,
