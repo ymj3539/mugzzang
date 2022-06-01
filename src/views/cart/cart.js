@@ -158,7 +158,8 @@ function calcTotalPrice($totalItemPrices) {
   totalPriceEl.textContent = `상품 금액 ${addCommas(totalPrice)}원`;
   
   if(totalPrice === 0) {
-    $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다 😕`)
+    $cartList.insertAdjacentHTML('beforeEnd', `<p class="empty">장바구니가 비었습니다 😕</p>`)
+    document.getElementsByClassName('shipping')[0].innerHTML = '배송비 0원';
     totalEl.textContent = `총 0원`;
   } else {
     totalEl.textContent = `총 ${addCommas(totalPrice + delivery)}원`;
