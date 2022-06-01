@@ -48,6 +48,16 @@
 .ckeckbox:hover{
   cursor: pointer;
 }
+.deleteButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.empty {
+  text-align:center;
+  font-size: 40px;
+  padding-top: 50px;
+}
 
 .payInfo {
   min-height: auto;

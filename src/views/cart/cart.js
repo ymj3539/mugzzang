@@ -48,7 +48,19 @@ async function getItemInfos() {
 async function createCartElements() {
   const incartList = await getItemInfos();
 
-  if (incartList.length < 1) return $cartList.insertAdjacentHTML('beforeEnd', `<p class="empty">장바구니가 비었습니다 :(</p>`);
+  if (incartList.length < 1) {
+    $cartList.insertAdjacentHTML('beforeEnd', `<p class="empty">장바구니가 비었습니다 😕</p>`)
+    $payInfo.insertAdjacentHTML(
+      'beforeend',
+      `
+      <div class="totalPrice">상품 금액 0원</div>
+      <div class="shipping">배송비 0원</div>
+      <hr>
+      <div class="total">총 0원</div>
+      ` 
+    );
+    return;
+  };
 
   //장바구니 목록을 돌면서 화면에 렌더링
   incartList.forEach((cart, i) => {
@@ -146,10 +158,7 @@ function calcTotalPrice($totalItemPrices) {
   totalPriceEl.textContent = `상품 금액 ${addCommas(totalPrice)}원`;
   
   if(totalPrice === 0) {
-    const $orderBtn = totalEl.parentElement.nextElementSibling;
-    $orderBtn.disabled = true;
-    $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다 :(`)
-    alert("상품을 담아주세요!");
+    $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다 😕`)
     totalEl.textContent = `총 0원`;
   } else {
     totalEl.textContent = `총 ${addCommas(totalPrice + delivery)}원`;
@@ -191,6 +200,12 @@ async function moveToOrderPage() {
     const title = document.getElementsByClassName('title');
     const quantity = document.getElementsByClassName('input');
     const price = document.getElementsByClassName('eachPrice');
+    const $empty = document.querySelector('.empty');
+
+    if($empty.innerText === '장바구니가 비었습니다 😕') {
+      alert("주문하려면 상품을 담아주세요😉");
+      return;
+    } 
 
     const orderSession = Object.keys(sessionStorage).filter((e) => e.slice(0, 5) === 'order');
  
