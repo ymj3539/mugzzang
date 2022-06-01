@@ -72,7 +72,7 @@ userRouter.post('/register/admin', async (req, res, next) => {
 userRouter.post('/login',  async function (req, res, next) {
   try {
     // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
-    console.log(req.headers['content-type']);
+    console.log("from userRouter : req.headers - ",req.headers['content-type']);
     if (is.emptyObject(req.body)) {
       throw new Error(
         errorCode.headerRequested
