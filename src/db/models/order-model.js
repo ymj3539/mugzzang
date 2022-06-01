@@ -8,6 +8,11 @@ export class OrderModel {
     return order;
   }
 
+  async findByEmail(email) {
+    const user = await Order.find({ email: email });
+    return user;
+  }
+
   async update({ useremail, update }) {
     const filter = { email: useremail };
     const option = { returnOriginal: false };
