@@ -13,5 +13,13 @@ async function addAllElements() {
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {}
 
-//마이페이지에 쓰일 로그인 유저의 정보 get (세션 스토리지값을 이용)
-async function mypageInfo() {}
+async function mypageInfo() {
+  if (!sessionStorage.getItem("id")) {
+    alert("로그인한 유저만 사용할 수 있는 서비스입니다.");
+    window.location.href = "/login";
+  }
+  const resUser = await Api.get(
+    `/api/user/userlist/${sessionStorage.getItem("id")}`
+  );
+  console.log(resUser);
+}
