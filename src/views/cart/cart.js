@@ -147,7 +147,7 @@ function calcTotalPrice($totalItemPrices) {
   if(totalPrice === 0) {
     const $orderBtn = totalEl.parentElement.nextElementSibling;
     $orderBtn.disabled = true;
-    $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다:(`)
+    $cartList.insertAdjacentHTML('beforeEnd', `장바구니가 비었습니다 :(`)
     alert("상품을 담아주세요!");
     totalEl.textContent = `총 0원`;
   } else {
