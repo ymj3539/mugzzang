@@ -2,6 +2,33 @@ import showOrderedListModule from './adminOrderPage.js';
 import showAddItemModule from './adminAddItem.js';
 import showPathDelItemModule from './adminPatchDeleteItem.js';
 import showItemListModule from './adminItemList.js';
+import * as Api from '/api.js';
+
+async function checkUserRole() {
+  try {
+    const check = await Api.get('/api/user/userlist', sessionStorage.getItem('id'));
+    // 일반 유저가 로그인한 상태에서 어드민 페이지 접속
+    if (check.role !== 'admin') {
+      alert('어드민 계정이 아닙니다.');
+      window.location.href('/');
+    }
+  } catch (err) {
+    if (err) {
+      // 로그인 안하고 바로 들어갔을 때.
+      alert('어드민 계정이 아닙니다.');
+      window.location.href = '/';
+    }
+  }
+}
+checkUserRole();
+// async function checkUserRole() {
+//   await fetch('apiUrl', {
+//     // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
+//     headers: {
+//       Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+//     },
+//   });
+// }
 
 const $showOrderedListBtn = document.getElementById('showOrderedList');
 const $showItemListBtn = document.getElementById('showItemList');
