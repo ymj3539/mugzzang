@@ -29,22 +29,30 @@ const showItemListModule = () => {
   </tr>
 </thead>
 <tbody id="orderTbody">
-</tbody`
+<tr id='showMoreRow'>
+        <td>
+          <button id='showMoreBtn' class='showMoreBtn is-medium is-ghost button'>더보기</button>
+        </td>
+      </tr>
+</tbody>`
     );
-    const $orderTbody = document.getElementById('orderTbody');
-    addOrderedItem(itemList, $orderTbody);
-    addCancelEvent($table);
+    const $showMoreRow = document.getElementById('showMoreRow');
+    addOrderedItem(itemList.slice(0, 20), $showMoreRow);
+    const $showMoreBtn = document.getElementById('showMoreBtn');
+    $showMoreBtn.addEventListener('click', () => {
+      let $tr = document.querySelectorAll('#tRowId');
+      console.log($tr.length, $tr.length + 20);
+      addOrderedItem(itemList.slice($tr.length, $tr.length + 20));
+    });
   }
-
-  showOrderPage();
-
-  function addOrderedItem(data, addAt) {
+  function addOrderedItem(data, addAt = document.getElementById('showMoreRow')) {
     data.forEach((e, i) => {
+      let $tr = document.querySelectorAll('#tRowId');
       const {prod_title, manufacturer, price, shortId, category} = e;
       addAt.insertAdjacentHTML(
-        'beforeend',
-        `<tr id="tRowId" data-rowid=${i + 1} align="center">
-                 <td>${i + 1}</td>
+        'beforebegin',
+        `<tr id="tRowId" class='tRowId' data-rowid=${$tr.length} align="center">
+                 <td>${$tr.length + 1}</td>
                  <th>${prod_title}</th>
                  <th>${manufacturer}</th>
                  <th>${price}원</th>
@@ -55,18 +63,6 @@ const showItemListModule = () => {
       );
     });
   }
-
-  function addCancelEvent($table) {
-    $table.addEventListener('click', cancelEvent);
-  }
-
-  function cancelEvent(e) {
-    let target = e.target;
-    if (e.target.id !== 'cancelBtn') return;
-    target.parentNode.remove();
-    // api delete
-    // alert 추가
-  }
+  showOrderPage();
 };
-
 export default showItemListModule;

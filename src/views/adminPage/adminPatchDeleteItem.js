@@ -13,6 +13,9 @@ const showPathDelItemModule = () => {
   const $shortIdInput = document.getElementById('shortIdInput');
   const $itemModifyBtn = document.getElementById('formModifyBtn');
   const $itemDeleteBtn = document.getElementById('formDeleteBtn');
+  const $category_3_value = document.getElementById('category_3_value');
+  const $fileUpload = document.getElementById('fileUpload');
+  const $uploadImageBtn = document.querySelector('.uploadImageBtn');
 
   $searchItemBtn.addEventListener('click', searchItem);
   async function searchItem() {
@@ -27,6 +30,7 @@ const showPathDelItemModule = () => {
     $imgInput.value = img;
     $category_1_value.innerText = category[0];
     $category_2_value.innerText = category[1];
+    $category_3_value.value = category[2];
     $descriptionInput.value = description;
     $manufacturerInput.value = manufacturer;
   }
@@ -37,11 +41,15 @@ const showPathDelItemModule = () => {
     const prod_title = $titleInput.value;
     const price = Number($priceInput.value);
     const img = $imgInput.value;
-    const category = [$category_1_value.innerText, $category_2_value.innerText];
+    const category = [$category_1_value.innerText, $category_2_value.innerText, $category_3_value.value];
     const manufacturer = $manufacturerInput.value;
     const description = $descriptionInput.value;
     try {
-      const data = {prod_title, price, img, category, manufacturer, description};
+      let imgData = new FormData();
+      imgData.append('image', $fileUpload.files[0]);
+      let uploadedImage = await Api.formPost('/api/product/upload', imgData);
+      let imageName = uploadedImage.result;
+      const data = {prod_title, price, img, category, manufacturer, description, imageName};
       await Api.patch('/api/product/update', $shortIdInput.value, data);
       alert('상품 수정이 완료되었습니다.');
       window.location.reload();
@@ -91,12 +99,15 @@ const showPathDelItemModule = () => {
         </div>
         <div class="field">
           <label class="label">이미지url</label>
-          <div class="control">
+          <div class="control input-container">
             <input class="input is-success" id="img" type="text" value="" />
+            <button type='button' class='button uploadImageBtn'>사진 업로드</button>
+            <input style='display:none' class='input' type='file' id='fileUpload' value='파일 선택'/>
           </div>
         </div>
         <div class="field">
           <label class="label">카테고리</label>
+          <div class='categoryField'>
           <div id="category_1" class="dropdown">
             <div class="dropdown-trigger">
             <button type="button" class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
@@ -140,9 +151,13 @@ const showPathDelItemModule = () => {
               <a class="dropdown-item">
                 통조림
               </a>
-              </div>
             </div>
           </div>
+          </div>
+          <div>
+            <input id="category_3_value"    class="input" type="text" value="" />
+          </div>
+         </div
         </div>
         <div class="field">
           <label class="label">제조사</label>
@@ -173,6 +188,14 @@ const showPathDelItemModule = () => {
       el.classList.toggle('is-active');
     })
   );
+
+  $uploadImageBtn.addEventListener('click', () => {
+    $fileUpload.click();
+  });
+
+  $fileUpload.addEventListener('change', () => {
+    $imgInput.value = $fileUpload.files[0].name;
+  });
 
   $category_1.addEventListener('click', pickCategory);
   $category_2.addEventListener('click', pickCategory);
