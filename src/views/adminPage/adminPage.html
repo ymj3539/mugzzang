@@ -13,9 +13,29 @@
     <!-- 커스텀 css, js -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="adminPage.css" />
+    <link rel="stylesheet" href="../header/header.css" />
+
     <script src="adminPage.js" type="module" defer></script>
+    <script src="../header/header.js" type="module" defer></script>
   </head>
   <body>
+    <header>
+      <section id="headerNav" class="headerNav">
+        <nav role="navigation" aria-label="main navigation">
+          <ul id="navbar" class="navbar"></ul>
+        </nav>
+        <div class="pageTop">
+          <a href="/" class="brand">
+            <img src="../elice-rabbit.png" />
+            <span id="title"><span class="subTitle">먹거리장터</span>먹짱</span>
+          </a>
+        </div>
+        <div class="category">
+          <button id="category1" class="catebtn">도매</button>
+          <button id="category2" class="catebtn">소매</button>
+        </div>
+      </section>
+    </header>
     <div class="adminPage_container">
       <aside class="menu menu_container">
         <p class="menu-label">Admin Menu</p>

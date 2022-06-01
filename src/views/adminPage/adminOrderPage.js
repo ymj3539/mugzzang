@@ -31,7 +31,7 @@ const showOrderedListModule = () => {
     </tr>
   </thead>
 <tbody id="orderTbody">
-</tbody`
+</tbody>`
     );
     const $orderTbody = document.getElementById('orderTbody');
     addOrderedItem(orderData, $orderTbody);
@@ -54,7 +54,8 @@ const showOrderedListModule = () => {
                  <th>${productCount}</th>
                  <th>${shortId}</th>
                  <th data-rowid=${i + 1} data-shortid=${shortId} id='cancelBtn'>X</th>
-            </tr>`
+            </tr>
+            `
       );
     });
   }
