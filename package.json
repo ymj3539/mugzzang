@@ -37,6 +37,7 @@
     "@schemas": "src/db/schemas",
     "@middlewares": "src/middlewares",
     "@services": "src/services",
-    "@asyncHandler": "src/utils/async-handler"
+    "@asyncHandler": "src/utils/async-handler",
+    "@error" : "src/error/errorCode"
   }
 }
