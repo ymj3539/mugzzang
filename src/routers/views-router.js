@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+
 const viewsRouter = express.Router();
 
 // 페이지별로 html, css, js 파일들을 라우팅함
@@ -13,8 +14,11 @@ viewsRouter.use('/itemInfo', serveStatic('itemInfo'));
 viewsRouter.use('/mypage', serveStatic('mypage'));
 viewsRouter.use('/mypage/security', serveStatic('security'));
 viewsRouter.use('/mypage/signout', serveStatic('signout'));
+viewsRouter.use('/mypage/orderlist', serveStatic('orderlist'));
 viewsRouter.use('/cart', serveStatic('cart'));
 viewsRouter.use('/adminPage', serveStatic('adminPage'));
+viewsRouter.use('/order', serveStatic('order'));
+viewsRouter.use('/header', serveStatic('header'));
 
 // views 폴더의 최상단 파일인 rabbit.png, api.js 등을 쓸 수 있게 함
 viewsRouter.use('/', serveStatic(''));

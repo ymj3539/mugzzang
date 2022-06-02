@@ -1,14 +1,19 @@
 # Dependencies
 node_modules
 yarn.lock
-<<<<<<< HEAD
 package-lock.json
+<<<<<<< HEAD
 =======
+<<<<<<< HEAD
+>>>>>>> F/category2
+
 .env
+
 
 
 <<<<<<< HEAD
-.env
 =======
->>>>>>> c889f4f8fbcbebb0902e82d278f198fd7f9acd1f
->>>>>>> 6efeb83406362042177e73f4a494df0cbca0d94d
+=======
+.env
+>>>>>>> 528c9c27ccb79c87deaac6976ea82ffac1870e0b
+>>>>>>> F/category2

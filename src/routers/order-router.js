@@ -6,7 +6,7 @@ import { orderService } from '@services';
 
 const orderRouter = Router();
 
-//주문 하기(결제버튼 누르면 post 되는 부분)
+//주문 등록(결제버튼 누르면 post 되는 부분)
 orderRouter.post('/', loginRequired, async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
@@ -23,7 +23,7 @@ orderRouter.post('/', loginRequired, async (req, res, next) => {
       priceTotal,
       delivery,
       productShortId,
-      orderId
+      orderId,
     } = req.body;
 
     const newOrder = await orderService.addOrder({
@@ -34,7 +34,7 @@ orderRouter.post('/', loginRequired, async (req, res, next) => {
       priceTotal,
       delivery,
       productShortId,
-      orderId
+      orderId,
     });
 
     res.status(200).json(newOrder);
@@ -56,7 +56,7 @@ orderRouter.get('/orderlist', loginRequired, async (req, res, next) => {
   }
 });
 
-//개별 주문 조회
+//개별 주문 조회(주문 번호로 조회)
 orderRouter.get(
   '/orderlist/:orderId',
   loginRequired,
@@ -75,6 +75,22 @@ orderRouter.get(
     }
   }
 );
+
+//개별 주문 조회(사용자 이메일로 조회)
+orderRouter.get('/:email', loginRequired, async (req, res, next) => {
+  try {
+    if (is.emptyObject(req.params)) {
+      throw new Error('조회하려는 email이 정확한지 확인해주세요.');
+    }
+    const { email } = req.params;
+
+    const order = await orderService.getOrderByEmail(email);
+
+    res.status(200).json(order);
+  } catch (error) {
+    next(error);
+  }
+});
 
 //주문 삭제
 orderRouter.delete(

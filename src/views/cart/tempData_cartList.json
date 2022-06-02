@@ -1,8 +1,0 @@
-[
-    {"token": "tempToken1"},
-    {"id":"tempId1"},
-    {"cart1": {"quantity":"1","id":"1"}},
-    {"cart2": {"quantity":"3","id":"2"}},
-    {"cart3": {"quantity":"1","id":"3"}},
-    {"cart4": {"quantity":"8","id":"4"}}
-]

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>먹짱ㅣ결제</title>
+    <!-- 아이콘 -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="30x30"
+      href="../home/images/icon.png"
+    />
+    <!-- bulma css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- noto sans 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <!-- 커스텀 css, js -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="order.css" />
+    <script src="order.js" type="module" defer></script>
+    <link rel="stylesheet" href="../header/header.css" />
+    <script src="../header/header.js" type="module" defer></script>
+    <!-- 다음 주소 api -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header>
+      <section id="headerNav">
+        <nav role="navigation" aria-label="main navigation">
+          <ul id="navbar" class="navbar"></ul>
+        </nav>
+      </section>
+    </header>
+    <!--메인-->
+    <main role="main">
+      <section class="orderTitle">
+        <div>배송 정보</div>
+      </section>
+      <!-- <button type="button" class="getMyAdd">+ 기본 배송지 불러오기</button> -->
+      <div class="orderContainer">
+        <section class="shippingInfo">
+          <form class="userInfo">
+            <div class="field">
+              <label class="label" for="nameInput">이름</label>
+              <input class="input" id="nameInput" type="text" />
+            </div>
+            <div class="field">
+              <label class="label" for="phonenumInput">전화번호</label>
+              <input
+                class="input"
+                id="phonenumInput"
+                type="number"
+                placeholder="-없이 입력해 주세요"
+              />
+            </div>
+            <div class="field">
+              <label class="label" for="postalNumber">주소</label>
+              <div class="addressInfo">
+                <input
+                  type="text"
+                  class="input"
+                  id="postalNumber"
+                  placeholder="우편번호"
+                  readonly
+                />
+                <input type="button" id="findAddress" value="주소찾기" />
+              </div>
+            </div>
+            <div class="field">
+              <input
+                type="text"
+                class="input"
+                id="addInput1"
+                placeholder="주소"
+                readonly
+              />
+            </div>
+            <div class="field">
+              <input
+                type="text"
+                class="input"
+                id="addInput2"
+                placeholder="상세주소"
+              />
+            </div>
+          </form>
+          <section class="PayInfo">
+            <div class="itemInfo"></div>
+            <div class="priceInfo"></div>
+          </section>
+        </section>
+        <button type="button" class="ordering">주문하기</button>
+      </div>
+    </main>
+  </body>
+</html>

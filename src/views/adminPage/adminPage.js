@@ -1,55 +1,87 @@
-import * as Api from '/api.js';
 import showOrderedListModule from './adminOrderPage.js';
 import showAddItemModule from './adminAddItem.js';
-import jwt from 'jsonwebtoken';
+import showPathDelItemModule from './adminPatchDeleteItem.js';
+import showItemListModule from './adminItemList.js';
+import * as Api from '/api.js';
 
-const $showOrderedListBtn = document.getElementById('showOrderedListBtn');
-const $showAddItemBtn = document.getElementById('showAddItemBtn');
+async function checkUserRole() {
+  try {
+    const check = await Api.get('/api/user/userlist', sessionStorage.getItem('id'));
+    // 일반 유저가 로그인한 상태에서 어드민 페이지 접속
+    if (check.role !== 'admin') {
+      alert('어드민 계정이 아닙니다.');
+      window.location.href('/');
+    }
+  } catch (err) {
+    if (err) {
+      // 로그인 안하고 바로 들어갔을 때.
+      alert('어드민 계정이 아닙니다.');
+      window.location.href = '/';
+    }
+  }
+}
+checkUserRole();
+// async function checkUserRole() {
+//   await fetch('apiUrl', {
+//     // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
+//     headers: {
+//       Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+//     },
+//   });
+// }
 
-$showAddItemBtn.addEventListener('click', () => {
+const $showOrderedListBtn = document.getElementById('showOrderedList');
+const $showItemListBtn = document.getElementById('showItemList');
+const $showAddItemBtn = document.getElementById('showAddItem');
+const $showPatchDelItemBtn = document.getElementById('showPatchDelItem');
+
+$showAddItemBtn.addEventListener('click', setSessionNowPage);
+$showOrderedListBtn.addEventListener('click', setSessionNowPage);
+$showPatchDelItemBtn.addEventListener('click', setSessionNowPage);
+$showItemListBtn.addEventListener('click', setSessionNowPage);
+
+const MODULES = {
+  showOrderedList: 'showOrderedList',
+  showAddItem: 'showAddItem',
+  showPatchDelItem: 'showPatchDelItem',
+  showItemList: 'showItemList',
+};
+
+function setSessionNowPage(e) {
+  const {showAddItem, showItemList, showPatchDelItem, showOrderedList} = MODULES;
+  let pageflag = e.target.id;
   if (sessionStorage.getItem('adminPagestate')) {
     sessionStorage.removeItem('adminPagestate'); // 다른 flag값이 있는 경우 삭제하고 다시 추가
-    sessionStorage.setItem('adminPagestate', 'addItem');
+    sessionStorage.setItem('adminPagestate', pageflag);
     return window.location.reload();
   }
-  sessionStorage.setItem('adminPagestate', 'addItem');
-  showAddItemModule();
-});
+  sessionStorage.setItem('adminPagestate', pageflag);
+  if (pageflag === showOrderedList) return showOrderedListModule();
+  else if (pageflag === showAddItem) return showAddItemModule();
+  else if (pageflag === showPatchDelItem) return showPathDelItemModule();
+  else if (pageflag === showItemList) return showItemListModule();
+}
 
-$showOrderedListBtn.addEventListener('click', () => {
-  // 같은 버튼 두 번 누를 경우, 새로고침
-  if (sessionStorage.getItem('adminPagestate')) {
-    sessionStorage.removeItem('adminPagestate');
-    sessionStorage.setItem('adminPagestate', 'orderedList');
-    return window.location.reload();
-  }
-  sessionStorage.setItem('adminPagestate', 'orderedList');
-  showOrderedListModule();
-});
+// css
+const $asideBtn = document.querySelectorAll('.menu_container button');
 
-//
-///
-//
-//
-//
-//
-//
-///
-//
-//
-//
-//
-//
+console.log($asideBtn);
+$asideBtn.forEach((e) => e.classList.add('is-white'));
 
 // 새로고침 되었을 때, sessionStorage에 flag변수에 맞게 목록 다시 띄우기
 window.onload = () => {
-  console.log();
   switch (sessionStorage.getItem('adminPagestate')) {
-    case 'orderedList':
+    case 'showOrderedList':
       showOrderedListModule();
       break;
-    case 'addItem':
+    case 'showAddItem':
       showAddItemModule();
+      break;
+    case 'showPatchDelItem':
+      showPathDelItemModule();
+      break;
+    case 'showItemList':
+      showItemListModule();
       break;
     default:
       break;
