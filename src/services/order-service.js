@@ -19,18 +19,24 @@ class OrderService {
 
   async getOrder(orderId) {
     const order = await this.orderModel.findById(orderId);
+    if (!order) {
+      throw new Error('order not found');
+    }
     return order;
   }
 
   async getOrderByEmail(email) {
     const order = await this.orderModel.findByEmail(email);
+    if (order.length == 0) {
+      throw new Error('order not found');
+    }
     return order;
   }
 
   async deleteOrder(orderId) {
     const order = await this.orderModel.findById(orderId);
     if (!order) {
-      throw new Error('주문 내역이 없습니다. 다시 한 번 확인해주세요.');
+      throw new Error('order not found');
     }
 
     await this.orderModel.delete(orderId);

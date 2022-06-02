@@ -11,7 +11,7 @@ const fs = require('fs');
 const productRouter = Router();
 
 // 전체 상품 조회
-productRouter.get('/list', loginRequired, async (req, res, next) => {
+productRouter.get('/list', async (req, res, next) => {
   try {
     const products = await productService.getProducts();
 
@@ -39,31 +39,36 @@ productRouter.get('/list/:shortId', async (req, res, next) => {
 });
 
 // 상품 등록(이미지)
-productRouter.post('/upload', async function (req, res, next) {
-  try {
-    const form = new formidable.IncomingForm();
-    form.parse(req, (err, fields, files) => {
-      if (err) {
-        next(err);
-        return;
-      }
-      console.log('files : ', files);
-      const file = files.image; // key를 image로 지정하고 파일을 보내줬기 때문에 files.image로 파일을 가져옴
-      const dir = `public`;
-      !fs.existsSync(dir) && fs.mkdirSync(dir);
-      const newPath = path.join(
-        __dirname,
-        '..',
-        `${dir}/${file.originalFilename}`
-      ); //__dirname : 현재경로 가져오기
-      fs.renameSync(file.filepath, newPath); //파일명 변경 : fs.renameSync(이전경로, 현재경로)
-      res.json({ result: `${file.originalFilename}` });
-    });
-  } catch (err) {
-    console.log('err : ', err);
-    next(err);
+productRouter.post(
+  '/upload',
+  loginRequired,
+  adminRequired,
+  async function (req, res, next) {
+    try {
+      const form = new formidable.IncomingForm();
+      form.parse(req, (err, fields, files) => {
+        if (err) {
+          next(err);
+          return;
+        }
+        console.log('files : ', files);
+        const file = files.image; // key를 image로 지정하고 파일을 보내줬기 때문에 files.image로 파일을 가져옴
+        const dir = `public`;
+        !fs.existsSync(dir) && fs.mkdirSync(dir);
+        const newPath = path.join(
+          __dirname,
+          '..',
+          `${dir}/${file.originalFilename}`
+        ); //__dirname : 현재경로 가져오기
+        fs.renameSync(file.filepath, newPath); //파일명 변경 : fs.renameSync(이전경로, 현재경로)
+        res.json({ result: `${file.originalFilename}` });
+      });
+    } catch (err) {
+      console.log('err : ', err);
+      next(err);
+    }
   }
-});
+);
 
 // 상품 등록
 productRouter.post(
