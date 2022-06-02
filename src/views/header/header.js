@@ -24,7 +24,6 @@ function loginUser() {
       "beforeend",
       `
         <li class="mainlogo"><a href="/"><span>쇼핑-n팀</span></a></li>
-        <li><a href="/itemlist">shop</a></li>
         <li><a href="/login">로그인</a></li>
         <li><a href="/register">회원가입</a></li>
         `
@@ -34,7 +33,6 @@ function loginUser() {
       "beforeend",
       `
         <li class="mainlogo"><a href="/"><span>먹짱-4팀</span></a></li>
-        <li><a href="/itemlist">shop</a></li>
         <li>
           <a href="/cart" aria-current="page">
             <span class="icon"> <i class="fas fa-cart-shopping"></i> </span
