@@ -45,6 +45,11 @@ async function sendDataToDb() {
   const deliveryInfo = { name: deliveryName, phoneNumber: deliveryPhone, address: deliveryAddFull };
   let sendSuccess = false;
 
+  //배송지 정보 유효성 검사
+  if (deliveryName === null || deliveryAdd === null || deliveryPhone === null || deliveryDeAdd === null || deliveryZipCode === null ) {
+    alert("배송지 정보를 입력해 주세요")
+  }
+
   //상품 하나에 대해 data를 생성
   for (let i = 0; i < items.length; i++ ) {
     const {title, quantity, price} = items[i];
