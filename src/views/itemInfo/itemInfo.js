@@ -24,7 +24,7 @@ async function createItemInfoElements() {
       <img
         id="itemInfo_img"
         class="itemInfo_img"
-        src=${'http://' + domain + '/static/' + img}
+        src='http://${domain}/static/${img}'
       />
     </picture>
     <article data-id=${shortId} id= "itemInfo_information" class="itemInfo_information">
@@ -95,5 +95,7 @@ function moveItemToCart(quantity, id, e) {
   }
   alert('장바구니에 추가되었습니다!');
 }
+
+// Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis a dolore, possimus consequuntur nemo consequatur cum? Eum, eligendi! Soluta voluptatum eveniet enim illum quam ut necessitatibus laboriosam vitae, veniam error, molestiae amet numquam suscipit quia esse eligendi exercitationem et, totam beatae voluptate rem sequi. Quibusdam similique pariatur eius consectetur tenetur!
 
 addquantityControlEvent();
