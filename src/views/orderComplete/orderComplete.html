@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>먹짱ㅣ결제</title>
+    <!-- 아이콘 -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/파비콘1.png" />
+    <!-- bulma css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/7630448495.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- noto sans 폰트 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 커스텀 css, js -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="orderComplete.css" />
+    <script src="orderComplete.js" type="module" defer></script>
+    <!-- 헤더 모듈 -->
+    <link rel="stylesheet" href="../header/header.css" />
+    <script src="../header/header.js" type="module" defer></script>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header>
+      <section id="headerNav">
+        <nav role="navigation" aria-label="main navigation">
+          <ul id="navbar" class="navbar"></ul>
+        </nav>
+      </section>
+    </header>
+    <!--메인-->
+    <main role="main">
+      <section class="complete">
+        <p class="completeMessage">주문이 완료되었습니다. 배송은 영업일 기준 2~7일 소요 예정입니다.</p>
+        <button type="button" class="orderList">주문 조회</button>
+      </section>
+    </main>
+  </body>
+</html>
