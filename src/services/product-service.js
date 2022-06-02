@@ -20,18 +20,7 @@ class ProductService {
 
     // 상품 등록
     async addProduct (productInfo) {
-        // const {prod_title, title_additional, price, img, category, description, manufacturer} = productInfo;
-
-        // const newProductInfo = {
-        //     prod_title : prod_title,
-        //     title_additional : title_additional,
-        //     price : price,
-        //     img : img,
-        //     category : category,
-        //     description : description,
-        //     manufacturer : manufacturer
-        // }
-
+        
         const product = await this.productModel.create(productInfo);
 
         return product;

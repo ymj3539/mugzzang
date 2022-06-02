@@ -1,10 +1,9 @@
 import {body, validationResult} from 'express-validator';
-import { userService } from '@services';
 import 'module-alias/register';
 import { userModel } from '@db';
 
 
-//유효성 에러 검사
+//유효성 에러 검사 함수
 const validate = (req,res,next) => {
 
     const errors = validationResult(req);
@@ -14,19 +13,20 @@ const validate = (req,res,next) => {
     return next();
 };
 
-// 프론트에서 걸러진 로그인 정보 백단에서 유효성 검사
+// 프론트에서 걸러진 로그인 정보 백단에서 유효성 재검사
 export const validateLogin = [
     body('email')
     .trim()
     .isEmail()
     .normalizeEmail()
     .notEmpty()
-    .withMessage('invalid value'),
+    .withMessage('Invalid email'),
        
      validate
 ];
 
-// 회원가입 이메일, 비밀번호 최대길이 유효성 검사
+// 회원가입시 이메일, 비밀번호 최대길이 유효성 검사 
+// 참고)프론트에서 비밀번호 최소 길이 유효성 검사
 export const validateSignup = [
     
     body('email')
@@ -34,7 +34,7 @@ export const validateSignup = [
     .isEmail()
     .normalizeEmail()
     .notEmpty()
-    .withMessage('invalid email')
+    .withMessage('Invalid email')
     .custom(value => {
         return userModel
                 .findByEmail(value)
