@@ -21,14 +21,6 @@ async function checkUserRole() {
   }
 }
 checkUserRole();
-// async function checkUserRole() {
-//   await fetch('apiUrl', {
-//     // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
-//     headers: {
-//       Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-//     },
-//   });
-// }
 
 const $showOrderedListBtn = document.getElementById('showOrderedList');
 const $showItemListBtn = document.getElementById('showItemList');
