@@ -150,14 +150,6 @@ const showAddItemModule = () => {
     })
   );
 
-  $uploadImageBtn.addEventListener('click', () => {
-    $fileUpload.click();
-  });
-
-  $fileUpload.addEventListener('change', () => {
-    $imgInput.value = $fileUpload.files[0].name;
-  });
-
   $category_1.addEventListener('click', pickCategory);
   $category_2.addEventListener('click', pickCategory);
 
@@ -171,5 +163,13 @@ const showAddItemModule = () => {
       return ($category_2_value.textContent = e.target.textContent);
     }
   }
+
+  // 사진 업로드 이벤트 (버튼 클릭 시 > 인풋 click이벤트 발생)
+  $uploadImageBtn.addEventListener('click', () => {
+    $fileUpload.click();
+  });
+  $fileUpload.addEventListener('change', () => {
+    $imgInput.value = $fileUpload.files[0].name;
+  });
 };
 export default showAddItemModule;
