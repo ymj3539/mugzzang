@@ -34,6 +34,8 @@ async function mypageInfo() {
   <div class="orderlist-standard">
       <span>${el.createdAt.substr(0, 10)}</span>
       <span>${el.productName}</span>
+      <span>${el.productCount}</span>
+      <span>${el.priceEach}</span>
       <span>상품 준비중</span>
       <span><button id='delBtn' data-shortid=${
         el.shortId
