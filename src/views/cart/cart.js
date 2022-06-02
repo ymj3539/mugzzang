@@ -3,6 +3,7 @@ import * as Api from '/api.js';
 const $cartList = document.querySelector('.cartList');
 const $cartContainer = document.getElementById('cartContainer');
 const $payInfo = document.querySelector('.payInfo');
+const domain = window.location.host;
 let totalItemPrice;
 let totalItemQuantity = 0;
 let totalPrice = 0;
@@ -33,11 +34,11 @@ async function getItemInfo(productId) {
   }
 }
 
-//장바구니 안 제품의 상세정보 불러오기 
+//장바구니 안 제품의 상세정보 불러오기
 async function getItemInfos() {
   const cartList = await getCartList();
   const incartList = [];
-  for(let item of cartList){
+  for (let item of cartList) {
     const {id, quantity} = item;
     const res = await getItemInfo(id);
     incartList.push({img: res.img, title: res.prod_title, price: res.price, quantity: quantity, shortId: res.shortId});
@@ -49,7 +50,7 @@ async function createCartElements() {
   const incartList = await getItemInfos();
 
   if (incartList.length < 1) {
-    $cartList.insertAdjacentHTML('beforeEnd', `<p class="empty">장바구니가 비었습니다 😕</p>`)
+    $cartList.insertAdjacentHTML('beforeEnd', `<p class="empty">장바구니가 비었습니다 😕</p>`);
     $payInfo.insertAdjacentHTML(
       'beforeend',
       `
@@ -57,10 +58,10 @@ async function createCartElements() {
       <div class="shipping">배송비 0원</div>
       <hr>
       <div class="total">총 0원</div>
-      ` 
+      `
     );
     return;
-  };
+  }
 
   //장바구니 목록을 돌면서 화면에 렌더링
   incartList.forEach((cart, i) => {
@@ -80,7 +81,7 @@ async function createCartElements() {
             <input type="checkbox" class="checkbox" name="buy" value="${i}">
           </label>
           <a href="#" class="itemInfo">
-            <img src="${img}"/>
+            <img src='${'http://' + domain + '/static/' + img}'/>
           </a>
           <span style="display:none" class="shortId">${shortId}</span>
           <a href="#" class="itemInfo title">
@@ -104,9 +105,9 @@ async function createCartElements() {
     <div class="shipping">배송비 ${addCommas(delivery)}원</div>
     <hr>
     <div class="total">총 ${addCommas(total)}원</div>
-    ` 
+    `
   );
-  
+
   return document;
 }
 
@@ -126,16 +127,16 @@ async function controlQuantityBox() {
     let $quantityInput;
     let $totalItemPrice;
     let $eachPrice;
-    $quantityInputs.forEach(elem => {
-      if(elem.dataset.quantity === quantity) $quantityInput = elem
+    $quantityInputs.forEach((elem) => {
+      if (elem.dataset.quantity === quantity) $quantityInput = elem;
     });
-    $totalItemPrices.forEach(elem => {
-      if(elem.dataset.calcprice === quantity) $totalItemPrice = elem
+    $totalItemPrices.forEach((elem) => {
+      if (elem.dataset.calcprice === quantity) $totalItemPrice = elem;
     });
-    $eachPrices.forEach(elem => {
-      if(elem.dataset.priceid === quantity) $eachPrice = elem
+    $eachPrices.forEach((elem) => {
+      if (elem.dataset.priceid === quantity) $eachPrice = elem;
     });
-    if (e.target.id === 'quantityUp') { 
+    if (e.target.id === 'quantityUp') {
       $quantityInput.value = Number($quantityInput.value) + 1;
     } else if (e.target.id === 'quantityDown' && $quantityInput.value > 1) {
       $quantityInput.value = Number($quantityInput.value) + -1;
@@ -153,17 +154,17 @@ function calcTotalPrice($totalItemPrices) {
   const totalEl = document.querySelector('.total');
   const totalPriceEl = document.querySelector('.totalPrice');
 
-  $totalItemPrices.forEach(elem => (totalPrice += Number(convertToNumber(elem.textContent))));
-  
+  $totalItemPrices.forEach((elem) => (totalPrice += Number(convertToNumber(elem.textContent))));
+
   totalPriceEl.textContent = `상품 금액 ${addCommas(totalPrice)}원`;
-  
-  if(totalPrice === 0) {
-    $cartList.insertAdjacentHTML('beforeEnd', `<p class="empty">장바구니가 비었습니다 😕</p>`)
+
+  if (totalPrice === 0) {
+    $cartList.insertAdjacentHTML('beforeEnd', `<p class="empty">장바구니가 비었습니다 😕</p>`);
     document.getElementsByClassName('shipping')[0].innerHTML = '배송비 0원';
     totalEl.textContent = `총 0원`;
   } else {
     totalEl.textContent = `총 ${addCommas(totalPrice + delivery)}원`;
-  }  
+  }
 }
 
 //선택삭제 및 전체삭제 버튼
@@ -181,12 +182,12 @@ async function deleteItem() {
     } else if (className === 'deleteSom') {
       const checkedBtns = document.querySelectorAll("input[name='buy']:checked");
 
-      checkedBtns.forEach(btn => {
+      checkedBtns.forEach((btn) => {
         document.getElementById(`item_${btn.value}`).remove();
       });
     } else if (className === 'trash') {
-        const {checkbox} = e.target.dataset;
-        document.getElementById(`item_${checkbox}`).remove();
+      const {checkbox} = e.target.dataset;
+      document.getElementById(`item_${checkbox}`).remove();
     }
     const $totalPrice = document.querySelectorAll('.totalItemPrice');
     calcTotalPrice($totalPrice);
@@ -196,27 +197,27 @@ async function deleteItem() {
 //세션스토리지에 넣어서 결제 페이지로 전송
 async function moveToOrderPage() {
   await deleteItem();
-  document.getElementById('ordering').addEventListener('click', e => {
+  document.getElementById('ordering').addEventListener('click', (e) => {
     const shortId = document.getElementsByClassName('shortId');
     const title = document.getElementsByClassName('title');
     const quantity = document.getElementsByClassName('input');
     const price = document.getElementsByClassName('eachPrice');
     const $empty = document.querySelector('.empty');
 
-    if($empty.innerText === '장바구니가 비었습니다 😕') {
-      alert("주문하려면 상품을 담아주세요😉");
+    if ($empty.innerText === '장바구니가 비었습니다 😕') {
+      alert('주문하려면 상품을 담아주세요😉');
       return;
-    } 
+    }
 
     const orderSession = Object.keys(sessionStorage).filter((e) => e.slice(0, 5) === 'order');
- 
-    if(orderSession !== []) {
-      orderSession.forEach(el => {
-        sessionStorage.removeItem(el);
-      })
-    };
 
-    for(let i = 0; i < shortId.length; i++) {
+    if (orderSession !== []) {
+      orderSession.forEach((el) => {
+        sessionStorage.removeItem(el);
+      });
+    }
+
+    for (let i = 0; i < shortId.length; i++) {
       const id = shortId[i].innerText;
       const item = {title: title[i].innerText, quantity: quantity[i].value, price: price[i].innerText};
 
@@ -224,8 +225,8 @@ async function moveToOrderPage() {
     }
     sessionStorage.setItem(`itemPrice`, JSON.stringify(totalPrice));
     sessionStorage.setItem(`delivery`, JSON.stringify(delivery));
-    
-    location.href='/order';
-  })
+
+    location.href = '/order';
+  });
 }
 moveToOrderPage();
