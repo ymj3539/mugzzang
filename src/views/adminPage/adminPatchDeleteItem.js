@@ -35,9 +35,40 @@ const showPathDelItemModule = () => {
     $manufacturerInput.value = manufacturer;
   }
 
+  function checkInput() {
+    if (!$titleInput.value) {
+      alert('빈칸을 모두 채워주세요');
+      return false;
+    }
+    if (!$priceInput.value) {
+      alert('빈칸을 모두 채워주세요');
+      return false;
+    }
+    if ($category_1_value.innerText === '대분류') {
+      alert('카테고리를 선택해주세요');
+      return false;
+    }
+    if ($category_2_value.innerText === '중분류') {
+      alert('카테고리를 선택해주세요');
+      return false;
+    }
+    if (!$manufacturerInput.value) {
+      alert('빈칸을 모두 채워주세요');
+      return false;
+    }
+    if (!$descriptionInput) {
+      alert('빈칸을 모두 채워주세요');
+      return false;
+    }
+    return true;
+  }
+
   $itemModifyBtn.addEventListener('click', modifyItem);
   async function modifyItem(e) {
     e.preventDefault();
+    if (!checkInput()) {
+      return;
+    }
     const prod_title = $titleInput.value;
     const price = Number($priceInput.value);
     const img = $imgInput.value;
