@@ -3,6 +3,7 @@ import { userModel } from '@db';
 
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { CustomError } from '@error';
 
 class UserService {
   // 본 파일의 맨 아래에서, new UserService(userModel) 하면, 이 함수의 인자로 전달됨
@@ -18,8 +19,9 @@ class UserService {
     // 이메일 중복 확인
     const user = await this.userModel.findByEmail(email);
     if (user) {
-      throw new Error(
-        '이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.'
+      throw new CustomError(
+        400,
+        `이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.`
       );
     }
 
@@ -36,39 +38,20 @@ class UserService {
     return createdNewUser;
   }
 
-  // admin 가입
-  async addAdmin(userInfo) {
-    const { email, password } = userInfo;
-
-    // const role = 
-
-    const user = await this.userModel.findByEmail(email);
-
-    if (user) {
-      throw new Error(
-        `이 이메일은 현재 사용중입니다. 다른 이메일을 사용하세요`
-      );
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newAdminInfo = { fullName, email, password: hashedPassword, role };
-
-    //db 저장
-    const createdNewAdmin = await this.userModel.create(newAdminInfo);
-
-    return createdNewAdmin;
-  }
-
   // 로그인
   async getUserToken(loginInfo) {
     // 객체 destructuring
     const { email, password } = loginInfo;
 
     // 우선 해당 이메일의 사용자 정보가  db에 존재하는지 확인
+    // const user = await this.userModel.findByEmail(email);
+    // if (!user) {
+    //   throw new Error('user not found');
+    // }
     const user = await this.userModel.findByEmail(email);
     if (!user) {
-      throw new Error(
+      throw new CustomError(
+        400,
         '해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.'
       );
     }
@@ -85,7 +68,8 @@ class UserService {
     );
 
     if (!isPasswordCorrect) {
-      throw new Error(
+      throw new CustomError(
+        400,
         '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.'
       );
     }
@@ -99,19 +83,21 @@ class UserService {
     return { token };
   }
 
-
-  
   // 사용자 목록을 받음.
   async getUsers() {
     const users = await this.userModel.findAll();
+    if (!users) {
+      throw new Error('해당 사용자 목록을 찾을 수 없습니다.');
+    }
     return users;
   }
 
   // 개별 사용자 목록 받음 - 회원정보 수정 페이지용
   async getUser(useremail) {
-    // const user = await this.userModel.findUser(username);
     const user = await this.userModel.findByEmail(useremail);
-    console.log('user from service: ', user);
+    if (!user) {
+      throw new CustomError(400, '해당 사용자를 찾을 수 없습니다.');
+    }
     return user;
   }
 
@@ -125,7 +111,7 @@ class UserService {
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
-      throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
+      throw new CustomError(400, '해당 사용자를 찾을 수 없습니다.');
     }
 
     // 이제, 정보 수정을 위해 사용자가 입력한 비밀번호가 올바른 값인지 확인해야 함
@@ -138,8 +124,9 @@ class UserService {
     );
 
     if (!isPasswordCorrect) {
-      throw new Error(
-        '현재 비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.'
+      throw new CustomError(
+        400,
+        '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.'
       );
     }
 
@@ -172,7 +159,10 @@ class UserService {
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
-      throw new Error('가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
+      throw new CustomError(
+        400,
+        '해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.'
+      );
     }
 
     // 비밀번호 일치 여부 확인
@@ -185,7 +175,8 @@ class UserService {
     );
 
     if (!isPasswordCorrect) {
-      throw new Error(
+      throw new CustomError(
+        400,
         '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.'
       );
     }
