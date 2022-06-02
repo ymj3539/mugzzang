@@ -11,10 +11,8 @@ const submitButton = document.querySelector("#submitButton");
 addAllElements();
 addAllEvents();
 
-// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 async function addAllElements() {}
 
-// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   submitButton.addEventListener("click", handleSubmit);
 }
@@ -32,10 +30,13 @@ async function handleSubmit(e) {
   const isFullNameValid = fullName.length >= 2;
   const isEmailValid = validateEmail(email);
   const isPasswordValid = password.length >= 4;
+  const isPasswordValidlength = password.length <= 10;
   const isPasswordSame = password === passwordConfirm;
 
-  if (!isFullNameValid || !isPasswordValid) {
-    return alert("이름은 2글자 이상, 비밀번호는 4글자 이상이어야 합니다.");
+  if (!isFullNameValid || !isPasswordValid || !isPasswordValidlength) {
+    return alert(
+      "이름은 2글자 이상, 비밀번호는 4글자 이상 10글자 이하이어야 합니다."
+    );
   }
 
   if (!isEmailValid) {
