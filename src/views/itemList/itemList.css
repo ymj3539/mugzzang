@@ -1,5 +1,5 @@
 body {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: bold;
 }
 
@@ -36,6 +36,8 @@ body {
 }
 
 .itemlist img {
+  width: 360px;
+  height: 360px;
   transition: 0.1s all linear;
 }
 
