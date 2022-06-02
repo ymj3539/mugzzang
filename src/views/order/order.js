@@ -7,7 +7,7 @@ const $itemInfo = document.querySelector('.itemInfo');
 const $priceInfo = document.querySelector('.priceInfo');
 const $orderBtn = document.querySelector('.ordering');
 const $findAddressBtn = document.querySelector("#findAddress");
-const $getMyAddBtn = document.querySelector(".getMyAdd");
+// const $getMyAddBtn = document.querySelector(".getMyAdd");
 
 const userEmail = sessionStorage.getItem('id');
 const token = sessionStorage.getItem('token');
@@ -46,8 +46,10 @@ async function sendDataToDb() {
   let sendSuccess = false;
 
   //배송지 정보 유효성 검사
+  console.log(deliveryName);
   if (deliveryName === null || deliveryAdd === null || deliveryPhone === null || deliveryDeAdd === null || deliveryZipCode === null ) {
     alert("배송지 정보를 입력해 주세요")
+    return;
   }
 
   //상품 하나에 대해 data를 생성
@@ -74,7 +76,7 @@ async function sendDataToDb() {
     sessionStorage.setItem('id', userEmail);
     sessionStorage.setItem('token', token);
     alert('주문이 완료되었습니다. 메인 페이지로 돌아갑니다.');
-    location.href = '../home/home.html';
+    // location.href = '../home/home.html';
   } else {
     alert('오류 발생. 다시 시도해 주세요.');
   }
