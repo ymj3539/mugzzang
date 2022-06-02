@@ -34,7 +34,7 @@ async function post(endpoint, data) {
   const res = await fetch(apiUrl, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     },
     body: bodyData,
