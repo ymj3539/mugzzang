@@ -11,21 +11,22 @@ import formidable from 'formidable';
 import path from 'path';
 import fs from 'fs';
 
-
 const productRouter = Router();
 
 // 전체 상품 조회
-productRouter.get('/list', loginRequired, asyncHandler(async (req, res, next) => {
- 
-  const products = await productService.getProducts();
+productRouter.get(
+  '/list',
+  asyncHandler(async (req, res, next) => {
+    const products = await productService.getProducts();
 
     res.status(200).json(products);
- 
-}));
+  })
+);
 
 // 개별상품조회
-productRouter.get('/list/:shortId', asyncHandler( async (req, res, next) => {
- 
+productRouter.get(
+  '/list/:shortId',
+  asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.params)) {
       throw new Error(
         '조회하려는 상품을 찾을 수 없습니다. 상품id를 확인해주세요.'
@@ -35,19 +36,22 @@ productRouter.get('/list/:shortId', asyncHandler( async (req, res, next) => {
     const { shortId } = req.params;
     const product = await productService.getProduct(shortId);
     res.status(200).json(product);
-  
-}));
+  })
+);
 
 // 상품 등록(이미지)
-productRouter.post('/upload', asyncHandler(async function (req, res, next) {
-  
+productRouter.post(
+  '/upload',
+  loginRequired,
+  adminRequired,
+  asyncHandler(async function (req, res, next) {
     const form = new formidable.IncomingForm();
     form.parse(req, (err, fields, files) => {
       if (err) {
         next(err);
         return;
       }
-     
+
       const file = files.image; // key를 image로 지정하고 파일을 보내줬기 때문에 files.image로 파일을 가져옴
       const dir = `public`;
       !fs.existsSync(dir) && fs.mkdirSync(dir);
@@ -59,8 +63,8 @@ productRouter.post('/upload', asyncHandler(async function (req, res, next) {
       fs.renameSync(file.filepath, newPath); //파일명 변경 : fs.renameSync(이전경로, 현재경로)
       res.json({ result: `${file.originalFilename}` });
     });
-  
-}));
+  })
+);
 
 // 상품 등록
 productRouter.post(
@@ -68,36 +72,34 @@ productRouter.post(
   loginRequired,
   adminRequired,
   asyncHandler(async (req, res, next) => {
-   
-      if (is.emptyObject(req.body)) {
-        throw new Error(
-          `headers의 Content-Type을 application/json으로 설정해주세요`
-        );
-      }
-      const {
-        prod_title,
-        title_additional,
-        price,
-        img,
-        category,
-        description,
-        manufacturer,
-      } = req.body;
+    if (is.emptyObject(req.body)) {
+      throw new Error(
+        `headers의 Content-Type을 application/json으로 설정해주세요`
+      );
+    }
+    const {
+      prod_title,
+      title_additional,
+      price,
+      img,
+      category,
+      description,
+      manufacturer,
+    } = req.body;
 
-      const newProduct = await productService.addProduct({
-        prod_title,
-        title_additional,
-        price,
-        img,
-        category,
-        description,
-        manufacturer,
-      });
+    const newProduct = await productService.addProduct({
+      prod_title,
+      title_additional,
+      price,
+      img,
+      category,
+      description,
+      manufacturer,
+    });
 
-      res.status(200).json(newProduct);
-   
-  }
-));
+    res.status(200).json(newProduct);
+  })
+);
 
 // 상품 정보 수정
 productRouter.patch(
@@ -105,58 +107,54 @@ productRouter.patch(
   loginRequired,
   adminRequired,
   asyncHandler(async (req, res, next) => {
-         if (is.emptyObject(req.body)) {
-        throw new Error(
-          'headers의 Content-Type을 application/json으로 설정해주세요'
-        );
-      }
-
-      const productId = req.params.productId;
-      const {
-        prod_title,
-        title_additional,
-        price,
-        img,
-        category,
-        description,
-        manufacturer,
-        inStock,
-      } = req.body;
-
-      const toUpdate = {
-        ...(prod_title && { prod_title }),
-        ...(title_additional && { title_additional }),
-        ...(price && { price }),
-        ...(img && { img }),
-        ...(category && { category }),
-        ...(description && { description }),
-        ...(manufacturer && { manufacturer }),
-        ...(inStock && { inStock }),
-      };
-
-      const updatedProduct = await productService.updateProduct(
-        productId,
-        toUpdate
+    if (is.emptyObject(req.body)) {
+      throw new Error(
+        'headers의 Content-Type을 application/json으로 설정해주세요'
       );
+    }
 
-      res.status(201).json(updatedProduct);
-    
-  }
-));
+    const productId = req.params.productId;
+    const {
+      prod_title,
+      title_additional,
+      price,
+      img,
+      category,
+      description,
+      manufacturer,
+      inStock,
+    } = req.body;
+
+    const toUpdate = {
+      ...(prod_title && { prod_title }),
+      ...(title_additional && { title_additional }),
+      ...(price && { price }),
+      ...(img && { img }),
+      ...(category && { category }),
+      ...(description && { description }),
+      ...(manufacturer && { manufacturer }),
+      ...(inStock && { inStock }),
+    };
+
+    const updatedProduct = await productService.updateProduct(
+      productId,
+      toUpdate
+    );
+
+    res.status(201).json(updatedProduct);
+  })
+);
 
 // 상품 삭제("productId에 shortId가 들어가야됨")
 productRouter.delete(
   '/delete/:productId',
   loginRequired,
+  adminRequired,
   asyncHandler(async (req, res, next) => {
-   
-      const { productId } = req.params;
-      await productService.deleteProduct(productId);
-      res.status(200).json({ message: '상품이 삭제되었습니다' });
-   
-  }
-));
-
-
+    const { productId } = req.params;
+    await productService.deleteProduct(productId);
+    res.status(200).json({ message: '상품이 삭제되었습니다' });
+  })
+);
 
 export { productRouter };
