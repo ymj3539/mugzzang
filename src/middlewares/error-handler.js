@@ -1,3 +1,6 @@
+import 'module-alias/register';
+import { errorCode } from '@error';
+
 // 에러 미들웨어는 항상 (설령 안 쓰더라도)
 // error~next의 4개 인자를 설정해 주어야 함.
 function errorHandler(error, req, res, next) {
