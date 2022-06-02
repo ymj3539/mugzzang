@@ -45,10 +45,13 @@ const showPathDelItemModule = () => {
     const manufacturer = $manufacturerInput.value;
     const description = $descriptionInput.value;
     try {
-      let imgData = new FormData();
-      imgData.append('image', $fileUpload.files[0]);
-      let uploadedImage = await Api.formPost('/api/product/upload', imgData);
-      let imageName = uploadedImage.result;
+      let imageName = $imgInput.value;
+      if ($fileUpload.files[0]) {
+        let imgData = new FormData();
+        imgData.append('image', $fileUpload.files[0]);
+        let uploadedImage = await Api.formPost('/api/product/upload', imgData);
+        imageName = uploadedImage.result;
+      }
       const data = {prod_title, price, img, category, manufacturer, description, imageName};
       await Api.patch('/api/product/update', $shortIdInput.value, data);
       alert('상품 수정이 완료되었습니다.');
