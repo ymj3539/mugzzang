@@ -30,10 +30,6 @@ body {
   font-weight: bold;
 }
 
-/* .register-user-form-box .input:focus {
-  border-color: #e9efc0;
-  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
-} */
 .button.is-primary.is-fullwidth {
   background-color: #83bd75;
 }
