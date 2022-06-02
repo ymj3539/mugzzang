@@ -21,20 +21,12 @@ export const validateLogin = [
     .isEmail()
     .normalizeEmail()
     .notEmpty()
-    .withMessage('invalid value')
-    .custom(value => {
-
-        const errors = validationResult(value);
-        if(!errors.isEmpty()){
-            return res.status(400).json({messasge : "Please check the content type in headers"})};
-    
-        return next();
-    }),
-   
-    //  validate
+    .withMessage('invalid value'),
+       
+     validate
 ];
 
-// 회원가입 이메일 유효성 검사
+// 회원가입 이메일, 비밀번호 최대길이 유효성 검사
 export const validateSignup = [
     
     body('email')
@@ -52,6 +44,10 @@ export const validateSignup = [
                     }
                 })
     }),
+
+    body('password')
+    .isLength({max:10})
+    .withMessage('Password is too long. Make its length less than 10'),
 
     validate
     

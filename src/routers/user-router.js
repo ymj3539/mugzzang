@@ -12,7 +12,7 @@ import { errorCode } from '@error';
 const userRouter = Router();
 
 // 회원가입 api (아래는 /register이지만, 실제로는 /api/user/register로 요청해야 함.)
-userRouter.post('/register', asyncHandler(async (req, res, next) => {
+userRouter.post('/register', validateSignup, asyncHandler(async (req, res, next) => {
  
     // Content-Type: application/json 설정을 안 한 경우, 에러를 만들도록 함.
     // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
@@ -69,7 +69,7 @@ userRouter.post('/register/admin', async (req, res, next) => {
 });
 
 // 로그인 api (아래는 /login 이지만, 실제로는 /api/user/login로 요청해야 함.)
-userRouter.post('/login',  async function (req, res, next) {
+userRouter.post('/login', validateLogin, async function (req, res, next) {
   try {
     // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
     console.log("from userRouter : req.headers - ",req.headers['content-type']);
