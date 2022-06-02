@@ -7,7 +7,7 @@ const Product = model('product', ProductSchema);
 
 export class ProductModel {
   async findById(shortId) {
-    const product = await Product.findOne({ shortId: shortId }).exec();
+    const product = await Product.findOne({shortId: shortId}).exec();
     return product;
   }
 
@@ -21,20 +21,20 @@ export class ProductModel {
     return products;
   }
 
-  async update({ productId, update }) {
-    const filter = { shortId: productId };
-    const option = { returnOriginal: false };
+  async update({productId, update}) {
+    const filter = {shortId: productId};
+    const option = {returnOriginal: false};
 
     const updatedProduct = await Product.updateMany(filter, update, option);
     return updatedProduct;
   }
 
   async delete(productId) {
-    await Product.findOneAndDelete({ shortId: productId });
+    await Product.findOneAndDelete({shortId: productId});
     return;
   }
 }
 
 const productModel = new ProductModel();
 
-export { productModel };
+export {productModel};

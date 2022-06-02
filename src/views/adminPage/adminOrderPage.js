@@ -1,70 +1,76 @@
-const $adminPage_content = document.querySelector('#adminPage_content');
-const tempData = [
-  {
-    date: '2022-02-22',
-    name: '이솝 핸드크림',
-    price: '20,000',
-    quantity: '4',
-    shortId: 'x26ybshhd',
-    button: 'X',
-  },
-];
+import * as Api from '/api.js';
 
-showOrderPage();
+const showOrderedListModule = () => {
+  const $adminPage_content = document.querySelector('#adminPage_content');
 
-function showOrderPage() {
-  const $table = document.createElement('table');
-  const $caption = document.createElement('caption');
-  $table.className = 'orderTable';
-  $caption.textContent = '주문 조회';
-  $adminPage_content.appendChild($table);
-  $table.appendChild($caption);
-  $table.insertAdjacentHTML(
-    'beforeEnd',
-    `<thead>
-  <tr align="center">
-    <td></td>
-    <th>결제 일자</th>
-    <th>상품명</th>
-    <th>가격</th>
-    <th>수량</th>
-    <th>결제아이디</th>
-    <th>주문 취소</th>
-  </tr>
-</thead>`
-  );
-  addOrderedItem(tempData, $table);
-  addCancelEvent($table);
-}
+  async function getData() {
+    const orderData = await Api.get('/api/order/orderlist');
+    return orderData;
+  }
 
-function addOrderedItem(data, addAt) {
-  data.forEach((e, i) => {
-    addAt.insertAdjacentHTML(
-      'beforeend',
-      `
-        <tbody>
-            <tr align="center">
-                 <td>${i + 1}</td>
-                 <th>${e.date}</th>
-                 <th>${e.name}</th>
-                 <th>${e.price}원</th>
-                 <th>${e.quantity}</th>
-                 <th>${e.shortId}</th>
-                 <th id='cancelBtn'>X</th>
-            </tr>
-         </tbody>`
+  async function showOrderPage() {
+    const orderData = await getData();
+    const $table = document.createElement('table');
+    const $caption = document.createElement('caption');
+    $table.className = 'table';
+    $caption.textContent = '주문 조회';
+    $adminPage_content.appendChild($table);
+    $table.appendChild($caption);
+    $table.insertAdjacentHTML(
+      'beforeEnd',
+      `<thead class='thead'>
+    <tr class='is-selected'>
+     <td>No.</td>
+     <th>결제 일자</th>
+     <th>유저 아이디</th>
+     <th>상품명</th>
+     <th>가격</th>
+     <th>수량</th>
+     <th>결제번호</th>
+     <th>주문 취소</th>
+    </tr>
+  </thead>
+<tbody id="orderTbody">
+</tbody>`
     );
-  });
-}
+    const $orderTbody = document.getElementById('orderTbody');
+    addOrderedItem(orderData, $orderTbody);
+    addCancelEvent($table);
+  }
 
-function addCancelEvent($table) {
-  const $cancelBtn = $table.querySelector('#cancelBtn');
-  $cancelBtn.addEventListener('click', cancelEvent);
-}
+  showOrderPage();
 
-function cancelEvent(e) {
-  console.log(e.target);
-  // api delete
-  // node 삭제 추가 필요
-  // alert
-}
+  function addOrderedItem(data, addAt) {
+    data.forEach((e, i) => {
+      const {email, productName, productCount, shortId, priceEach, createdAt} = e;
+      addAt.insertAdjacentHTML(
+        'beforeend',
+        `<tr id="tRowId" data-rowid=${i + 1} align="center">
+                 <td>${i + 1}</td>
+                 <th>${createdAt.slice(0, 10)}</th>
+                 <th>${email}</th>
+                 <th>${productName}</th>
+                 <th>${priceEach}원</th>
+                 <th>${productCount}</th>
+                 <th>${shortId}</th>
+                 <th data-rowid=${i + 1} data-shortid=${shortId} id='cancelBtn'>X</th>
+            </tr>
+            `
+      );
+    });
+  }
+
+  function addCancelEvent($table) {
+    $table.addEventListener('click', cancelEvent);
+  }
+
+  async function cancelEvent(e) {
+    let target = e.target;
+    if (e.target.id !== 'cancelBtn') return;
+    await Api.delete('/api/order/orderlist', target.dataset.shortid);
+    target.parentNode.remove();
+    alert('주문이 취소되었습니다.');
+  }
+};
+
+export default showOrderedListModule;
