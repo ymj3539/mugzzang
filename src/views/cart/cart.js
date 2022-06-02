@@ -204,7 +204,7 @@ async function moveToOrderPage() {
     const price = document.getElementsByClassName('eachPrice');
     const $empty = document.querySelector('.empty');
 
-    if ($empty.innerText === '장바구니가 비었습니다 😕') {
+    if ($empty !== null) {
       alert('주문하려면 상품을 담아주세요😉');
       return;
     }
