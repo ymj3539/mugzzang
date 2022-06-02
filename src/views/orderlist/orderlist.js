@@ -2,18 +2,12 @@ import * as Api from "/api.js";
 
 // 요소(element), input 혹은 상수
 const orderlistContainer = document.getElementById("orderlist-container");
-// const orderInfo = document.getElementById("orderInfo");
 
 addAllElements();
-addAllEvents();
 
-// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 async function addAllElements() {
   mypageInfo();
 }
-
-// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllEvents() {}
 
 async function mypageInfo() {
   if (!sessionStorage.getItem("id")) {
