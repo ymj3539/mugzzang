@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 
 const adminRequired = (req, res, next) => {
   
