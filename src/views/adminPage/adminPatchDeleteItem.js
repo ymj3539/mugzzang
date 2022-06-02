@@ -46,6 +46,7 @@ const showPathDelItemModule = () => {
     const description = $descriptionInput.value;
     try {
       let imageName = $imgInput.value;
+      // 이미지 새로 업로드 된 경우에만 실행
       if ($fileUpload.files[0]) {
         let imgData = new FormData();
         imgData.append('image', $fileUpload.files[0]);
@@ -192,14 +193,6 @@ const showPathDelItemModule = () => {
     })
   );
 
-  $uploadImageBtn.addEventListener('click', () => {
-    $fileUpload.click();
-  });
-
-  $fileUpload.addEventListener('change', () => {
-    $imgInput.value = $fileUpload.files[0].name;
-  });
-
   $category_1.addEventListener('click', pickCategory);
   $category_2.addEventListener('click', pickCategory);
 
@@ -213,6 +206,13 @@ const showPathDelItemModule = () => {
       return ($category_2_value.textContent = e.target.textContent);
     }
   }
+  $uploadImageBtn.addEventListener('click', () => {
+    $fileUpload.click();
+  });
+
+  $fileUpload.addEventListener('change', () => {
+    $imgInput.value = $fileUpload.files[0].name;
+  });
 };
 
 export default showPathDelItemModule;

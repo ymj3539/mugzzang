@@ -5,7 +5,6 @@ const domain = window.location.host;
 let $itemListFlexbox = document.getElementsByClassName('itemlist_flexbox');
 let $article;
 let CategoryFlag = null;
-let reader = new FileReader();
 
 // 데이터 불러오기
 const itemList = await Api.get('/api/product/list');
