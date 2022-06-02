@@ -1,5 +1,6 @@
 import 'module-alias/register';
 import { productModel } from '@db';
+import { CustomError } from '@error';
 
 class ProductService {
   constructor(productModel) {
@@ -9,6 +10,9 @@ class ProductService {
   // 전체상품 조회
   async getProducts() {
     const products = await this.productModel.findAllProducts();
+    if (!products) {
+      throw new Error('전체 상품 목록을 찾을 수 없습니다.');
+    }
     return products;
   }
 
@@ -17,7 +21,10 @@ class ProductService {
     const product = await productModel.findById(shortId);
 
     if (!product) {
-      throw new Error('product not found');
+      throw new CustomError(
+        400,
+        '해당 상품이 없습니다. 상품id를 다시 확인해주세요.'
+      );
     }
 
     return product;
@@ -25,19 +32,10 @@ class ProductService {
 
   // 상품 등록
   async addProduct(productInfo) {
-    // const {prod_title, title_additional, price, img, category, description, manufacturer} = productInfo;
-
-    // const newProductInfo = {
-    //     prod_title : prod_title,
-    //     title_additional : title_additional,
-    //     price : price,
-    //     img : img,
-    //     category : category,
-    //     description : description,
-    //     manufacturer : manufacturer
-    // }
-
     const product = await this.productModel.create(productInfo);
+    if (!product) {
+      throw new Error('상품을 등록할 수 없습니다');
+    }
 
     return product;
   }
@@ -47,7 +45,10 @@ class ProductService {
     let product = await this.productModel.findById(productId);
 
     if (!product) {
-      throw new Error('product not found');
+      throw new CustomError(
+        400,
+        '해당 상품이 없습니다. 상품id를 다시 확인해주세요.'
+      );
     }
 
     product = await this.productModel.update({ productId, update: toUpdate });
@@ -60,9 +61,11 @@ class ProductService {
     let product = await productModel.findById(productId);
 
     if (!product) {
-      throw new Error('product not found');
+      throw new CustomError(
+        400,
+        '해당 상품이 없습니다. 상품id를 다시 확인해주세요.'
+      );
     }
-
     await this.productModel.delete(productId);
     return;
   }
