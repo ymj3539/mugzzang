@@ -32,10 +32,13 @@ async function handleSubmit(e) {
   const isFullNameValid = fullName.length >= 2;
   const isEmailValid = validateEmail(email);
   const isPasswordValid = password.length >= 4;
+  const isPasswordValidlength = password.length <= 10;
   const isPasswordSame = password === passwordConfirm;
 
-  if (!isFullNameValid || !isPasswordValid) {
-    return alert("이름은 2글자 이상, 비밀번호는 4글자 이상이어야 합니다.");
+  if (!isFullNameValid || !isPasswordValid || !isPasswordValidlength) {
+    return alert(
+      "이름은 2글자 이상, 비밀번호는 4글자 이상 10글자 이하이어야 합니다."
+    );
   }
 
   if (!isEmailValid) {
