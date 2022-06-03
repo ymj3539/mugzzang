@@ -5,7 +5,6 @@ const domain = window.location.host;
 let $itemListFlexbox = document.getElementsByClassName('itemlist_flexbox');
 let $article;
 let CategoryFlag = null;
-let reader = new FileReader();
 
 // 데이터 불러오기
 const itemList = await Api.get('/api/product/list');
@@ -34,13 +33,14 @@ async function showContent(index, category) {
   let sliceItem = itemList.slice($article.length, $article.length + index);
   // 카테고리에 맞게 상품 편집
   const getItemListCategory = sessionStorage.getItem(`chosenCategory`);
+  let selectedList;
   if (getItemListCategory) {
-    const selectedList = itemList.filter((e) => e.category[0] === getItemListCategory);
+    selectedList = itemList.filter((e) => e.category[0] === getItemListCategory);
     sliceItem = selectedList.slice($article.length, $article.length + index);
   }
   // category값이 true일 경우, category 값으로 data 필터링
   if (category) {
-    const categorizingItem = itemList.filter((e) => e.category[1] === category);
+    const categorizingItem = selectedList.filter((e) => e.category[1] === category);
     sliceItem = categorizingItem.slice($article.length, $article.length + index);
   }
 

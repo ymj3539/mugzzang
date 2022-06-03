@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>쇼핑-n팀</title>
     <!-- 아이콘 -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/elice-rabbit-favicon.png"
-    />
+    <link rel="icon" type="image/png" sizes="16x16" href="/파비콘1.png" />
     <!-- bulma css -->
     <link
       rel="stylesheet"
@@ -44,9 +39,9 @@
       </section>
     </header>
 
-    <section class="mypage-container">
-      <h1 class="mypage">회원정보 관리</h1>
-      <div class="mypageInfo">
+    <section class="security-container">
+      <h1 class="securitypage">회원정보 관리</h1>
+      <div class="securitypageInfo">
         <form class="userInfo">
           <div class="field">
             <label class="label" for="nameInput">이름</label>
@@ -72,7 +67,12 @@
                 placeholder="우편번호"
                 readonly
               />
-              <input type="button" id="findAddress" value="주소찾기" />
+              <input
+                type="button"
+                id="findAddress"
+                value="주소찾기"
+                class="infoChangeBtn"
+              />
             </div>
           </div>
           <div class="field">
@@ -111,8 +111,10 @@
             />
           </div>
         </form>
+        <button id="infoChangeBtn" class="infoChangeBtn combtn">
+          수정완료
+        </button>
       </div>
-      <button id="infoChangeBtn">수정완료</button>
     </section>
   </body>
 </html>
