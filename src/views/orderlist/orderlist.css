@@ -5,7 +5,6 @@
   height: 100vh;
 }
 .orderlist-container {
-  border: 1px solid #ddd;
   border-radius: 15px;
 }
 
@@ -32,10 +31,18 @@
 .orderlist-standard {
   display: flex;
   border-bottom: 1px solid #dbdbdb;
+  border-left: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
 }
+
 .orderlist-standard:last-child {
-  border-bottom: none;
+  border-radius: 0 0 15px 15px;
 }
+.orderlist-info {
+  border-radius: 15px 15px 0 0;
+  border-top: 1px solid #dbdbdb;
+}
+
 .orderlist-standard span {
   padding: 12px;
   text-align: center;
