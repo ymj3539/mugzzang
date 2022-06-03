@@ -110,7 +110,7 @@ productRouter.patch(
   '/update/:productId',
   loginRequired,
   adminRequired,
-  validateProductInfo,
+  validateProductPrice,
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.body)) {
       throw new CustomError(
