@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>쇼핑-데모</title>
     <!-- 아이콘 -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/elice-rabbit-favicon.png"
-    />
+    <link rel="icon" type="image/png" sizes="16x16" href="/파비콘1.png" />
     <!-- bulma css 관련 -->
     <link
       rel="stylesheet"
@@ -27,6 +22,12 @@
     <!-- 카카오 OAuth -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <!-- 커스텀 css, js -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
       rel="stylesheet"
@@ -40,7 +41,7 @@
     <!-- 헤더 -->
     <header>
       <section id="headerNav">
-        <nav role="navigation" aria-label="main navigation">
+        <nav role="navigation" aria-label="main navigation" class="navbarBox">
           <ul id="navbar" class="navbar"></ul>
         </nav>
       </section>
@@ -48,8 +49,8 @@
 
     <!-- 회원가입 폼(Form) -->
     <div class="register-user-form-container">
+      <p class="registerpage">환영합니다!</p>
       <form class="box register-user-form-box" id="registerUserForm">
-        <p class="title is-5 has-text-primary">환영합니다!</p>
         <div class="field">
           <label class="label" for="fullNameInput">이름</label>
           <div class="control">
@@ -57,7 +58,7 @@
               class="input"
               id="fullNameInput"
               type="text"
-              placeholder="유재석"
+              placeholder="이름"
               autocomplete="on"
             />
           </div>

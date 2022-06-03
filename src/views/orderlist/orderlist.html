@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>쇼핑-n팀</title>
     <!-- 아이콘 -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/elice-rabbit-favicon.png"
-    />
+    <link rel="icon" type="image/png" sizes="16x16" href="/파비콘1.png" />
     <!-- bulma css -->
     <link
       rel="stylesheet"
@@ -23,6 +18,12 @@
       crossorigin="anonymous"
     ></script>
     <!-- 커스텀 css, js -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
       rel="stylesheet"
@@ -36,7 +37,7 @@
     <!-- 헤더 -->
     <header>
       <section id="headerNav">
-        <nav role="navigation" aria-label="main navigation">
+        <nav role="navigation" aria-label="main navigation" class="navbarBox">
           <ul id="navbar" class="navbar"></ul>
         </nav>
       </section>
@@ -46,13 +47,14 @@
       <div class="orderlistpageInfo">
         <h1 class="orderlistpage">주문조회</h1>
         <div id="orderlist-container" class="orderlist-container">
-          <div class="orderlist-standard">
+          <div class="orderlist-standard orderlist-info">
             <span>날짜</span>
             <span>주문정보</span>
+            <span>수량</span>
+            <span>가격</span>
             <span>상태</span>
             <span>신청</span>
           </div>
-          <!-- <div id="orderInfo"></div> -->
         </div>
       </div>
     </section>
