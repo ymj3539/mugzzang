@@ -85,7 +85,7 @@ async function createCartElements() {
           </a>
           <span style="display:none" class="shortId" data-shortId="${i}">${shortId}</span>
           <a href="#" class="itemInfo title">
-            <span >${title}</span>
+            <span class="title">${title}</span>
           </a>  
           <div id="controlBox" class="itemInfo_btn_updown itemInfo">
             <button data-quantity=${i} id="quantityDown" class="button is-danger is-light">-</button>
@@ -94,7 +94,7 @@ async function createCartElements() {
           </div>
           <span data-priceid=${i} class="itemInfo eachPrice">${addCommas(price)}</span>
           <span data-calcprice=${i} class="itemInfo totalItemPrice" id="calcItemPrice">${addCommas(totalItemPrice)}</span>  
-          <button class="trash" data-checkBox=${i}><i class="fa-solid fa-trash-can"></i></button>    
+          <button class="trash button is-success" data-checkBox=${i} style="background-color: #b4e197; color: black;"><i class="fa-solid fa-trash-can"></i></button>    
         </div>`
     );
   });
