@@ -1,5 +1,5 @@
 body {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: bold;
 }
 .pageTop {
@@ -27,35 +27,21 @@ header .subTitle {
 }
 
 /* 메인 배너 */
-.slider{
-  width: 1280px;
-  height: 720px;
-  overflow: hidden;
-}
-.slides {
-  position: relative;
+.mainBanner {
   display: flex;
-  width: 2560px;
-  height: 720px;
+  width: 100vw;
+  align-items: stretch;
 }
-.slide{
-  width: 1280px;
-  height: 720px;
+.big {
+  flex-basis: 50%;
 }
-.imgBtn{
-  width: 30px; 
-  height: 30px;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: #4e944f;
+.small {
+  flex-basis: 50%;
 }
-.imgBtn:hover{
+.img {
+  width: 50vw;
+  height: 80vh;
+}
+.img:hover{
   cursor: pointer;
-}
-.left{
-  float: left;
-}
-.right{
-  float: right;
 }

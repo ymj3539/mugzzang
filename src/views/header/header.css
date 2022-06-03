@@ -9,9 +9,9 @@ header {
 .headerNav {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 .navbarBox {
-  height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,10 +27,17 @@ header {
   padding: 15px 30px;
 }
 
+.navbar a {
+  color: #4e944f;
+}
+.navbar a:hover {
+  color: black;
+}
+
 .mainlogo {
   position: absolute;
   top: 10px;
-  left: 20px;
+  left: 30px;
 }
 .logoStyle {
   font-size: 24px;
@@ -40,6 +47,7 @@ header {
 .logoTitle {
   font-family: "Bungee Shade", cursive;
   color: #4e944f;
+  font-size: 60px;
 }
 
 .pageTop {
@@ -49,12 +57,12 @@ header {
   text-align: center;
   color: #4e944f;
 }
-.brand {
+/* .brand {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 50px;
-}
+  font-size: 60px;
+} */
 .brand img {
   height: 40px;
   vertical-align: middle;
@@ -66,19 +74,26 @@ header .subTitle {
   font-size: 30px;
 }
 
+.Category {
+  margin: 0 0 10px 200px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 .catebtn {
-  padding: 10px;
+  padding: 0 10px;
   border: none;
   background: none;
   cursor: pointer;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 30px;
   color: #4e944f;
 }
 .catebtn:hover {
-  color: black;
-}
-.category {
-  margin-left: 30px;
+  color: #e9efc0;
+  background-color: #83bd75;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
