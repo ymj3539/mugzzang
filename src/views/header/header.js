@@ -39,7 +39,7 @@ function loginUser() {
             ><span>장바구니</span>
           </a>
         </li>
-        <li><a href="/mypage" id="mypageBtn">mypage</a></li>
+        <li><a href="/mypage" id="mypageBtn">마이페이지</a></li>
         `
     );
   }
@@ -64,9 +64,17 @@ function creatLogout() {
 function categoryBtn(event) {
   if (event.target.innerHTML === "도매") {
     sessionStorage.setItem("chosenCategory", "도매");
+    if (sessionStorage.getItem("chosenCategory") === "도매") {
+      console.log("asdf");
+      category1.style.backgroundColor = "#83bd75";
+    }
   }
   if (event.target.innerHTML === "소매") {
     sessionStorage.setItem("chosenCategory", "소매");
+    if (sessionStorage.getItem("chosenCategory") === "소매") {
+      console.log("소매");
+    }
   }
+
   window.location.href = "/itemlist";
 }
