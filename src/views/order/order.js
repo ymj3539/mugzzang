@@ -5,7 +5,7 @@ let prodId = [];
 
 const $itemInfo = document.querySelector('.itemInfo');
 const $priceInfo = document.querySelector('.priceInfo');
-const $orderBtn = document.querySelector('.ordering');
+const $orderBtn = document.querySelector('#ordering');
 const $findAddressBtn = document.querySelector("#findAddress");
 // const $getMyAddBtn = document.querySelector(".getMyAdd");
 
@@ -34,6 +34,7 @@ function getItems() {
       `
       <p>상품 금액 ${addCommas(itemPrice)}원</p>
       <p>배송비 ${addCommas(delivery)}원</p>
+      <hr>
       <p>총 ${addCommas(itemPrice+delivery)}원</p>
       `
     );
