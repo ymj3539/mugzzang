@@ -27,20 +27,24 @@ header .subTitle {
 }
 
 /* 메인 배너 */
+.main{
+  width: 100vw;
+  height: 60vh;
+}
 .slider{
-  width: 1280px;
-  height: 720px;
+  width: 100%;
+  height: 643px;
   overflow: hidden;
 }
 .slides {
   position: relative;
   display: flex;
   width: 2560px;
-  height: 720px;
+  height: 643px;
 }
 .slide{
   width: 1280px;
-  height: 720px;
+  height: 643px;
 }
 .imgBtn{
   width: 30px; 
@@ -50,12 +54,18 @@ header .subTitle {
   background: transparent;
   color: #4e944f;
 }
+.slide,
 .imgBtn:hover{
   cursor: pointer;
 }
 .left{
-  float: left;
+  position: absolute;
+  top: 85%;
+  left: 3%;
+  z-index: 2;
 }
 .right{
-  float: right;
+  position: absolute;
+  top: 85%;
+  right: 3%;
 }
