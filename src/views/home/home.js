@@ -7,16 +7,17 @@ console.log(`slider: ${slider}, slides: ${slides}`);
 
 let currentSlide = 0;
 function autoSlide() {
-  const from = -(1280 * currentSlide);
-  const to = from - 1280;
+  const from = -(100 * currentSlide);
+  const to = from - 100;
   slides.animate({
-      marginLeft: [from + "px", to + "px"]
+      marginLeft: [from + "vw", to + "vw"]
   }, {
       duration: 500,
       easing: "ease",
       iterations: 1,
       fill: "both"
   });
+  
   currentSlide++;
   if (currentSlide === (slide.length - 1)) {
     currentSlide = 0;
