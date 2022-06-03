@@ -3,6 +3,7 @@ import is from '@sindresorhus/is';
 import 'module-alias/register';
 import { loginRequired } from '@middlewares';
 import { adminRequired } from '@middlewares';
+import { validateProductInfo } from '@middlewares';
 import { productService } from '@services';
 import { asyncHandler } from '@asyncHandler';
 import { CustomError } from '@error';
@@ -74,6 +75,7 @@ productRouter.post(
   '/',
   loginRequired,
   adminRequired,
+  validateProductInfo,
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.body)) {
       throw new CustomError(
@@ -110,6 +112,7 @@ productRouter.patch(
   '/update/:productId',
   loginRequired,
   adminRequired,
+  validateProductInfo,
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.body)) {
       throw new CustomError(
