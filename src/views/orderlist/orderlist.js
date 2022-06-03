@@ -6,10 +6,11 @@ const orderlistContainer = document.getElementById("orderlist-container");
 addAllElements();
 
 async function addAllElements() {
-  mypageInfo();
+  orderlistInfo();
 }
 
-async function mypageInfo() {
+//주문 조회 기능
+async function orderlistInfo() {
   if (!sessionStorage.getItem("id")) {
     alert("로그인한 유저만 사용할 수 있는 서비스입니다.");
     window.location.href = "/login";
@@ -19,7 +20,6 @@ async function mypageInfo() {
   orderlistContainer.appendChild(table);
 
   const res = await Api.get(`/api/order/${sessionStorage.getItem("id")}`);
-  console.log(res);
 
   res.map((el) =>
     table.insertAdjacentHTML(
@@ -38,6 +38,7 @@ async function mypageInfo() {
     )
   );
 
+  //주문 취소 기능
   async function cancelEvent(e) {
     let target = e.target;
     if (e.target.id !== "delBtn") return;

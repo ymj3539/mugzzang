@@ -17,7 +17,6 @@ function autoSlide() {
       iterations: 1,
       fill: "both"
   });
-  
   currentSlide++;
   if (currentSlide === (slide.length - 1)) {
     currentSlide = 0;
