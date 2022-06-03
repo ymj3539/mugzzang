@@ -1,7 +1,6 @@
 body {
   margin: 0;
-  max-width: 96%;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 .adminPage_nav {
@@ -58,7 +57,7 @@ body {
 
 .menu_container .button {
   font-weight: 500;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   color: #9b9b9b;
 }
 
