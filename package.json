@@ -35,10 +35,9 @@
     "@root": "src",
     "@db": "src/db",
     "@models": "src/db/models",
-    "@schemas": "src/db/schemas",
     "@middlewares": "src/middlewares",
     "@services": "src/services",
     "@asyncHandler": "src/utils/async-handler",
-    "@error" : "src/error/errorCode"
+    "@error": "src/error/errorCode"
   }
 }

@@ -58,7 +58,7 @@ async function securityInfo() {
 //유저정보 patch기능
 async function changSubmit(e) {
   e.preventDefault();
-
+  console.log("asdf");
   const resUser = await Api.get(
     `/api/user/userlist/${sessionStorage.getItem("id")}`
   );

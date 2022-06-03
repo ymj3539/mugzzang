@@ -8,7 +8,6 @@ import { adminRequired } from '@middlewares';
 import { validateLogin, validateSignup } from '@middlewares';
 import { userService } from '@services';
 import { asyncHandler } from '@asyncHandler';
-// import { errorCode } from '@error';
 import { CustomError } from '@error';
 
 const userRouter = Router();

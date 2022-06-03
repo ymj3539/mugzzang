@@ -39,7 +39,7 @@ function loginUser() {
             ><span>장바구니</span>
           </a>
         </li>
-        <li><a href="/mypage" id="mypageBtn">mypage</a></li>
+        <li><a href="/mypage" id="mypageBtn">마이페이지</a></li>
         `
     );
   }
@@ -68,5 +68,6 @@ function categoryBtn(event) {
   if (event.target.innerHTML === "소매") {
     sessionStorage.setItem("chosenCategory", "소매");
   }
+
   window.location.href = "/itemlist";
 }
