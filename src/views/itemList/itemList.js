@@ -108,7 +108,6 @@ function ioCallback(entries, io) {
 
 // 관찰 대상 상품 리스트 마지막 요소로 변경
 function observeLastItem(io, items) {
-  console.log('옵저버라스트');
   let lastItem = items[items.length - 1];
   io.observe(lastItem);
 }
