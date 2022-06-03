@@ -37,6 +37,10 @@ header {
   font-family: "Bungee Shade", cursive;
   color: #4e944f;
 }
+.logoTitle {
+  font-family: "Bungee Shade", cursive;
+  color: #4e944f;
+}
 
 .pageTop {
   height: 100%;
@@ -74,4 +78,7 @@ header .subTitle {
 }
 .catebtn:hover {
   color: black;
+}
+.category {
+  margin-left: 30px;
 }
