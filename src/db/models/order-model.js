@@ -1,6 +1,6 @@
 import { model } from 'mongoose';
 import 'module-alias/register';
-import { OrderSchema } from "@schemas/order-schema";
+import { OrderSchema } from "../schemas/order-schema";
 const Order = model('orders', OrderSchema);
 
 export class OrderModel {
