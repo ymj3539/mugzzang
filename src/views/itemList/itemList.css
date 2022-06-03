@@ -36,6 +36,8 @@ body {
 }
 
 .itemlist img {
+  width: 360px;
+  height: 360px;
   transition: 0.1s all linear;
 }
 

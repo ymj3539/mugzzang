@@ -7,7 +7,7 @@ const ProductSchema = new Schema(
 
         prod_title : {
             type : String,
-            required :true
+            required :[true, "product title is required"]
         },
 
         title_additional : {

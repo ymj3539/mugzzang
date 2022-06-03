@@ -2,6 +2,25 @@ import showOrderedListModule from './adminOrderPage.js';
 import showAddItemModule from './adminAddItem.js';
 import showPathDelItemModule from './adminPatchDeleteItem.js';
 import showItemListModule from './adminItemList.js';
+import * as Api from '/api.js';
+
+async function checkUserRole() {
+  try {
+    const check = await Api.get('/api/user/userlist', sessionStorage.getItem('id'));
+    // 일반 유저가 로그인한 상태에서 어드민 페이지 접속
+    if (check.role !== 'admin') {
+      alert('어드민 계정이 아닙니다.');
+      window.location.href('/');
+    }
+  } catch (err) {
+    if (err) {
+      // 로그인 안하고 바로 들어갔을 때.
+      alert('어드민 계정이 아닙니다.');
+      window.location.href = '/';
+    }
+  }
+}
+checkUserRole();
 
 const $showOrderedListBtn = document.getElementById('showOrderedList');
 const $showItemListBtn = document.getElementById('showItemList');
@@ -19,9 +38,9 @@ const MODULES = {
   showPatchDelItem: 'showPatchDelItem',
   showItemList: 'showItemList',
 };
+const {showOrderedList, showAddItem, showPatchDelItem, showItemList} = MODULES;
 
 function setSessionNowPage(e) {
-  const {showAddItem, showItemList, showPatchDelItem, showOrderedList} = MODULES;
   let pageflag = e.target.id;
   if (sessionStorage.getItem('adminPagestate')) {
     sessionStorage.removeItem('adminPagestate'); // 다른 flag값이 있는 경우 삭제하고 다시 추가
@@ -37,23 +56,21 @@ function setSessionNowPage(e) {
 
 // css
 const $asideBtn = document.querySelectorAll('.menu_container button');
-
-console.log($asideBtn);
 $asideBtn.forEach((e) => e.classList.add('is-white'));
 
 // 새로고침 되었을 때, sessionStorage에 flag변수에 맞게 목록 다시 띄우기
 window.onload = () => {
   switch (sessionStorage.getItem('adminPagestate')) {
-    case 'showOrderedList':
+    case showOrderedList:
       showOrderedListModule();
       break;
-    case 'showAddItem':
+    case showAddItem:
       showAddItemModule();
       break;
-    case 'showPatchDelItem':
+    case showPatchDelItem:
       showPathDelItemModule();
       break;
-    case 'showItemList':
+    case showItemList:
       showItemListModule();
       break;
     default:

@@ -1,11 +1,17 @@
 import { model } from 'mongoose';
-import { OrderSchema } from '../schemas/order-schema';
+import 'module-alias/register';
+import { OrderSchema } from "../schemas/order-schema";
 const Order = model('orders', OrderSchema);
 
 export class OrderModel {
   async findById(orderId) {
     const order = await Order.findOne({ shortId: orderId });
     return order;
+  }
+
+  async findByEmail(email) {
+    const user = await Order.find({ email: email });
+    return user;
   }
 
   async update({ useremail, update }) {

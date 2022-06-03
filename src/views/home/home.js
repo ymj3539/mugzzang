@@ -1,14 +1,48 @@
-import * as Api from "/api.js";
+const slider = document.querySelector('.slider');
+const slides = slider.querySelector('.slides');
+const slide = slides.querySelectorAll('.slide');
+const $leftBtn = document.querySelector('.left');
+const $rightBtn = document.querySelector('.right');
+console.log(`slider: ${slider}, slides: ${slides}`);
 
-// 요소(element), input 혹은 상수
+let currentSlide = 0;
+function autoSlide() {
+  const from = -(100 * currentSlide);
+  const to = from - 100;
+  slides.animate({
+      marginLeft: [from + "vw", to + "vw"]
+  }, {
+      duration: 500,
+      easing: "ease",
+      iterations: 1,
+      fill: "both"
+  });
+  currentSlide++;
+  if (currentSlide === (slide.length - 1)) {
+    currentSlide = 0;
+  }
+}
+setInterval(autoSlide, 5000);
 
-addAllElements();
-addAllEvents();
+$leftBtn.addEventListener('click', () => {
 
-// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-async function addAllElements() {}
+});
+$rightBtn.addEventListener('click', () => {
 
-// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllEvents() {}
+});
 
-//메인 배너
+const $categoryBig = document.getElementById("categoryBig");
+const $categorySmall = document.getElementById("categorySmall");
+$categoryBig.addEventListener("click", categoryBtn);
+$categorySmall.addEventListener("click", categoryBtn);
+
+function categoryBtn(e) {
+  console.log(e.target);
+  if (e.target.innerHTML === "도매") {
+    sessionStorage.setItem("chosenCategory", "도매");
+  }
+  if (e.target.innerHTML === "소매") {
+    sessionStorage.setItem("chosenCategory", "소매");
+  }
+  window.location.href = "/itemlist";
+}
