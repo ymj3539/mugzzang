@@ -2,6 +2,7 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: bold;
 }
+
 .pageTop {
   height: 100%;
   font-weight: bold;
@@ -40,8 +41,8 @@ header .subTitle {
 }
 .img {
   width: 50vw;
-  height: 80vh;
+  height: 85vh;
 }
-.img:hover{
+.img:hover {
   cursor: pointer;
 }
