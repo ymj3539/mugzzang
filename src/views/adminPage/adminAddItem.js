@@ -60,7 +60,15 @@ const showAddItemModule = () => {
       imgData.append('image', $fileUpload.files[0]);
       let uploadedImage = await Api.formPost('/api/product/upload', imgData);
       let imageName = uploadedImage.result;
-      const data = {prod_title, price, img, category, manufacturer, description, imageName};
+      const data = {
+        prod_title,
+        price,
+        img,
+        category,
+        manufacturer,
+        description,
+        imageName,
+      };
       await Api.post('/api/product/', data);
       alert('상품 등록이 완료되었습니다.');
       window.location.reload();
@@ -86,7 +94,7 @@ const showAddItemModule = () => {
         <div class="field">
           <label class="label">가격</label>
           <div class="control">
-            <input class="input is-success" id="price"type="text" value="" />
+            <input class="input is-success" id="price"type="number" value="" />
           </div>
         </div>
         <div class="field">

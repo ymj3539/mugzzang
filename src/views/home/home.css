@@ -1,5 +1,3 @@
-/* 앨리스배움체 */
-@import url("https://font.elice.io/EliceDigitalCoding.css");
 body {
   font-family: "Noto Sans KR", sans-serif;
   font-weight: bold;
@@ -28,46 +26,36 @@ header .subTitle {
   font-size: 30px;
 }
 
-.sliderContainer {
-  height: 55vh;
-}
-.sliderArrowLeft {
-  position: absolute;
-  top: 50%;
-  left: 0;
-}
-
-.sliderArrowRight {
-  position: absolute;
-  top: 50%;
-  right: 0;
-}
-
-#slider {
-  width: 1024px;
-  height: 50vh;
+/* 메인 배너 */
+.slider{
+  width: 1280px;
+  height: 720px;
   overflow: hidden;
+}
+.slides {
   position: relative;
+  display: flex;
+  width: 2560px;
+  height: 720px;
 }
-
-#slider .slides {
-  display: block;
-  width: 2048px;
-  height: 100%;
+.slide{
+  width: 1280px;
+  height: 720px;
 }
-
-#slider .slide {
+.imgBtn{
+  width: 30px; 
+  height: 30px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #4e944f;
+}
+.imgBtn:hover{
+  cursor: pointer;
+}
+.left{
   float: left;
-  width: 1024px;
-  height: 50vh;
 }
-
-#slider .slide a {
-  width: 100%;
-  height: 100%;
-}
-
-#slider .slide img {
-  width: 100%;
-  height: 100%;
+.right{
+  float: right;
 }

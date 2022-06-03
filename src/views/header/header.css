@@ -8,9 +8,14 @@ header {
 
 .headerNav {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
   flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.navbarBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .navbar {
@@ -25,7 +30,17 @@ header {
 
 .mainlogo {
   position: absolute;
-  left: 20px;
+  top: 10px;
+  left: 30px;
+}
+.logoStyle {
+  font-size: 24px;
+  font-family: "Bungee Shade", cursive;
+  color: #4e944f;
+}
+.logoTitle {
+  font-family: "Bungee Shade", cursive;
+  color: #4e944f;
 }
 
 .pageTop {
@@ -52,16 +67,26 @@ header .subTitle {
   font-size: 30px;
 }
 
+.Category {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 .catebtn {
-  padding: 10px;
+  padding: 0 10px;
   border: none;
   background: none;
   cursor: pointer;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 30px;
   color: #4e944f;
 }
 .catebtn:hover {
-  color: black;
+  color: #e9efc0;
+  background-color: #83bd75;
+  border-radius: 10px;
+  box-sizing: border-box;
 }

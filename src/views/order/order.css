@@ -62,21 +62,3 @@ nav ul li:last-child {
   font-size: 25px;
   font-weight: 300;
 }
-
-/* footer */
-footer {
-  clear: both;
-}
-
-footer .footer {
-  font-size: small;
-  line-height: 200%;
-  padding: 0 0 10px 20px;
-  background-color: #e9efc0;
-}
-
-.footer .companyName {
-  font-size: medium;
-  font-weight: bold;
-  line-height: 300%;
-}
