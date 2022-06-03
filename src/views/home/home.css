@@ -27,6 +27,10 @@ header .subTitle {
 }
 
 /* 메인 배너 */
+.main{
+  width: 100vw;
+  height: 100%;
+}
 .slider{
   width: 1280px;
   height: 720px;
@@ -54,8 +58,13 @@ header .subTitle {
   cursor: pointer;
 }
 .left{
-  float: left;
+  position: absolute;
+  top: 50%;
+  left: 3%;
+  z-index: 100;
 }
 .right{
-  float: right;
+  position: absolute;
+  top: 50%;
+  right: 3%;
 }
