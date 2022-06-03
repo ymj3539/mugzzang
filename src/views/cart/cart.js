@@ -77,19 +77,19 @@ async function createCartElements() {
       'beforeend',
       `
         <div class="item" id="item_${i}">
-          <label >
+          <label>
             <input type="checkbox" class="checkbox" name="buy" value="${i}">
           </label>
           <a href="#" class="itemInfo">
             <img src='${'http://' + domain + '/static/' + img}'/>
           </a>
-          <span style="display:none" class="shortId">${shortId}</span>
+          <span style="display:none" class="shortId" data-shortId="${i}">${shortId}</span>
           <a href="#" class="itemInfo title">
             <span >${title}</span>
           </a>  
           <div id="controlBox" class="itemInfo_btn_updown itemInfo">
             <button data-quantity=${i} id="quantityDown" class="button is-danger is-light">-</button>
-            <input data-quantity=${i} id="quantityInput" class="input" type="text" value="${quantity}" />
+            <input data-quantity=${i} class="input quantityInput" type="string" value="${quantity}" />
             <button data-quantity=${i} id="quantityUp" class="button is-info is-light">+</button>
           </div>
           <span data-priceid=${i} class="itemInfo eachPrice">${addCommas(price)}</span>
@@ -121,35 +121,32 @@ async function controlQuantityBox() {
     if (e.target.id !== 'quantityUp' && e.target.id !== 'quantityDown') return;
 
     const {quantity} = e.target.dataset;
-    const $quantityInputs = document.querySelectorAll('#quantityInput');
-    const $eachPrices = document.querySelectorAll('.eachPrice');
-    const $totalItemPrices = document.querySelectorAll('.totalItemPrice');
-    let $quantityInput;
-    let $totalItemPrice;
-    let $eachPrice;
-    $quantityInputs.forEach((elem) => {
-      if (elem.dataset.quantity === quantity) $quantityInput = elem;
-    });
-    $totalItemPrices.forEach((elem) => {
-      if (elem.dataset.calcprice === quantity) $totalItemPrice = elem;
-    });
-    $eachPrices.forEach((elem) => {
-      if (elem.dataset.priceid === quantity) $eachPrice = elem;
-    });
+    const $quantityInput = document.getElementsByClassName('quantityInput');
+    const $eachPrice = document.querySelectorAll('.eachPrice');
+    const $totalPrice = document.querySelectorAll('.totalItemPrice');
+    
+    const inputIndex = [...$quantityInput].findIndex(input => input.dataset.quantity === quantity);
+
+    let quantityValue = $quantityInput[inputIndex];
+
     if (e.target.id === 'quantityUp') {
-      $quantityInput.value = Number($quantityInput.value) + 1;
-    } else if (e.target.id === 'quantityDown' && $quantityInput.value > 1) {
-      $quantityInput.value = Number($quantityInput.value) + -1;
+      quantityValue.value = parseInt(quantityValue.value) + 1;
+
+    } else if (e.target.id === 'quantityDown' && parseInt(quantityValue.value) > 1) {
+      quantityValue.value = parseInt(quantityValue.value) - 1;
     }
+    const shortId = document.querySelector(`[data-shortId='${quantity}']`).innerText;
+    sessionStorage.setItem(`cart.${shortId}`, `{"quantity":"${quantityValue.value}","id":"${shortId}"}`);
 
-    $totalItemPrice.textContent = addCommas(convertToNumber($eachPrice.textContent) * Number($quantityInput.value));
+    $totalPrice[inputIndex].textContent = addCommas(Number(convertToNumber($eachPrice[inputIndex].textContent)) * parseInt(quantityValue.value));
 
-    calcTotalPrice($totalItemPrices);
+    calcTotalPrice($totalPrice);
   }
 }
 
 //결제정보 재계산
 function calcTotalPrice($totalItemPrices) {
+
   totalPrice = 0;
   const totalEl = document.querySelector('.total');
   const totalPriceEl = document.querySelector('.totalPrice');
@@ -167,7 +164,7 @@ function calcTotalPrice($totalItemPrices) {
   }
 }
 
-//선택삭제 및 전체삭제 버튼
+//선택삭제, 전체삭제, 한 줄 삭제 버튼
 async function deleteItem() {
   await controlQuantityBox();
   const $cartList = document.getElementById('cartList');
@@ -176,17 +173,25 @@ async function deleteItem() {
     const {className} = e.target;
 
     if (className !== 'trash' && className !== 'deleteAll' && className !== 'deleteSom') return;
-
+    
+    //삭제를 누르면 세션스토리지 비우고 화면의 아이템도 지우기
     if (className === 'deleteAll') {
+      const cartSession = Object.keys(sessionStorage).filter((e) => e.slice(0, 4) === 'cart');
+      cartSession.forEach((el) => {
+        sessionStorage.removeItem(el);
+      });
       $cartContainer.remove();
     } else if (className === 'deleteSom') {
       const checkedBtns = document.querySelectorAll("input[name='buy']:checked");
-
-      checkedBtns.forEach((btn) => {
+      checkedBtns.forEach((btn) => {     
+        const checkedShortId = btn.parentElement.nextElementSibling.nextElementSibling.innerHTML;
+        sessionStorage.removeItem(`cart.${checkedShortId}`);
         document.getElementById(`item_${btn.value}`).remove();
       });
     } else if (className === 'trash') {
       const {checkbox} = e.target.dataset;
+      const trashItem = document.querySelector(`[data-shortId='${checkbox}']`).innerText;
+      sessionStorage.removeItem(`cart.${trashItem}`);
       document.getElementById(`item_${checkbox}`).remove();
     }
     const $totalPrice = document.querySelectorAll('.totalItemPrice');
@@ -207,14 +212,6 @@ async function moveToOrderPage() {
     if ($empty !== null) {
       alert('주문하려면 상품을 담아주세요😉');
       return;
-    }
-
-    const orderSession = Object.keys(sessionStorage).filter((e) => e.slice(0, 5) === 'order');
-
-    if (orderSession !== []) {
-      orderSession.forEach((el) => {
-        sessionStorage.removeItem(el);
-      });
     }
 
     for (let i = 0; i < shortId.length; i++) {

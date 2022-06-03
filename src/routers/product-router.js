@@ -5,6 +5,7 @@ import { loginRequired } from '@middlewares';
 import { adminRequired } from '@middlewares';
 import { productService } from '@services';
 import { asyncHandler } from '@asyncHandler';
+import { CustomError } from '@error';
 
 //이미지 업로드시 필요 모듈 ES6문법으로 변환
 import formidable from 'formidable';
@@ -18,7 +19,9 @@ productRouter.get(
   '/list',
   asyncHandler(async (req, res, next) => {
     const products = await productService.getProducts();
-
+    if (!products) {
+      throw new CustomError(500, `조회하신 상품 내역이 존재하지 않습니다.`);
+    }
     res.status(200).json(products);
   })
 );
@@ -28,11 +31,11 @@ productRouter.get(
   '/list/:shortId',
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.params)) {
-      throw new Error(
+      throw new CustomError(
+        400,
         '조회하려는 상품을 찾을 수 없습니다. 상품id를 확인해주세요.'
       );
     }
-
     const { shortId } = req.params;
     const product = await productService.getProduct(shortId);
     res.status(200).json(product);
@@ -59,8 +62,8 @@ productRouter.post(
         __dirname,
         '..',
         `${dir}/${file.originalFilename}`
-      ); //__dirname : 현재경로 가져오기
-      fs.renameSync(file.filepath, newPath); //파일명 변경 : fs.renameSync(이전경로, 현재경로)
+      ); //__dirname : 현재경로 가져오기, 파일명 변경
+      fs.renameSync(file.filepath, newPath); //파일 경로 변경 : fs.renameSync(이전경로, 현재경로)
       res.json({ result: `${file.originalFilename}` });
     });
   })
@@ -73,7 +76,8 @@ productRouter.post(
   adminRequired,
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.body)) {
-      throw new Error(
+      throw new CustomError(
+        400,
         `headers의 Content-Type을 application/json으로 설정해주세요`
       );
     }
@@ -108,12 +112,19 @@ productRouter.patch(
   adminRequired,
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.body)) {
-      throw new Error(
+      throw new CustomError(
+        400,
         'headers의 Content-Type을 application/json으로 설정해주세요'
       );
     }
 
-    const productId = req.params.productId;
+    const { productId } = req.params;
+    if (!productId) {
+      throw new CustomError(
+        400,
+        '해당 상품이 없습니다. 상품id를 다시 확인해주세요.'
+      );
+    }
     const {
       prod_title,
       title_additional,
@@ -152,7 +163,14 @@ productRouter.delete(
   adminRequired,
   asyncHandler(async (req, res, next) => {
     const { productId } = req.params;
+    if (!productId) {
+      throw new CustomError(
+        400,
+        '해당 상품이 없습니다. 상품id를 다시 확인해주세요.'
+      );
+    }
     await productService.deleteProduct(productId);
+
     res.status(200).json({ message: '상품이 삭제되었습니다' });
   })
 );
