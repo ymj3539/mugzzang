@@ -22,10 +22,10 @@
   gap: 20px;
 }
 .cartList {
-  padding: 35px;
+  padding: 3px;
   border: 2px solid #b4e197;
   border-radius: 5px / 5px;
-  margin-left: 20px;
+  margin: 0 0 30px 20px;
   flex-basis: 70vw;
 }
 .payContainer {
@@ -51,6 +51,7 @@
 }
 .deleteButtons {
   display: flex;
+  padding: 10px 0 0 10px;
   gap: 10px;
 }
 
@@ -79,12 +80,7 @@
 }
 #ordering {
   background-color: #4e944f;
-  border: none;
   color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
 }
 .item {
   display: flex;
