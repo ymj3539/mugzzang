@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
 import 'module-alias/register';
-import { loginRequired, adminRequired, validateProductPrice } from '@middlewares';
+import { loginRequired, adminRequired } from '@middlewares';
 import { productService } from '@services';
 import { asyncHandler } from '@asyncHandler';
 import { CustomError } from '@error';
@@ -73,7 +73,6 @@ productRouter.post(
   '/',
   loginRequired,
   adminRequired,
-  validateProductPrice,
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.body)) {
       throw new CustomError(
@@ -90,6 +89,10 @@ productRouter.post(
       description,
       manufacturer,
     } = req.body;
+
+    if (typeof price !== 'number') {
+      throw new CustomError(400, `price의 값을 Number type으로 입력해주세요.`);
+    }
 
     const newProduct = await productService.addProduct({
       prod_title,
@@ -110,7 +113,6 @@ productRouter.patch(
   '/update/:productId',
   loginRequired,
   adminRequired,
-  validateProductPrice,
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.body)) {
       throw new CustomError(
@@ -136,6 +138,10 @@ productRouter.patch(
       manufacturer,
       inStock,
     } = req.body;
+
+    if (typeof price !== 'number') {
+      throw new CustomError(400, `price의 값을 Number type으로 입력해주세요.`);
+    }
 
     const toUpdate = {
       ...(prod_title && { prod_title }),
