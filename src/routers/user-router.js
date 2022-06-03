@@ -1,14 +1,14 @@
-import { Router } from 'express';
+import {Router} from 'express';
 import is from '@sindresorhus/is';
 
 //path alias 사용하기 위해 필요한 모듈
 import 'module-alias/register';
-import { loginRequired } from '@middlewares';
-import { adminRequired } from '@middlewares';
-import { validateLogin, validateSignup } from '@middlewares';
-import { userService } from '@services';
-import { asyncHandler } from '@asyncHandler';
-import { CustomError } from '@error';
+import {loginRequired} from '@middlewares';
+import {adminRequired} from '@middlewares';
+import {validateLogin, validateSignup} from '@middlewares';
+import {userService} from '@services';
+import {asyncHandler} from '@asyncHandler';
+import {CustomError} from '@error';
 
 const userRouter = Router();
 
@@ -66,7 +66,7 @@ userRouter.post(
     const password = req.body.password;
 
     // 로그인 진행 (로그인 성공 시 jwt 토큰을 프론트에 보내 줌)
-    const userToken = await userService.getUserToken({ email, password });
+    const userToken = await userService.getUserToken({email, password});
 
     // jwt 토큰을 프론트에 보냄 (jwt 토큰은, 문자열임)
     res.status(200).json(userToken);
@@ -95,12 +95,9 @@ userRouter.get(
   loginRequired,
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.params)) {
-      throw new CustomError(
-        400,
-        '조회하려는 사용자 이름이 정확한지 확인해주세요.'
-      );
+      throw new CustomError(400, '조회하려는 사용자 이름이 정확한지 확인해주세요.');
     }
-    const { useremail } = req.params;
+    const {useremail} = req.params;
 
     const user = await userService.getUser(useremail);
     console.log('user from router: ', user);
@@ -116,10 +113,7 @@ userRouter.patch(
     // content-type 을 application/json 로 프론트에서
     // 설정 안 하고 요청하면, body가 비어 있게 됨.
     if (is.emptyObject(req.body)) {
-      throw new CustomError(
-        400,
-        'headers의 Content-Type을 application/json으로 설정해주세요'
-      );
+      throw new CustomError(400, 'headers의 Content-Type을 application/json으로 설정해주세요');
     }
 
     // params로부터 id를 가져옴
@@ -137,29 +131,23 @@ userRouter.patch(
 
     // currentPassword 없을 시, 진행 불가
     if (!currentPassword) {
-      throw new CustomError(
-        400,
-        '정보를 변경하려면, 현재의 비밀번호가 필요합니다.'
-      );
+      throw new CustomError(400, '정보를 변경하려면, 현재의 비밀번호가 필요합니다.');
     }
 
-    const userInfoRequired = { useremail, currentPassword };
+    const userInfoRequired = {useremail, currentPassword};
 
     // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해
     // 보내주었다면, 업데이트용 객체에 삽입함.
     const toUpdate = {
-      ...(fullName && { fullName }),
-      ...(password && { password }),
-      ...(address && { address }),
-      ...(phoneNumber && { phoneNumber }),
-      ...(role && { role }),
+      ...(fullName && {fullName}),
+      ...(password && {password}),
+      ...(address && {address}),
+      ...(phoneNumber && {phoneNumber}),
+      ...(role && {role}),
     };
 
     // 사용자 정보를 업데이트함.
-    const updatedUserInfo = await userService.setUser(
-      userInfoRequired,
-      toUpdate
-    );
+    const updatedUserInfo = await userService.setUser(userInfoRequired, toUpdate);
 
     // 업데이트 이후의 유저 데이터를 프론트에 보내 줌
     res.status(200).json(updatedUserInfo);
@@ -167,49 +155,39 @@ userRouter.patch(
 );
 
 // 사용자 정보 삭제
-userRouter.delete(
-  '/userlist/:useremail',
-  loginRequired,
-  async function (req, res, next) {
-    try {
-      // content-type 을 application/json 로 프론트에서
-      // 설정 안 하고 요청하면, body가 비어 있게 됨.
-      if (is.emptyObject(req.body)) {
-        throw new CustomError(
-          400,
-          '정보를 변경하려면, 현재의 비밀번호가 필요합니다.'
-        );
-      }
-
-      // params로부터 id를 가져옴
-      const useremail = req.params.useremail;
-
-      // body data로부터, 확인용으로 사용할 현재 비밀번호를 추출함.
-      const currentPassword = req.body.password;
-
-      // currentPassword 없을 시, 진행 불가
-      if (!currentPassword) {
-        throw new CustomError(
-          400,
-          '정보를 변경하려면, 현재의 비밀번호가 필요합니다.'
-        );
-      }
-
-      const userInfoRequired = { useremail, currentPassword };
-
-      await userService.deleteUser(userInfoRequired);
-
-      // 업데이트 이후의 유저 데이터를 프론트에 보내 줌
-      res.status(200).json({ message: '성공' });
-    } catch (error) {
-      next(error);
+userRouter.delete('/userlist/:useremail', loginRequired, async function (req, res, next) {
+  try {
+    // content-type 을 application/json 로 프론트에서
+    // 설정 안 하고 요청하면, body가 비어 있게 됨.
+    if (is.emptyObject(req.body)) {
+      throw new CustomError(400, '정보를 변경하려면, 현재의 비밀번호가 필요합니다.');
     }
+
+    // params로부터 id를 가져옴
+    const useremail = req.params.useremail;
+
+    // body data로부터, 확인용으로 사용할 현재 비밀번호를 추출함.
+    const currentPassword = req.body.password;
+
+    // currentPassword 없을 시, 진행 불가
+    if (!currentPassword) {
+      throw new CustomError(400, '정보를 변경하려면, 현재의 비밀번호가 필요합니다.');
+    }
+
+    const userInfoRequired = {useremail, currentPassword};
+
+    await userService.deleteUser(userInfoRequired);
+
+    // 업데이트 이후의 유저 데이터를 프론트에 보내 줌
+    res.status(200).json({message: '성공'});
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 // 로그아웃
 userRouter.get('/logoutCheck', (req, res) => {
   console.log(req.user);
 });
 
-export { userRouter };
+export {userRouter};
