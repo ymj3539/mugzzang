@@ -171,7 +171,6 @@ async function deleteItem() {
 
   $cartList.addEventListener('click', (e) => {
     const {className} = e.target;
-
     if (className !== 'trash' && className !== 'deleteAll' && className !== 'deleteSom') return;
     
     //삭제를 누르면 세션스토리지 비우고 화면의 아이템도 지우기
@@ -180,6 +179,7 @@ async function deleteItem() {
       cartSession.forEach((el) => {
         sessionStorage.removeItem(el);
       });
+      console.log($cartContainer);
       $cartContainer.remove();
     } else if (className === 'deleteSom') {
       const checkedBtns = document.querySelectorAll("input[name='buy']:checked");
