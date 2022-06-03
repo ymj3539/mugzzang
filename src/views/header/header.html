@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>먹거리 장터 먹짱</title>
     <!-- 아이콘 -->
-    <link rel="icon" type="image/png" sizes="30x30" href="./images/icon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../파비콘1.png" />
     <!-- bulma css -->
     <link
       rel="stylesheet"
@@ -18,62 +18,36 @@
       crossorigin="anonymous"
     ></script>
     <!-- 커스텀 css, js -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="header.css" />
     <script src="header.js" type="module" defer></script>
-    <!-- <script src="../header/header.js" type="module" defer></script> -->
   </head>
   <body>
     <header>
       <section id="headerNav" class="headerNav">
-        <nav role="navigation" aria-label="main navigation">
+        <nav role="navigation" aria-label="main navigation" class="navbarBox">
           <ul id="navbar" class="navbar"></ul>
         </nav>
         <div class="pageTop">
           <a href="/" class="brand">
-            <img src="../elice-rabbit.png" />
+            <span class="logoTitle">m</span>
             <span id="title"><span class="subTitle">먹거리장터</span>먹짱</span>
           </a>
         </div>
-        <div class="category">
+        <div class="Category">
           <button id="category1" class="catebtn">도매</button>
           <button id="category2" class="catebtn">소매</button>
         </div>
       </section>
     </header>
-    <!--메인-->
-    <!-- <section class="section">
-      <div class="sliderContainer">
-        <div class="sliderArrowContainer">
-          <button class="sliderArrowLeft">
-            <span class="icon is-large">
-              <i class="fas fa-chevron-left fa-2x" aria-hidden="true"></i>
-            </span>
-          </button>
-          <button class="sliderArrowRight">
-            <span class="icon is-large">
-              <i class="fas fa-chevron-right fa-2x" aria-hidden="true"></i>
-            </span>
-          </button>
-        </div>
-        <div id="slider">
-          <div class="slides">
-            <div class="slide active">
-              <a href="/" target="_self">
-                <img src="./images/도매.jpg" alt="도매 카테고리로 이동" />
-              </a>
-            </div>
-            <div class="slide">
-              <a href="/" target="_self">
-                <img src="./images/소매.jpg" alt="소매 카테고리로 이동" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
   </body>
 </html>

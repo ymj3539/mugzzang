@@ -1,0 +1,74 @@
+.orderlistpage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+.orderlist-container {
+  border-radius: 15px;
+}
+
+.orderlist-info {
+  background-color: beige;
+  border-bottom: 1px solid #ddd;
+  border-radius: 15px 15px 0 0;
+  box-sizing: border-box;
+}
+
+.orderlistpageInfo {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.orderlistpage {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.orderlist-standard {
+  display: flex;
+  border-bottom: 1px solid #dbdbdb;
+  border-left: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
+}
+
+.orderlist-standard:last-child {
+  border-radius: 0 0 15px 15px;
+}
+.orderlist-info {
+  border-radius: 15px 15px 0 0;
+  border-top: 1px solid #dbdbdb;
+}
+
+.orderlist-standard span {
+  padding: 12px;
+  text-align: center;
+}
+.orderlist-standard span:nth-child(1) {
+  width: 15%;
+}
+.orderlist-standard span:nth-child(2) {
+  width: 38%;
+}
+.orderlist-standard span:nth-child(3) {
+  width: 8%;
+}
+.orderlist-standard span:nth-child(4) {
+  width: 10%;
+}
+.orderlist-standard span:nth-child(5) {
+  width: 15%;
+}
+.orderlist-standard span:last-child {
+  width: 15%;
+}
+.orderlist-standard span button {
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 1em;
+}

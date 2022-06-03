@@ -23,8 +23,7 @@ function loginUser() {
     navBar.insertAdjacentHTML(
       "beforeend",
       `
-        <li class="mainlogo"><a href="/"><span>쇼핑-n팀</span></a></li>
-        <li><a href="/itemlist">shop</a></li>
+        <li class="mainlogo"><a href="/"><span class="logoStyle">MUGZZANG</span></a></li>
         <li><a href="/login">로그인</a></li>
         <li><a href="/register">회원가입</a></li>
         `
@@ -33,15 +32,14 @@ function loginUser() {
     navBar.insertAdjacentHTML(
       "beforeend",
       `
-        <li class="mainlogo"><a href="/"><span>쇼핑-n팀</span></a></li>
-        <li><a href="/itemlist">shop</a></li>
+        <li class="mainlogo"><a href="/"><span class="logoStyle">MUGZZANG</span></a></li>
         <li>
           <a href="/cart" aria-current="page">
             <span class="icon"> <i class="fas fa-cart-shopping"></i> </span
             ><span>장바구니</span>
           </a>
         </li>
-        <li><a href="/mypage" id="mypageBtn">mypage</a></li>
+        <li><a href="/mypage" id="mypageBtn">마이페이지</a></li>
         `
     );
   }
@@ -70,59 +68,6 @@ function categoryBtn(event) {
   if (event.target.innerHTML === "소매") {
     sessionStorage.setItem("chosenCategory", "소매");
   }
+
   window.location.href = "/itemlist";
 }
-
-// const headerNavbar = {
-//     render: () => {
-//         const token = sessionStorage.getItem("id")
-//         const resUser = await Api.get(
-//             `/api/user/userlist/${sessionStorage.getItem("id")}`
-//           );
-//         return `
-//         <ul id="navbar">
-//             ${
-//                 token && resUser.role === 'basic-user'
-//                 ? `<li><a href="/itemlist">shop</a></li>
-//                 <li>
-//                   <a href="/cart" aria-current="page">
-//                     <span class="icon"> <i class="fas fa-cart-shopping"></i> </span
-//                     ><span>장바구니</span>
-//                   </a>
-//                 </li>
-//                 <li><a href="/mypage" id="mypageBtn">mypage</a></li>`
-//                 :null
-//             }
-//         </ul>
-//         `
-//     }
-// }
-
-//메인 배너
-// var slider = document.querySelector("#slider");
-// var slides = slider.querySelector(".slides");
-// var slide = slides.querySelectorAll(".slide");
-// var leftButton = document.querySelector(".sliderArrowLeft");
-// var rightButton = document.querySelector(".sliderArrowRight");
-
-// var currentSlide = 0;
-
-// setInterval(function () {
-//   var from = -(1024 * currentSlide);
-//   var to = from - 1024;
-//   slides.animate(
-//     {
-//       marginLeft: [from + "px", to + "px"],
-//     },
-//     {
-//       duration: 500,
-//       easing: "ease",
-//       iterations: 1,
-//       fill: "both",
-//     }
-//   );
-//   currentSlide++;
-//   if (currentSlide === slide.length - 1) {
-//     currentSlide = 0;
-//   }
-// }, 3000);

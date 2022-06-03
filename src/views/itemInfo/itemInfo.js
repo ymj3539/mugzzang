@@ -1,6 +1,6 @@
 import * as Api from '/api.js';
 import {quantityControlBox} from './quantityControlBox.js';
-
+const domain = window.location.host;
 const $itemInfoSection = document.getElementById('itemInfo_section');
 const params = window.location.href.split('?=')[1];
 
@@ -24,7 +24,7 @@ async function createItemInfoElements() {
       <img
         id="itemInfo_img"
         class="itemInfo_img"
-        src=${img}
+        src='http://${domain}/static/${img}'
       />
     </picture>
     <article data-id=${shortId} id= "itemInfo_information" class="itemInfo_information">
@@ -83,7 +83,6 @@ async function addquantityControlEvent() {
 function moveItemToCart(quantity, id, e) {
   let item = {quantity, id};
   // 같은 상품의 장바구니 데이터가 있는 경우 기존 sessionStorage데이터 삭제 후 다시 넣기
-
   if (!sessionStorage.getItem(`cart.${id}`)) {
     sessionStorage.setItem(`cart.${id}`, JSON.stringify(item));
   } else {
@@ -96,5 +95,7 @@ function moveItemToCart(quantity, id, e) {
   }
   alert('장바구니에 추가되었습니다!');
 }
+
+// Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis a dolore, possimus consequuntur nemo consequatur cum? Eum, eligendi! Soluta voluptatum eveniet enim illum quam ut necessitatibus laboriosam vitae, veniam error, molestiae amet numquam suscipit quia esse eligendi exercitationem et, totam beatae voluptate rem sequi. Quibusdam similique pariatur eius consectetur tenetur!
 
 addquantityControlEvent();

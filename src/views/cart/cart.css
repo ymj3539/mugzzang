@@ -1,8 +1,4 @@
-/* 앨리스배움체 */
-@import url("https://font.elice.io/EliceDigitalCoding.css");
-
 /* header */
-
 .pageTop h2 {
   font-size: 35px;
   padding-left: 20px;
@@ -12,47 +8,113 @@
 }
 
 /* main */
+.main {
+  font-family: 'Noto Sans KR', sans-serif;
+}
 .cartTitle {
-  font-size: 20px;
+  font-size: 25px;
   padding: 50px 0 10px 50px;
   font-weight: bolder;
 }
 .cartInfoContainer {
+  display: flex;
   min-height: 300px;
+  gap: 20px;
 }
 .cartList {
-  padding: 40px;
-  margin: 10px 10px 50px 50px;
+  padding: 35px;
   border: 2px solid #b4e197;
-  width: 800px;
-  float: left;
+  margin-left: 20px;
+  flex-basis: 70vw;
+}
+.payContainer {
+  flex-basis: 30vw;
+}
+.deleteSom, 
+.deleteAll, 
+.trash {
+  background-color: #b4e197;
+  border: none;
+  color: black;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.deleteSom, 
+.deleteAll, 
+.trash,
+.ckeckbox:hover{
+  cursor: pointer;
+}
+.deleteButtons {
+  display: flex;
+  gap: 10px;
 }
 
+.empty {
+  text-align:center;
+  font-size: 40px;
+  padding-top: 50px;
+}
+.PayContainer {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25vw;
+}
+
+.payInfo {
+  min-height: auto;
+  padding: 20px;
+  border: 2px solid #b4e197;
+  line-height: 40px;
+}
+.payInfoTitle {
+  font-size: 25px;
+  font-weight: 300;
+}
+#ordering {
+  background-color: #4e944f;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 .item {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: stretch;
-  flex-basis: 0;
-  gap: 30px;
-  margin: 10px;
+  padding: 10px;
 }
 .item .itemInfo:nth-child(1) {
-  flex-grow: 1;
+  flex-basis: 5%;
 }
 .item .itemInfo:nth-child(2) {
-  flex-grow: 3;
+  flex-basis: 10%;
+}
+.item .itemInfo:nth-child(3) {
+  flex-basis: 10%;
 }
 .item .itemInfo:nth-child(4) {
-  flex-grow: 1;
+  flex-basis: 25%;
+  font-weight: 300;
+  font-size: 25px;
 }
 .item .itemInfo:nth-child(5) {
-  flex-grow: 1;
+  flex-basis: 20%;
 }
 
 .item a img {
   max-width: 70px;
   max-height: 70px;
+}
+.item a .title {
+  font-size: 1em;
 }
 .itemInfo_btn_updown {
   display: flex;
@@ -63,37 +125,4 @@
 }
 .fa-trash-can {
   pointer-events: none;
-}
-
-.payInfo {
-  width: 300px;
-  min-height: auto;
-  padding: 20px;
-  margin: 50px 50px 50px 0;
-  border: 2px solid #b4e197;
-  line-height: 40px;
-  float: right;
-}
-
-.payInfo .payInfoTitle {
-  font-size: 25px;
-  font-weight: 300;
-}
-
-/* footer */
-footer {
-  clear: both;
-}
-
-footer .footer {
-  font-size: small;
-  line-height: 200%;
-  padding: 0 0 10px 20px;
-  background-color: #e9efc0;
-}
-
-.footer .companyName {
-  font-size: medium;
-  font-weight: bold;
-  line-height: 300%;
 }

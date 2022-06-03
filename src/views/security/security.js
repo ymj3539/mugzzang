@@ -1,6 +1,5 @@
 import * as Api from "/api.js";
 
-// 요소(element), input 혹은 상수
 //회원정보 input 모음
 const nameInput = document.querySelector("#nameInput");
 const passwordInput = document.querySelector("#passwordInput");
@@ -18,19 +17,22 @@ const findAddressBtn = document.querySelector("#findAddress");
 addAllElements();
 addAllEvents();
 
-// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 async function addAllElements() {
   securityInfo();
 }
 
-// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   infoChangeBtn.addEventListener("click", changSubmit);
   findAddressBtn.addEventListener("click", addressFind);
 }
 
-//회원정보 관리 보유한 데이터 value값 넣어두기
+//회원정보 수정페이지 접속시 이전에 있던 정보 가져오기
 async function securityInfo() {
+  if (!sessionStorage.getItem("id")) {
+    alert("로그인한 유저만 사용할 수 있는 서비스입니다.");
+    window.location.href = "/login";
+  }
+
   const resUser = await Api.get(
     `/api/user/userlist/${sessionStorage.getItem("id")}`
   );
@@ -56,7 +58,7 @@ async function securityInfo() {
 //유저정보 patch기능
 async function changSubmit(e) {
   e.preventDefault();
-
+  console.log("asdf");
   const resUser = await Api.get(
     `/api/user/userlist/${sessionStorage.getItem("id")}`
   );
@@ -76,6 +78,7 @@ async function changSubmit(e) {
   // 잘 입력했는지 확인
   const isFullNameValid = fullName.length >= 2;
   const isPasswordValid = password.length >= 4;
+  const isPasswordValidlength = password.length <= 10;
   const isPasswordSame = password === passwordConfirm;
 
   if (fullName) {
@@ -85,8 +88,8 @@ async function changSubmit(e) {
   }
 
   if (password) {
-    if (!isPasswordValid) {
-      return alert("비밀번호는 4글자 이상이어야 합니다.");
+    if (!isPasswordValid || !isPasswordValidlength) {
+      return alert("비밀번호는 4글자 이상, 10글자 이하이어야 합니다.");
     }
     if (!isPasswordSame) {
       return alert("비밀번호가 일치하지 않습니다.");
