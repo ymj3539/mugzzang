@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
 import 'module-alias/register';
-import { loginRequired } from '@middlewares';
-import { adminRequired } from '@middlewares';
+import { loginRequired, adminRequired, validateProductPrice } from '@middlewares';
 import { productService } from '@services';
 import { asyncHandler } from '@asyncHandler';
 
@@ -67,6 +66,7 @@ productRouter.post(
   '/',
   loginRequired,
   adminRequired,
+  validateProductPrice,
   asyncHandler(async (req, res, next) => {
    
       if (is.emptyObject(req.body)) {
