@@ -58,6 +58,11 @@
   font-size: 40px;
   padding-top: 50px;
 }
+.PayContainer {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25vw;
+}
 
 .payInfo {
   min-height: auto;
@@ -65,7 +70,7 @@
   border: 2px solid #b4e197;
   line-height: 40px;
 }
-.payInfo .payInfoTitle {
+.payInfoTitle {
   font-size: 25px;
   font-weight: 300;
 }
