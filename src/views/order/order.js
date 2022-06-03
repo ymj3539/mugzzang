@@ -7,7 +7,7 @@ const $itemInfo = document.querySelector('.itemInfo');
 const $priceInfo = document.querySelector('.priceInfo');
 const $orderBtn = document.querySelector('.ordering');
 const $findAddressBtn = document.querySelector("#findAddress");
-const $getMyAddBtn = document.querySelector(".getMyAdd");
+// const $getMyAddBtn = document.querySelector(".getMyAdd");
 
 const userEmail = sessionStorage.getItem('id');
 const token = sessionStorage.getItem('token');
@@ -24,6 +24,12 @@ function getItems() {
     const {title, quantity} = items[i]; 
     $itemInfo.insertAdjacentHTML('beforeend', `<p>${title} × ${quantity}</p>`);
   });
+
+  if (itemPrice === null){
+    alert('주문 과정에서 오류가 발생했습니다. 메인 페이지로 돌아갑니다.');
+    location.href = '/';
+    return;
+  }
   $priceInfo.insertAdjacentHTML('beforeend', 
       `
       <p>상품 금액 ${addCommas(itemPrice)}원</p>
@@ -46,8 +52,15 @@ async function sendDataToDb() {
   let sendSuccess = false;
 
   //배송지 정보 유효성 검사
-  if (deliveryName === null || deliveryAdd === null || deliveryPhone === null || deliveryDeAdd === null || deliveryZipCode === null ) {
+  if (deliveryName === ''){
+    alert("이름을 입력해 주세요")
+    return;
+  } else if (deliveryPhone === '') {
+    alert("전화번호를 입력해 주세요.")
+    return;
+  } else if (deliveryAdd === '' || deliveryDeAdd === '' || deliveryZipCode === '') {
     alert("배송지 정보를 입력해 주세요")
+    return;
   }
 
   //상품 하나에 대해 data를 생성
@@ -73,10 +86,9 @@ async function sendDataToDb() {
     sessionStorage.clear();
     sessionStorage.setItem('id', userEmail);
     sessionStorage.setItem('token', token);
-    alert('주문이 완료되었습니다. 메인 페이지로 돌아갑니다.');
-    location.href = '../home/home.html';
+    location.href = '/orderComplete';
   } else {
-    alert('오류 발생. 다시 시도해 주세요.');
+    alert('오류 발생. 관리자에게 문의해 주세요.');
   }
 }
 

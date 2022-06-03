@@ -23,7 +23,7 @@ function loginUser() {
     navBar.insertAdjacentHTML(
       "beforeend",
       `
-        <li class="mainlogo"><a href="/"><span>쇼핑-n팀</span></a></li>
+        <li class="mainlogo"><a href="/"><span class="logoStyle">MUGZZANG</span></a></li>
         <li><a href="/login">로그인</a></li>
         <li><a href="/register">회원가입</a></li>
         `
@@ -32,14 +32,14 @@ function loginUser() {
     navBar.insertAdjacentHTML(
       "beforeend",
       `
-        <li class="mainlogo"><a href="/"><span>먹짱-4팀</span></a></li>
+        <li class="mainlogo"><a href="/"><span class="logoStyle">MUGZZANG</span></a></li>
         <li>
           <a href="/cart" aria-current="page">
             <span class="icon"> <i class="fas fa-cart-shopping"></i> </span
             ><span>장바구니</span>
           </a>
         </li>
-        <li><a href="/mypage" id="mypageBtn">mypage</a></li>
+        <li><a href="/mypage" id="mypageBtn">마이페이지</a></li>
         `
     );
   }
@@ -68,5 +68,6 @@ function categoryBtn(event) {
   if (event.target.innerHTML === "소매") {
     sessionStorage.setItem("chosenCategory", "소매");
   }
+
   window.location.href = "/itemlist";
 }
