@@ -1,49 +1,49 @@
-import * as Api from "/api.js";
+import * as Api from '/api.js';
 
 const showAddItemModule = () => {
-  const $adminPage_content = document.getElementById("adminPage_content");
+  const $adminPage_content = document.getElementById('adminPage_content');
   showAddItemPage();
-  const $addItemForm = document.getElementById("itemForm");
-  const $titleInput = document.getElementById("prod_title");
-  const $category_1_value = document.getElementById("category_1_value");
-  const $category_2_value = document.getElementById("category_2_value");
-  const $category_3_value = document.getElementById("category_3_value");
-  const $manufacturerInput = document.getElementById("manufacturer");
-  const $descriptionInput = document.getElementById("description");
-  const $priceInput = document.getElementById("price");
-  const $imgInput = document.getElementById("img");
-  const $fileUpload = document.getElementById("fileUpload");
-  const $uploadImageBtn = document.querySelector(".uploadImageBtn");
+  const $addItemForm = document.getElementById('itemForm');
+  const $titleInput = document.getElementById('prod_title');
+  const $category_1_value = document.getElementById('category_1_value');
+  const $category_2_value = document.getElementById('category_2_value');
+  const $category_3_value = document.getElementById('category_3_value');
+  const $manufacturerInput = document.getElementById('manufacturer');
+  const $descriptionInput = document.getElementById('description');
+  const $priceInput = document.getElementById('price');
+  const $imgInput = document.getElementById('img');
+  const $fileUpload = document.getElementById('fileUpload');
+  const $uploadImageBtn = document.querySelector('.uploadImageBtn');
 
   function checkInput() {
     if (!$titleInput.value) {
-      alert("빈칸을 모두 채워주세요");
+      alert('빈칸을 모두 채워주세요');
       return false;
     }
     if (!$priceInput.value) {
-      alert("빈칸을 모두 채워주세요");
+      alert('빈칸을 모두 채워주세요');
       return false;
     }
-    if ($category_1_value.innerText === "대분류") {
-      alert("카테고리를 선택해주세요");
+    if ($category_1_value.innerText === '대분류') {
+      alert('카테고리를 선택해주세요');
       return false;
     }
-    if ($category_2_value.innerText === "중분류") {
-      alert("카테고리를 선택해주세요");
+    if ($category_2_value.innerText === '중분류') {
+      alert('카테고리를 선택해주세요');
       return false;
     }
     if (!$manufacturerInput.value) {
-      alert("빈칸을 모두 채워주세요");
+      alert('빈칸을 모두 채워주세요');
       return false;
     }
     if (!$descriptionInput) {
-      alert("빈칸을 모두 채워주세요");
+      alert('빈칸을 모두 채워주세요');
       return false;
     }
     return true;
   }
 
-  $addItemForm.addEventListener("submit", postItem);
+  $addItemForm.addEventListener('submit', postItem);
   async function postItem(e) {
     e.preventDefault();
     if (!checkInput()) {
@@ -52,17 +52,13 @@ const showAddItemModule = () => {
     const prod_title = $titleInput.value;
     const price = Number($priceInput.value);
     const img = $imgInput.value;
-    const category = [
-      $category_1_value.innerText,
-      $category_2_value.innerText,
-      $category_3_value.value,
-    ];
+    const category = [$category_1_value.innerText, $category_2_value.innerText, $category_3_value.value];
     const manufacturer = $manufacturerInput.value;
     const description = $descriptionInput.value;
     try {
       let imgData = new FormData();
-      imgData.append("image", $fileUpload.files[0]);
-      let uploadedImage = await Api.formPost("/api/product/upload", imgData);
+      imgData.append('image', $fileUpload.files[0]);
+      let uploadedImage = await Api.formPost('/api/product/upload', imgData);
       let imageName = uploadedImage.result;
       const data = {
         prod_title,
@@ -73,10 +69,10 @@ const showAddItemModule = () => {
         description,
         imageName,
       };
-      await Api.post("/api/product/", data);
-      alert("상품 등록이 완료되었습니다.");
+      await Api.post('/api/product/', data);
+      alert('상품 등록이 완료되었습니다.');
       window.location.reload();
-      console.log("check");
+      console.log('check');
     } catch (err) {
       console.error(err);
     }
@@ -84,7 +80,7 @@ const showAddItemModule = () => {
 
   function showAddItemPage() {
     $adminPage_content.insertAdjacentHTML(
-      "beforeend",
+      'beforeend',
       `
       <div class='form_container'>
       <h2 class='module_title'>상품 등록</h2>
@@ -183,35 +179,35 @@ const showAddItemModule = () => {
   }
 
   //드랍다운 함수
-  const dropdown = document.querySelectorAll(".dropdown");
-  const $category_1 = document.getElementById("category_1");
-  const $category_2 = document.getElementById("category_2");
+  const dropdown = document.querySelectorAll('.dropdown');
+  const $category_1 = document.getElementById('category_1');
+  const $category_2 = document.getElementById('category_2');
   dropdown.forEach((el) =>
-    el.addEventListener("click", function (e) {
+    el.addEventListener('click', function (e) {
       e.stopPropagation();
-      el.classList.toggle("is-active");
+      el.classList.toggle('is-active');
     })
   );
 
-  $category_1.addEventListener("click", pickCategory);
-  $category_2.addEventListener("click", pickCategory);
+  $category_1.addEventListener('click', pickCategory);
+  $category_2.addEventListener('click', pickCategory);
 
   function pickCategory(e) {
-    if (e.target.className !== "dropdown-item") return;
-    if (e.currentTarget.id === "category_1") {
+    if (e.target.className !== 'dropdown-item') return;
+    if (e.currentTarget.id === 'category_1') {
       $category_1_value.textContent = e.target.textContent;
       return console.log($category_1_value.innerText);
     }
-    if (e.currentTarget.id === "category_2") {
+    if (e.currentTarget.id === 'category_2') {
       return ($category_2_value.textContent = e.target.textContent);
     }
   }
 
   // 사진 업로드 이벤트 (버튼 클릭 시 > 인풋 click이벤트 발생)
-  $uploadImageBtn.addEventListener("click", () => {
+  $uploadImageBtn.addEventListener('click', () => {
     $fileUpload.click();
   });
-  $fileUpload.addEventListener("change", () => {
+  $fileUpload.addEventListener('change', () => {
     $imgInput.value = $fileUpload.files[0].name;
   });
 };
