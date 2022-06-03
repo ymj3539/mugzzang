@@ -78,6 +78,7 @@ async function changSubmit(e) {
   // 잘 입력했는지 확인
   const isFullNameValid = fullName.length >= 2;
   const isPasswordValid = password.length >= 4;
+  const isPasswordValidlength = password.length <= 10;
   const isPasswordSame = password === passwordConfirm;
 
   if (fullName) {
@@ -87,8 +88,8 @@ async function changSubmit(e) {
   }
 
   if (password) {
-    if (!isPasswordValid) {
-      return alert("비밀번호는 4글자 이상이어야 합니다.");
+    if (!isPasswordValid || !isPasswordValidlength) {
+      return alert("비밀번호는 4글자 이상, 10글자 이하이어야 합니다.");
     }
     if (!isPasswordSame) {
       return alert("비밀번호가 일치하지 않습니다.");
