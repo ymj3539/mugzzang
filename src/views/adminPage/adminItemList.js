@@ -38,6 +38,7 @@ const showItemListModule = () => {
     );
     const $showMoreRow = document.getElementById('showMoreRow');
     addOrderedItem(itemList.slice(0, 20), $showMoreRow);
+    // 더보기 클릭 시 20개씩 추가로 상품 띄우기
     const $showMoreBtn = document.getElementById('showMoreBtn');
     $showMoreBtn.addEventListener('click', () => {
       let $tr = document.querySelectorAll('#tRowId');
@@ -46,7 +47,7 @@ const showItemListModule = () => {
     });
   }
   function addOrderedItem(data, addAt = document.getElementById('showMoreRow')) {
-    data.forEach((e, i) => {
+    data.forEach((e) => {
       let $tr = document.querySelectorAll('#tRowId');
       const {prod_title, manufacturer, price, shortId, category} = e;
       addAt.insertAdjacentHTML(

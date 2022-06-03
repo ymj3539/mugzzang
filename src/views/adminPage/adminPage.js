@@ -21,14 +21,6 @@ async function checkUserRole() {
   }
 }
 checkUserRole();
-// async function checkUserRole() {
-//   await fetch('apiUrl', {
-//     // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
-//     headers: {
-//       Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-//     },
-//   });
-// }
 
 const $showOrderedListBtn = document.getElementById('showOrderedList');
 const $showItemListBtn = document.getElementById('showItemList');
@@ -46,9 +38,9 @@ const MODULES = {
   showPatchDelItem: 'showPatchDelItem',
   showItemList: 'showItemList',
 };
+const {showOrderedList, showAddItem, showPatchDelItem, showItemList} = MODULES;
 
 function setSessionNowPage(e) {
-  const {showAddItem, showItemList, showPatchDelItem, showOrderedList} = MODULES;
   let pageflag = e.target.id;
   if (sessionStorage.getItem('adminPagestate')) {
     sessionStorage.removeItem('adminPagestate'); // 다른 flag값이 있는 경우 삭제하고 다시 추가
@@ -71,16 +63,16 @@ $asideBtn.forEach((e) => e.classList.add('is-white'));
 // 새로고침 되었을 때, sessionStorage에 flag변수에 맞게 목록 다시 띄우기
 window.onload = () => {
   switch (sessionStorage.getItem('adminPagestate')) {
-    case 'showOrderedList':
+    case showOrderedList:
       showOrderedListModule();
       break;
-    case 'showAddItem':
+    case showAddItem:
       showAddItemModule();
       break;
-    case 'showPatchDelItem':
+    case showPatchDelItem:
       showPathDelItemModule();
       break;
-    case 'showItemList':
+    case showItemList:
       showItemListModule();
       break;
     default:
