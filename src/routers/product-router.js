@@ -62,8 +62,8 @@ productRouter.post(
         __dirname,
         '..',
         `${dir}/${file.originalFilename}`
-      ); //__dirname : 현재경로 가져오기
-      fs.renameSync(file.filepath, newPath); //파일명 변경 : fs.renameSync(이전경로, 현재경로)
+      ); //__dirname : 현재경로 가져오기, 파일명 변경
+      fs.renameSync(file.filepath, newPath); //파일 경로 변경 : fs.renameSync(이전경로, 현재경로)
       res.json({ result: `${file.originalFilename}` });
     });
   })
