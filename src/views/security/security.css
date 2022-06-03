@@ -1,29 +1,35 @@
-.mypage-container {
+.security-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   height: 100vh;
 }
 
-.mypageInfo {
-  margin: 30px;
-  width: 500px;
-}
-
-.mypage {
+.securitypage {
   font-size: 30px;
   font-weight: 600;
-  margin-bottom: 30px;
+  padding: 30px 0;
 }
 
+.securitypageInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  width: 500px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+}
 .userInfo {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .infoChangeBtn {
   cursor: pointer;
+  border-radius: 10px;
 }
 
 input::-webkit-outer-spin-button,
@@ -34,4 +40,18 @@ input::-webkit-inner-spin-button {
 
 .addressInfo {
   display: flex;
+}
+
+.infoChangeBtn {
+  border: none;
+}
+.combtn {
+  font-size: 16px;
+  width: 150px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+#findAddress {
+  margin-left: 15px;
 }

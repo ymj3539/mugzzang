@@ -1,6 +1,5 @@
 import * as Api from "/api.js";
 
-// 요소(element), input 혹은 상수
 //회원정보 input 모음
 const nameInput = document.querySelector("#nameInput");
 const passwordInput = document.querySelector("#passwordInput");
@@ -18,18 +17,16 @@ const findAddressBtn = document.querySelector("#findAddress");
 addAllElements();
 addAllEvents();
 
-// html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 async function addAllElements() {
   securityInfo();
 }
 
-// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   infoChangeBtn.addEventListener("click", changSubmit);
   findAddressBtn.addEventListener("click", addressFind);
 }
 
-//회원정보 관리 보유한 데이터 value값 넣어두기
+//회원정보 수정페이지 접속시 이전에 있던 정보 가져오기
 async function securityInfo() {
   if (!sessionStorage.getItem("id")) {
     alert("로그인한 유저만 사용할 수 있는 서비스입니다.");

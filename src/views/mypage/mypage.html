@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>쇼핑-n팀</title>
     <!-- 아이콘 -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/elice-rabbit-favicon.png"
-    />
+    <link rel="icon" type="image/png" sizes="16x16" href="/파비콘1.png" />
     <!-- bulma css -->
     <link
       rel="stylesheet"
@@ -23,6 +18,12 @@
       crossorigin="anonymous"
     ></script>
     <!-- 커스텀 css, js -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
       rel="stylesheet"
@@ -35,28 +36,29 @@
   <body>
     <!-- 헤더 -->
     <header>
-      <section id="headerNav">
-        <nav role="navigation" aria-label="main navigation">
+      <section id="headerNav" class="headerNav">
+        <nav role="navigation" aria-label="main navigation" class="navbarBox">
           <ul id="navbar" class="navbar"></ul>
         </nav>
       </section>
     </header>
 
     <section class="mypage-container">
-      <div class="mypageInfo">
+      <div class="mypage-box">
         <h1 class="mypage">마이페이지</h1>
-        <div class="userInfo">
-          <span id="userName"></span>
-          <span id="userEmail"></span>
-          <span id="userAdd"></span>
-          <span id="userPhonenum"></span>
+        <div class="mypageInfo">
+          <div class="userInfo">
+            <span id="userName"></span>
+            <span id="userEmail"></span>
+            <span id="userAdd"></span>
+            <span id="userPhonenum"></span>
+          </div>
         </div>
-      </div>
-      <div class="mypageNav">
-        <a href="/mypage/security">정보수정</a>
-        <a href="/mypage/signout">계정삭제</a>
-        <a href="/mypage/orderlist">주문조회</a>
-        <a href="/adminPage">관리자</a>
+        <div id="mypageNav" class="mypageNav">
+          <a href="/mypage/security" class="navlink">정보수정</a>
+          <a href="/mypage/signout" class="navlink">계정삭제</a>
+          <a href="/mypage/orderlist" class="navlink">주문조회</a>
+        </div>
       </div>
     </section>
   </body>
