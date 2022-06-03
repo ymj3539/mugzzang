@@ -55,9 +55,19 @@ productRouter.post(
       const file = files.image; // key를 image로 지정하고 파일을 보내줬기 때문에 files.image로 파일을 가져옴
       const dir = `public`;
       !fs.existsSync(dir) && fs.mkdirSync(dir);
+<<<<<<< HEAD
       const newPath = path.join(__dirname, '..', `${dir}/${file.originalFilename}`); //__dirname : 현재경로 가져오기
       fs.renameSync(file.filepath, newPath); //파일명 변경 : fs.renameSync(이전경로, 현재경로)
       res.json({result: `${file.originalFilename}`});
+=======
+      const newPath = path.join(
+        __dirname,
+        '..',
+        `${dir}/${file.originalFilename}`
+      ); //__dirname : 현재경로 가져오기, 파일명 변경
+      fs.renameSync(file.filepath, newPath); //파일 경로 변경 : fs.renameSync(이전경로, 현재경로)
+      res.json({ result: `${file.originalFilename}` });
+>>>>>>> 4a034b64b02b3ad9693a840f8155f2546d948205
     });
   })
 );
