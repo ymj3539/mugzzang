@@ -216,8 +216,7 @@ async function moveToOrderPage() {
 
     for (let i = 0; i < shortId.length; i++) {
       const id = shortId[i].innerText;
-      const item = {title: title[i].innerText, quantity: quantity[i].value, price: price[i].innerText};
-
+      const item = {title: title[i*2+1].innerText, quantity: quantity[i].value, price: price[i].innerText};
       sessionStorage.setItem(`order_${id}`, JSON.stringify(item));
     }
     sessionStorage.setItem(`itemPrice`, JSON.stringify(totalPrice));
