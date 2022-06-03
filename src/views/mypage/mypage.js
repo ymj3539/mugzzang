@@ -26,7 +26,6 @@ async function mypageInfo() {
   const resUser = await Api.get(
     `/api/user/userlist/${sessionStorage.getItem("id")}`
   );
-  console.log(resUser);
 
   userName.innerHTML = `이름: ${resUser.fullName}`;
   userEmail.innerHTML = `이메일: ${resUser.email}`;
