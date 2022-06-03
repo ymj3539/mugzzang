@@ -88,13 +88,13 @@ async function createCartElements() {
             <span class="title">${title}</span>
           </a>  
           <div id="controlBox" class="itemInfo_btn_updown itemInfo">
-            <button data-quantity=${i} id="quantityDown" class="button is-danger is-light">-</button>
+            <button data-quantity=${i} id="quantityDown" class="button is-success is-light">-</button>
             <input data-quantity=${i} class="input quantityInput" type="string" value="${quantity}" />
-            <button data-quantity=${i} id="quantityUp" class="button is-info is-light">+</button>
+            <button data-quantity=${i} id="quantityUp" class="button is-success is-light">+</button>
           </div>
           <span data-priceid=${i} class="itemInfo eachPrice">${addCommas(price)}</span>
           <span data-calcprice=${i} class="itemInfo totalItemPrice" id="calcItemPrice">${addCommas(totalItemPrice)}</span>  
-          <button class="trash button is-success" data-checkBox=${i} style="background-color: #b4e197; color: black;"><i class="fa-solid fa-trash-can"></i></button>    
+          <button class="button is-success" id="trash" data-checkBox=${i} style="background-color: #b4e197; color: black;"><i class="fa-solid fa-trash-can"></i></button>    
         </div>`
     );
   });
@@ -170,25 +170,25 @@ async function deleteItem() {
   const $cartList = document.getElementById('cartList');
 
   $cartList.addEventListener('click', (e) => {
-    const {className} = e.target;
-    if (className !== 'trash' && className !== 'deleteAll' && className !== 'deleteSom') return;
+    const {id} = e.target;
+    console.log(e.target);
+    if (id !== 'trash' && id !== 'deleteAll' && id !== 'deleteSom') return;
     
     //삭제를 누르면 세션스토리지 비우고 화면의 아이템도 지우기
-    if (className === 'deleteAll') {
+    if (id === 'deleteAll') {
       const cartSession = Object.keys(sessionStorage).filter((e) => e.slice(0, 4) === 'cart');
       cartSession.forEach((el) => {
         sessionStorage.removeItem(el);
       });
-      console.log($cartContainer);
       $cartContainer.remove();
-    } else if (className === 'deleteSom') {
+    } else if (id === 'deleteSom') {
       const checkedBtns = document.querySelectorAll("input[name='buy']:checked");
       checkedBtns.forEach((btn) => {     
         const checkedShortId = btn.parentElement.nextElementSibling.nextElementSibling.innerHTML;
         sessionStorage.removeItem(`cart.${checkedShortId}`);
         document.getElementById(`item_${btn.value}`).remove();
       });
-    } else if (className === 'trash') {
+    } else if (id === 'trash') {
       const {checkbox} = e.target.dataset;
       const trashItem = document.querySelector(`[data-shortId='${checkbox}']`).innerText;
       sessionStorage.removeItem(`cart.${trashItem}`);
