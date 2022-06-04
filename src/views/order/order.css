@@ -31,34 +31,65 @@ nav ul li:last-child {
 }
 
 /* main */
+.main {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
 .orderTitle {
   font-size: 30px;
-  padding: 50px 0 10px 20px;
+  padding: 50px 50px 0 0;
   font-weight: bolder;
 }
+
 .orderContainer {
+  padding-top: 20px;
   min-height: 300px;
 }
-.userInfo {
-  font-size: 15px;
-  font-weight: 300;
+
+.shippingInfo {
+  display: flex;
+  gap: 20px;
 }
-.field {
-  padding: 20px;
-  width: 800px;
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.addressInfo {
+  display: flex;
+}
+
+#findAddress {
+  margin-left: 15px;
+  cursor: pointer;
+  background-color: #b4e197; 
+  color: black;
 }
 
 .payInfo {
-  width: 300px;
-  min-height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   padding: 20px;
-  margin: 50px 50px 50px 0;
   border: 2px solid #b4e197;
-  line-height: 40px;
-  float: right;
+  border-radius: 5px / 5px;;
+  line-height: 30px; 
+  min-width: 300px;
 }
 
-.payInfo .payInfoTitle {
-  font-size: 25px;
-  font-weight: 300;
+#ordering{
+  background-color: #4E944F;
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
 }

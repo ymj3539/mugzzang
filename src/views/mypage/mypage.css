@@ -18,7 +18,7 @@
 }
 
 .mypageInfo {
-  border: 1px solid #ddd;
+  border: 1px solid #b4e197;
   border-radius: 15px;
   padding: 0 30px;
   width: 500px;
@@ -26,10 +26,14 @@
 
 .userInfo {
   margin: 30px;
+  font-family: 'Noto Sans KR', sans-serif;
   display: flex;
   flex-direction: column;
 }
 
+.mypage_Info {
+  padding: 15px;
+}
 .infoChangeBtn {
   cursor: pointer;
 }
@@ -42,11 +46,17 @@
 }
 
 .mypageNav a {
-  border: 1px solid #d5d9d9;
+  border: 1px solid #b4e197;
   border-radius: 6px;
   padding: 10px;
   text-align: center;
 }
 .navlink {
   width: 200px;
+  color: black !important;
+}
+
+.navlink:hover {
+  background-color: #4e944f !important;
+  color: white !important;
 }
