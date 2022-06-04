@@ -32,9 +32,9 @@
 .payContainer {
   flex-basis: 30vw;
 }
-.deleteSom, 
-.deleteAll, 
-.trash {
+#deleteSom, 
+#deleteAll, 
+#trash {
   background-color: #b4e197;
   border: none;
   color: black;
@@ -44,9 +44,9 @@
   display: inline-block;
   font-size: 16px;
 }
-.deleteSom, 
-.deleteAll, 
-.trash,
+#deleteSom, 
+#deleteAll, 
+#trash,
 .ckeckbox:hover{
   cursor: pointer;
 }
