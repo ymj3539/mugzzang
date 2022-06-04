@@ -18,14 +18,15 @@
 }
 .cartInfoContainer {
   display: flex;
-  min-height: 300px;
+  margin-bottom: 20px;
+  min-height: 30px;
   gap: 20px;
 }
 .cartList {
   padding: 3px;
   border: 2px solid #b4e197;
   border-radius: 5px / 5px;
-  margin: 0 0 30px 20px;
+  margin-left: 20px;
   flex-basis: 70vw;
 }
 .payContainer {
@@ -58,7 +59,7 @@
 .empty {
   text-align:center;
   font-size: 40px;
-  padding-top: 50px;
+  padding-top: 80px;
 }
 .PayContainer {
   display: flex;
