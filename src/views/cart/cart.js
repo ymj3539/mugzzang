@@ -214,6 +214,11 @@ async function moveToOrderPage() {
       return;
     }
 
+    const orderSession = Object.keys(sessionStorage).filter((e) => e.slice(0, 5) === 'order');
+    orderSession.forEach((el) => {
+      sessionStorage.removeItem(el);
+    });
+
     for (let i = 0; i < shortId.length; i++) {
       const id = shortId[i].innerText;
       const item = {title: title[i*2+1].innerText, quantity: quantity[i].value, price: price[i].innerText};
