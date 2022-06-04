@@ -13,8 +13,10 @@ async function addAllElements() {
 }
 
 function addAllEvents() {
-  category1.addEventListener('click', categoryBtn);
-  category2.addEventListener('click', categoryBtn);
+  if (category1 !== null && category2 !== null) {
+    category1.addEventListener('click', categoryBtn);
+    category2.addEventListener('click', categoryBtn);
+  }
 }
 
 function loginUser() {

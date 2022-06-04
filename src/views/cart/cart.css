@@ -18,21 +18,23 @@
 }
 .cartInfoContainer {
   display: flex;
-  min-height: 300px;
+  margin-bottom: 20px;
+  min-height: 30px;
   gap: 20px;
 }
 .cartList {
-  padding: 35px;
+  padding: 3px;
   border: 2px solid #b4e197;
+  border-radius: 5px / 5px;
   margin-left: 20px;
   flex-basis: 70vw;
 }
 .payContainer {
   flex-basis: 30vw;
 }
-.deleteSom, 
-.deleteAll, 
-.trash {
+#deleteSom, 
+#deleteAll, 
+#trash {
   background-color: #b4e197;
   border: none;
   color: black;
@@ -42,32 +44,35 @@
   display: inline-block;
   font-size: 16px;
 }
-.deleteSom, 
-.deleteAll, 
-.trash,
+#deleteSom, 
+#deleteAll, 
+#trash,
 .ckeckbox:hover{
   cursor: pointer;
 }
 .deleteButtons {
   display: flex;
+  padding: 10px 0 0 10px;
   gap: 10px;
 }
 
 .empty {
   text-align:center;
   font-size: 40px;
-  padding-top: 50px;
+  padding-top: 80px;
 }
 .PayContainer {
   display: flex;
   flex-direction: column;
   flex-basis: 25vw;
+  gap: 10px;
 }
 
 .payInfo {
   min-height: auto;
   padding: 20px;
   border: 2px solid #b4e197;
+  border-radius: 5px / 5px;
   line-height: 40px;
 }
 .payInfoTitle {
@@ -76,19 +81,14 @@
 }
 #ordering {
   background-color: #4e944f;
-  border: none;
   color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  padding: 40px 0;
 }
 .item {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: stretch;
+  align-items: center;
   padding: 10px;
 }
 .item .itemInfo:nth-child(1) {
@@ -97,24 +97,20 @@
 .item .itemInfo:nth-child(2) {
   flex-basis: 10%;
 }
-.item .itemInfo:nth-child(3) {
-  flex-basis: 10%;
-}
 .item .itemInfo:nth-child(4) {
   flex-basis: 25%;
-  font-weight: 300;
-  font-size: 25px;
+  text-align: center;
 }
 .item .itemInfo:nth-child(5) {
   flex-basis: 20%;
 }
 
 .item a img {
-  max-width: 70px;
-  max-height: 70px;
+  max-width: 80px;
 }
 .item a .title {
-  font-size: 1em;
+  font-size: 17px;
+  font-weight: 400;
 }
 .itemInfo_btn_updown {
   display: flex;

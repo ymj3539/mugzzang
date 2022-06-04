@@ -1,13 +1,14 @@
-const $categoryBig = document.getElementById('categoryBig');
-const $categorySmall = document.getElementById('categorySmall');
-$categoryBig.addEventListener('click', categoryBtn);
-$categorySmall.addEventListener('click', categoryBtn);
+const $whole = document.getElementById('wholePeople');
+const $retail = document.getElementById('retailPeople');
+$whole.addEventListener('click', categoryBtn);
+$retail.addEventListener('click', categoryBtn);
 
 function categoryBtn(e) {
-  if (e.target.id === 'categoryBig') {
+  console.log(e.target);
+  if (e.target.id === 'wholePeople') {
     sessionStorage.setItem('chosenCategory', '도매');
   }
-  if (e.target.id === 'categorySmall') {
+  if (e.target.id === 'retailPeople') {
     sessionStorage.setItem('chosenCategory', '소매');
   }
   window.location.href = '/itemlist';
