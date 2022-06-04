@@ -34,6 +34,7 @@ nav ul li:last-child {
 .main {
   display: flex;
   justify-content: center;
+  margin-top: 100px;
 }
 
 .orderTitle {
