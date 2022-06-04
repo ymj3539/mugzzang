@@ -5,10 +5,10 @@ $retail.addEventListener('click', categoryBtn);
 
 function categoryBtn(e) {
   console.log(e.target);
-  if (e.target.id === 'categoryBig') {
+  if (e.target.id === 'wholePeople') {
     sessionStorage.setItem('chosenCategory', '도매');
   }
-  if (e.target.id === 'categorySmall') {
+  if (e.target.id === 'retailPeople') {
     sessionStorage.setItem('chosenCategory', '소매');
   }
   window.location.href = '/itemlist';
