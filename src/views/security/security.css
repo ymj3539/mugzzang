@@ -30,6 +30,7 @@
 .infoChangeBtn {
   cursor: pointer;
   border-radius: 10px;
+  background-color: #b4e197;
 }
 
 input::-webkit-outer-spin-button,
@@ -54,4 +55,5 @@ input::-webkit-inner-spin-button {
 
 #findAddress {
   margin-left: 15px;
+  background-color: #b4e197;
 }
