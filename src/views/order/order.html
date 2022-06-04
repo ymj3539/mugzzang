@@ -51,7 +51,7 @@
       </section>
     </header>
     <!--메인-->
-    <main role="main">
+    <main role="main" class="main">
       <section class="orderTitle">
         <div>배송 정보</div>
       </section>
@@ -82,7 +82,7 @@
                   placeholder="우편번호"
                   readonly
                 />
-                <input type="button" id="findAddress" value="주소찾기" />
+                <input type="button" class="button is-success" id="findAddress" value="주소찾기"/>
               </div>
             </div>
             <div class="field">
@@ -103,12 +103,13 @@
               />
             </div>
           </form>
-          <section class="PayInfo">
+          <section class="payInfo">
             <div class="itemInfo"></div>
+            <hr>
             <div class="priceInfo"></div>
           </section>
         </section>
-        <button type="button" class="ordering">주문하기</button>
+        <button type="button" class="button is-success" id="ordering">주문하기</button>
       </div>
     </main>
   </body>
