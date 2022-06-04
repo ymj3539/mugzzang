@@ -26,10 +26,14 @@
 
 .userInfo {
   margin: 30px;
+  font-family: 'Noto Sans KR', sans-serif;
   display: flex;
   flex-direction: column;
 }
 
+.mypage_Info {
+  padding: 15px;
+}
 .infoChangeBtn {
   cursor: pointer;
 }
