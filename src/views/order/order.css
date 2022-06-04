@@ -38,7 +38,7 @@ nav ul li:last-child {
 
 .orderTitle {
   font-size: 30px;
-  padding: 50px 30px 10px 20px;
+  padding: 50px 50px 0 0;
   font-weight: bolder;
 }
 
@@ -47,8 +47,9 @@ nav ul li:last-child {
   min-height: 300px;
 }
 
-.field {
-  padding: 10px;
+.shippingInfo {
+  display: flex;
+  gap: 20px;
 }
 
 .userInfo {
@@ -82,7 +83,7 @@ input::-webkit-inner-spin-button {
   border: 2px solid #b4e197;
   border-radius: 5px / 5px;;
   line-height: 30px; 
-  margin-top: 10px;
+  min-width: 300px;
 }
 
 #ordering{
