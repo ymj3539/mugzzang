@@ -46,8 +46,10 @@
 
 #### 6. 어드민 페이지
     6.1 상품 CRUD 기능
+        상품 아이디 검색을 통해 특정 상품/삭제가 가능합니다. (주문 조회에서 상품 아이디 확인)
     6.2 주문 조회/취소
     6.3 기능별 모듈로 관리
+    6.4 jwt 토큰을 통한 user role 확인
 
 ####  백엔드<br>
     6.1 admin required 미들웨어 ** 
@@ -85,10 +87,20 @@
 - cors
 - nginx
 
-## 폴더 구조
+### 폴더 구조
 - 프론트: `src/views` 폴더 
 - 백: src/views 이외 폴더 전체
 - 실행: **프론트, 백 동시에, express로 실행**
+
+
+### 프로젝트 역할 분담
+|이름|역할|구현 기능|
+|---|---|---|
+|이준서|**L/Frontend**|<a href='https://velog.io/@simplicityyy?tag=%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A6%AC%EB%94%A9'>1. 팀 프로젝트 리딩</a> <br> 2. 제품 목록 페이지 <br> 3. 제품 상세 페이지 <br> 4. 어드민 페이지 |
+| 성경주 | Frontend | |
+| 황채림 | Frontend | |
+| 권필주 | Backend | |
+| 윤민주 | Backend | |
 
 
 
