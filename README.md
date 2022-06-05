@@ -27,11 +27,11 @@
     1.5 일반 유저에게 관리자 경로 제공x 
         마이페이지에서 일반 유저는 관리자 페이지로 이동하는 경로 삭제
 
-#### 2. 제품 목록 페이지  <br>
+#### 2. [제품 목록 페이지](https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/itemList)  <br>
     2.1 카테고리 클릭 시 해당하는 상품 출력 
     2.2 Intersection Observer를 활용한 무한 스크롤 구현 **
 
-#### 3. [제품 상세 페이지](url) <br>
+#### 3. [제품 상세 페이지](https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/itemInfo) <br>
     3.1 수량 조절 기능 구현 
     3.2 장바구니 기능 (sessionStorage 활용)
 
@@ -44,7 +44,7 @@
     4.1 **주문 기록 열람, 취소** 
         로그인 계정의 주문 기록을 상세히 나타냄
 
-#### 6. 어드민 페이지
+#### 6. [어드민 페이지](https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/adminPage)
     6.1 상품 CRUD 기능
         상품 아이디 검색을 통해 특정 상품/삭제가 가능합니다. (주문 조회에서 상품 아이디 확인)
     6.2 주문 조회/취소
@@ -96,7 +96,7 @@
 ### 프로젝트 역할 분담
 |이름|역할|구현 기능|
 |---|---|---|
-|이준서|**L/Frontend**|<a href='https://velog.io/@simplicityyy?tag=%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A6%AC%EB%94%A9'>1. 팀 프로젝트 리딩</a> <br> 2. 제품 목록 페이지 <br> 3. 제품 상세 페이지 <br> 4. 어드민 페이지 |
+|이준서|**L/Frontend**|<a href='https://velog.io/@simplicityyy?tag=%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A6%AC%EB%94%A9'>1. 팀 프로젝트 리딩</a> <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/itemList'>2. 제품 목록 페이지</a> <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/itemInfo'>3. 제품 상세 페이지</a> <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/adminPage'>4. 어드민 페이지</a>|
 | 성경주 | Frontend | |
 | 황채림 | Frontend | |
 | 권필주 | Backend | |
