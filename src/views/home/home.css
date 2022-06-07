@@ -42,10 +42,11 @@ header .subTitle {
 .imgContainer {
   overflow: hidden;
   position: relative;
+  height: 85vh;
 }
 .img {
   width: 50vw;
-  height: 85vh;
+  height: 100%;
 }
 #wholePeople, 
 #retailPeople {
