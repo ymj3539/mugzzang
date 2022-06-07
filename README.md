@@ -35,40 +35,52 @@
     3.1 수량 조절 기능 구현 
     3.2 장바구니 기능 (sessionStorage 활용)
 
-#### 4. 장바구니 페이지<br>
-    4.1 
+#### 4. [장바구니 페이지](https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/cart)<br>
+    4.1 sessionStroage로 장바구니 목록 렌더링
 
-#### 5. 결제 페이지<br>
+    4.2 수량 조절 및 삭제 기능
+        개별 수량 조절 및 개별 삭제, 선택 삭제, 일괄 삭제 기능, 새로고침해도 적용 수량 유지
+        -> 이벤트 위임 방식으로 DOM 최적화 **
 
-#### 5. 유저 주문기록 확인 기능<br>
-    4.1 **주문 기록 열람, 취소** 
+    4.3 결제금액 0원일 시 주문 불가 및 주문 완료 후 뒤로가기로 장바구니 페이지 접근 시 오류 처리 **
+
+#### 5. [결제 페이지](https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/cart)<br>
+    5.1 주소 및 우편번호 검색 기능(Daum 주소 API 사용) **
+
+    5.2 배송 정보 유효성 검사
+
+    5.3 주문 완료 시 정보 DB로 전송 및 주문완료 페이지 이동
+        주문 완료 페이지에서 주문조회 페이지로 이동 가능
+
+#### 6. 유저 주문기록 확인 기능<br>
+    6.1 **주문 기록 열람, 취소** 
         로그인 계정의 주문 기록을 상세히 나타냄
 
-#### 6. [어드민 페이지](https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/adminPage)
-    6.1 상품 CRUD 기능
+#### 7. [어드민 페이지](https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/adminPage)
+    7.1 상품 CRUD 기능
         상품 아이디 검색을 통해 특정 상품/삭제가 가능합니다. (주문 조회에서 상품 아이디 확인)
-    6.2 주문 조회/취소
-    6.3 기능별 모듈로 관리
-    6.4 jwt 토큰을 통한 user role 확인
+    7.2 주문 조회/취소
+    7.3 기능별 모듈로 관리
+    7.4 jwt 토큰을 통한 user role 확인
 
 ####  백엔드<br>
-    6.1 admin required 미들웨어 ** 
+    8.1 admin required 미들웨어 ** 
         상품등록, 상품정보 수정, 삭제와 장바구니 전체목록 조회, 전체 유저 목록 조회에 관리자 외 접근 차단 
         
-    6.2  validator 기능 추가 ** 
+    8.2  validator 기능 추가 ** 
         사용자 이메일, 비밀번호에 대해 프론트의 요청 재검증 및 브라우저 외의 불법 경로로 서버접근 차단  
         상품 정보 중 가격에 대해 타입 체크
 
-    6.3 error handler 강화 ** 
+    8.3 error handler 강화 ** 
         예상 가능한 에러 처리에 대한 기능 강화 
 
-    6.4 path alias로 경로 정리 ** 
+    8.4 path alias로 경로 정리 ** 
         백엔드 경로는 alias 처리 
     
-    6.5 **asyncHandler 활용 확대** 
+    8.5 **asyncHandler 활용 확대** 
         복잡한 try ~ catch 문 정리 
     
-    6.6 **ES6 import export 문법 사용** 
+    8.6 **ES6 import export 문법 사용** 
         모듈 호출에 require 대신 최신 문법 적용 
     
 
@@ -90,7 +102,7 @@
 ### 폴더 구조
 - 프론트: `src/views` 폴더 
 - 백: src/views 이외 폴더 전체
-- 실행: **프론트, 백 동시에, express로 실행**
+- 실행: **프론트, 백 동시에 express로 실행**
 
 
 ### 프로젝트 역할 분담
@@ -98,7 +110,7 @@
 |---|---|---|
 |이준서|**L/Frontend**|1. 팀 프로젝트 리딩 <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/itemList'>2. 제품 목록 페이지</a> <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/itemInfo'>3. 제품 상세 페이지</a> <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/adminPage'>4. 어드민 페이지</a>|
 | 성경주 | Frontend | |
-| 황채림 | Frontend | |
+| 황채림 | Frontend |<a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/home'>1. 메인페이지</a> <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/cart'>2. 장바구니</a> <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/order'>3. 결제</a> 및 <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/orderComplete'>주문완료</a>|
 | 권필주 | Backend | |
 | 윤민주 | Backend | |
 
