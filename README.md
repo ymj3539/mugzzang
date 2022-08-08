@@ -99,7 +99,6 @@
 
 - **Express**
 - Mongodb, Mongoose
-- cors
 - nginx
 
 ### 폴더 구조
@@ -114,7 +113,7 @@
 |이준서|**L/Frontend**|1. 팀 프로젝트 리딩 <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/itemList'>2. 제품 목록 페이지</a> <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/itemInfo'>3. 제품 상세 페이지</a> <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/adminPage'>4. 어드민 페이지</a>|
 | 성경주 | Frontend | |
 | 황채림 | Frontend |<a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/home'>1. 메인페이지</a> <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/cart'>2. 장바구니</a> <br> <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/order'>3. 결제</a> 및 <a href='https://kdt-gitlab.elice.io/sw_track/class_02_seoul/web_project/team4/team4/-/tree/main/src/views/orderComplete'>주문완료</a>|
-| 권필주 | Backend | |
+| 권필주 | Backend | 상품 관련 DB 모델링 및 전체 api 작성, user validator, error handler(협업)|
 | 윤민주 | Backend | |
 
 
